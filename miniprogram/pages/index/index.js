@@ -1,5 +1,6 @@
 //index.js
 const app = getApp()
+const share = require('../../common/share')
 
 Page({
   data: {
@@ -87,20 +88,9 @@ Page({
     console.log(url)
     wx.navigateTo({ url })
   },
-  
+
   onShareAppMessage: function (res) {
-    return {
-      title: '一大波美女正在等你……',
-      path: '/pages/index/index',
-      success: function (res) {
-        console.log('转发成功')
-        // 转发成功
-      },
-      fail: function (res) {
-        console.log('转发失败')
-        // 转发失败
-      }
-    }
+    return share
   }
 
   // onGetUserInfo: function(e) {

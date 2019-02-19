@@ -1,4 +1,5 @@
 const app = getApp()
+const share = require('../../common/share')
 
 Page({
   data: {
@@ -80,19 +81,7 @@ Page({
       // 来自页面内转发按钮
       console.log('onShareAppMessage:', res.target)
     }
-    return {
-      title: '一大波美女正在等你……',
-      path: '/pages/index/index',
-      imageUrl: 'https://girlstyle.oss-cn-shanghai.aliyuncs.com/new/01/01.jpg?x-oss-process=image/resize,m_lfit,h_640,w_640',
-      success: function (res) {
-        console.log('转发成功')
-        // 转发成功
-      },
-      fail: function (res) {
-        console.log('转发失败')
-        // 转发失败
-      }
-    }
+    return share
   },
   onQRCodeTap: function () {
     this.setData({
