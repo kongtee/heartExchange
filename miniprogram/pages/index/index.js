@@ -8,7 +8,11 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    listData: []
+    listData: [],
+
+    BannerImage: {},
+    NewImageList: [],
+    RecommendImageList: []
   },
 
   onLoad: function(query) {
@@ -82,6 +86,21 @@ Page({
     const url = `/pages/order/order?id=${e.currentTarget.dataset.id}`
     console.log(url)
     wx.navigateTo({ url })
+  },
+  
+  onShareAppMessage: function (res) {
+    return {
+      title: '一大波美女正在等你……',
+      path: '/pages/index/index',
+      success: function (res) {
+        console.log('转发成功')
+        // 转发成功
+      },
+      fail: function (res) {
+        console.log('转发失败')
+        // 转发失败
+      }
+    }
   }
 
   // onGetUserInfo: function(e) {

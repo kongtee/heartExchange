@@ -1,0 +1,130 @@
+/**personal.wxss**/
+.bg {
+  background-color: #DC143C;
+  margin: 0;
+  padding: 0;
+  width: 750rpx;
+  height: 375rpx;
+  border-radius: 0 0 375rpx 375rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-1;
+}
+
+.userinfo {
+  margin:25px auto;
+  background-color:#fff;
+  border-radius:5px;
+  width:650rpx;
+  height:180px;
+  box-shadow:0 2rpx 5rpx #adadad;
+  box-sizing:border-box;
+  display:flex;
+  padding:10px;
+  position: relative;
+}
+
+.userinfo .userinfo-btn {
+  height: 45px;
+  margin-top: 50px;
+}
+
+.userinfo .userinfo-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.userinfo .userinfo-nickname {
+  display: inline-block;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px;
+}
+
+.userinfo .userinfo-card {
+  width: 150px;
+  height: 132px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.func {
+  width:650rpx;
+  font-size:14px;
+  color: #222;
+}
+
+.func .func-wrap {
+  display: flex;
+  border-bottom:1px solid #ccc;
+  padding:20px 0;
+  position: relative
+}
+
+.func .func-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.func .func-name {
+  flex: 1;
+  margin-left: 5px;
+}
+
+.func .func-enter {
+  width: 20px;
+  height: 20px;
+}
+
+.func .func-share-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mask.hidden {
+  display: none;
+}
+
+.mask .qrcode-wrap {
+  width: 540rpx;
+  height: 540rpx;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color:#fff;
+}
+
+.mask .qrcode-close {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  width: 24px;
+  height: 24px;
+}
+
+.mask .qrcode-image {
+  width: 500rpx;
+  height: 500rpx;
+  margin: 20rpx;
+}

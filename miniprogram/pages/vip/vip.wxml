@@ -1,0 +1,45 @@
+<!--detail.wxml-->
+<view class="container">
+  <view class="bg"></view>
+  <block wx:if="{{support}}">
+    <view class="vip-buy">
+      <view class="vip vip90" bindtap="onBuyVip" data-price="5900" data-detail="90天会员">
+        <image bindtap="bindViewTap" class="vip-buy-icon" src="{{vip.vip90}}" background-size="cover"></image>
+        <view class="vip-buy-info">
+          <view class="vip-buy-name-wrap">
+            <text class="vip-buy-name">90天VIP</text>
+            <view class="vip-buy-discount"><text>5折</text></view>  
+          </view>
+          <view class="vip-buy-price-wrap">
+            <text class="vip-buy-price">￥158</text>
+            <text class="vip-buy-price-real">￥59</text>
+          </view>
+        </view>
+        <view class="vip-buy-per-day"><text>0.65/天</text></view>
+      </view>
+      <view class="vip" bindtap="onBuyVip" data-price="2900" data-detail="30天会员">
+        <image bindtap="bindViewTap" class="vip-buy-icon" src="{{vip.vip30}}" background-size="cover"></image>
+        <view class="vip-buy-info">
+          <view class="vip-buy-name-wrap">
+            <text class="vip-buy-name">30天VIP</text>
+            <view class="vip-buy-discount"><text>5折</text></view>  
+          </view>
+          <view class="vip-buy-price-wrap">
+            <text class="vip-buy-price">￥58</text>
+            <text class="vip-buy-price-real">￥29</text>
+          </view>
+        </view>
+        <view class="vip-buy-per-day"><text>0.99/天</text></view>
+      </view>
+    </view> 
+    <view class="vip-description" wx:if="{{support}}">
+      <view class='vip-desc-title'><text>VIP特权</text></view>
+      <view class='vip-desc-content'><text>更多功能敬请期待……</text></view>
+    </view>
+  </block>
+  <view class="support" wx:else>
+    <text class="support-content">如果你喜欢我们，请支持我们</text>
+    <text class="support-content">帮忙转告你的亲朋好友哦</text>
+    <button class="share-btn" open-type="share">分享给好友吧</button>
+  </view>
+</view>

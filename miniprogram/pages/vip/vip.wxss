@@ -1,0 +1,135 @@
+.bg {
+  background-color: #DC143C;
+  margin: 0;
+  padding: 0;
+  width: 750rpx;
+  height: 375rpx;
+  border-radius: 0 0 375rpx 375rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-1;
+}
+
+.vip-buy, 
+.support {
+  margin:25px auto;
+  background-color:#fff;
+  border-radius:5px;
+  width:650rpx;
+  height:180px;
+  box-shadow:0 2rpx 5rpx #adadad;
+  box-sizing:border-box;
+  display:flex;
+  padding:0 10px;
+  position: relative;
+  flex-direction: column
+}
+
+.vip-buy .vip {
+  display: flex;
+  flex:1;
+  height:78px;
+  align-items:center;
+}
+
+.vip-buy .vip90 {
+  border-bottom:1px solid #e7e7e7;
+}
+
+.vip-buy .vip-buy-icon {
+  width:44px;
+  height:54px;
+}
+
+.vip-buy .vip-buy-info {
+  flex:1;
+  margin:3px 0 0 10px;
+}
+
+.vip-buy .vip-buy-name-wrap {
+  display:flex;
+  align-items:center;
+}
+
+.vip-buy .vip-buy-name {
+  color:#222;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.vip-buy .vip-buy-discount {
+  color:#fff;
+  font-size:9px;
+  background:#FFAEB9;
+  border-radius:4px;
+  border:1px solid #FF8D9D;
+  width:29px;
+  height:14px;
+  text-align:center;
+  line-height:14px;
+  margin-left:8px;
+}
+
+.vip-buy .vip-buy-price-wrap {
+  font-size:15px;
+}
+
+.vip-buy .vip-buy-price {
+  color:#cbcbcb;
+  text-decoration:line-through;
+}
+
+.vip-buy .vip-buy-price-real {
+  color:#F95F24;
+  margin-left:7px;
+}
+
+.vip-buy .vip-buy-per-day {
+  color: #F95F24;
+  border: 1px solid #F95F24;
+  border-radius: 3px;
+  line-height: 30px;
+  height: 30px;
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.vip-description {
+  color:#666;
+  font-size:13px;
+  width:100%;
+  margin-left:52px;
+}
+
+.vip-description .vip-desc-title {
+  color:#222;
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.vip-description .vip-desc-content {
+  line-height:40px;
+}
+
+.support {
+  padding: 20px 0;
+}
+
+.support .support-content {
+  color:#222;
+  font-size:14px;
+  text-align:center;
+  line-height:30px;
+}
+
+.support .share-btn {
+  height:34px;
+  width:120px;
+  font-size:14px;
+  line-height:34px;
+  margin-top:35px;
+}

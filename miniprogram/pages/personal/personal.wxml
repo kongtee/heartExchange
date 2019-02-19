@@ -1,0 +1,36 @@
+<!--personal.wxml-->
+<view class="container">
+  <view class="bg"></view>
+  <view class="userinfo" >
+    <block wx:if="{{hasAuth}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <button class="userinfo-btn" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户信息</button>
+    <image class="userinfo-card" src="../../images/personal-card.png"></image>
+  </view>  
+  <view class="func">
+    <view class="func-wrap" bindtap="onVipTap">
+      <image class="func-icon" src="../../images/financial.png"></image>
+      <text class="func-name">支持我们</text>
+      <image class="func-enter" src="../../images/enter.png"></image>
+    </view>
+    <view class="func-wrap">
+      <image class="func-icon" src="../../images/share.png"></image>
+      <text class="func-name">与民同乐</text>
+      <image class="func-enter" src="../../images/enter.png"></image>
+      <button class="func-share-btn" open-type="share"></button>
+    </view>
+    <view class="func-wrap" bindtap="onQRCodeTap">
+      <image class="func-icon" src="../../images/qrcode.png"></image>
+      <text class="func-name">我的推广</text>
+      <image class="func-enter" src="../../images/enter.png"></image>
+    </view>
+  </view>
+  <view id="mask" class="mask {{qrcodeClass}}" bindtap="onMaskTap">
+    <view class="qrcode-wrap">
+      <image id="maskClose" class="qrcode-close" src="../../images/close.png" bindtap="onMaskTap"></image>
+      <image class="qrcode-image" mode="aspectFill" bindlongpress="onLongPressQRCode" src="https://7465-test-521157-1257827183.tcb.qcloud.la/source/erweima.jpg?sign=4975d13c731463d11387893bafb4935d&t=1550593584"></image>
+    </view>
+  </view>
+</view>
