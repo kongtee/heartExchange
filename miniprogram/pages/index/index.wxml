@@ -1,20 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-    <view class="list">
-        <block wx:for="{{listData}}" wx:key="{{_id}}">
-            <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
-                <view class="avatar">
-                    <image src="{{item.avatarUrl || '/images/mrtx.png'}}" />
-                </view>
-                <view class='content'>
-                    <view class="nickname">{{item.nickName || '无名'}}</view>
-                    <view class="type">{{item.type || '无'}}</view>
-                    <view class="status">{{item.status || '空闲'}}</view>
-                </view>
-                <view class="price">¥{{item.price || 0}}</view>
-            </view>
-        </block>
-    </view>
+  <view class="list">
+    <block wx:for="{{listData}}" wx:key="{{_id}}">
+      <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
+        <view class="avatar">
+          <image src="{{item.avatarUrl || '/images/mrtx.png'}}" />
+        </view>
+        <view class="content">
+          <view class="name-wrap">
+              <view class="nickname">{{item.nickName || '无名'}}</view>
+              <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+          </view>
+          <view class="type">{{item.type || '无'}}</view>
+          <view class="status">{{item.status || '空闲'}}</view>
+        </view>
+        <view class="price">¥{{item.price || 0}}</view>
+      </view>
+    </block>
+  </view>
 
     <!-- 用户 openid -->
     <!-- <view class="userinfo">

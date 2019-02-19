@@ -19,5 +19,19 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+      "color": "#1296db",
+      "list": [{
+          "selectedIconPath": "images/home.png",
+          "iconPath": "images/home.png",
+          "pagePath": "pages/index/index",
+          "text": "首页"
+      }, {
+        "selectedIconPath": "images/personal.png",
+        "iconPath": "images/personal.png",
+        "pagePath": "pages/order/order",
+        "text": "个人中心"
+      }]
   }
 }
