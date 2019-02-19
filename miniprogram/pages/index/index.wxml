@@ -1,47 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-
-    <!-- <view class="table">
+    <view class="table">
         <view class="tr tr-h">
             <view class="th">head1</view>
             <view class="th">head2</view>
             <view class="th">head3</view>
+            <view class="th">head4</view>
         </view>
-        <block wx:for="{{listData}}" wx:key="{{code}}">
+        <block wx:for="{{listData}}" wx:key="{{_id}}">
             <view class="tr tr-b">
-                <view class="td">{{item.code}}</view>
-                <view class="td">{{item.text}}</view>
-                <view class="td">{{item.type}}</view>
+                <view class="td">{{item.nickName}}</view>
+                <view class="td">{{item.weixin}}</view>
+                <view class="td">{{item.qq}}</view>
+                <view class="td">{{item.telphone}}</view>
             </view>
         </block>
-    </view> -->
+    </view>
 
-    <form bindsubmit="formSubmit">
-        <view>
-            <label>昵称：</label>
-            <input type='text' placeholder='请输入昵称' name="nickName" />
-            <label>姓名：</label>
-            <input type='text' placeholder='请输入姓名' name="trueName" />
-            <label>性别：</label>
-            <radio-group class="radio-group" bindchange="radioChange" name="sex">
-              <label class="radio">
-                <radio value="男" checked />
-                男
-              </label>
-              <label class="radio">
-                <radio value="女" />
-                女
-              </label>
-            </radio-group>
-            <label>微信号：</label>
-            <input type='text' placeholder='请输入微信号' name="weixin" />
-            <label>QQ号：</label>
-            <input type='text' placeholder='请输入QQ号' name="qq" />
-            <label>手机号：</label>
-            <input type='text' placeholder='请输入手机号' name="telphone" />
-            <button formType="submit">新增用户</button>
-        </view>
-    </form>
+    <view class='add-servicer' bindtap="onAddServicer">+</view>
 
     <!-- 用户 openid -->
     <!-- <view class="userinfo">

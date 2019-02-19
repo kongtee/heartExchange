@@ -8,15 +8,7 @@ Page({
     logged: false,
     takeSession: false,
     requestResult: '',
-    listData: [
-        { "code": "01", "text": "text1", "type": "type1" },
-        { "code": "02", "text": "text2", "type": "type2" },
-        { "code": "03", "text": "text3", "type": "type3" },
-        { "code": "04", "text": "text4", "type": "type4" },
-        { "code": "05", "text": "text5", "type": "type5" },
-        { "code": "06", "text": "text6", "type": "type6" },
-        { "code": "07", "text": "text7", "type": "type7" }
-    ]
+    listData: []
   },
 
   onLoad: function() {
@@ -43,100 +35,112 @@ Page({
         }
       }
     })
+
+    this.getServicers()
   },
 
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
-      })
-    }
-  },
-
-  onGetOpenid: function() {
-    // 调用云函数
+  /**
+   * 获取客服信息列表
+   */
+  getServicers: function() {
     wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
+      name: 'getServicers',
+      data: {}
+    }).then(res => {
+      console.log('成功：', res.result)
+      this.setData({
+        listData: res.result.data || []
+      })
+    }).catch(console.error)
   },
+
+  /**
+   * 跳转新增客服页面
+   */
+  onAddServicer() {
+    wx.redirectTo({
+      url: '/pages/admin/servicers/newServicer',
+    })
+  }
+
+  // onGetUserInfo: function(e) {
+  //   if (!this.logged && e.detail.userInfo) {
+  //     this.setData({
+  //       logged: true,
+  //       avatarUrl: e.detail.userInfo.avatarUrl,
+  //       userInfo: e.detail.userInfo
+  //     })
+  //   }
+  // },
+
+  // onGetOpenid: function() {
+  //   // 调用云函数
+  //   wx.cloud.callFunction({
+  //     name: 'login',
+  //     data: {},
+  //     success: res => {
+  //       console.log('[云函数] [login] user openid: ', res.result.openid)
+  //       app.globalData.openid = res.result.openid
+  //       wx.navigateTo({
+  //         url: '../userConsole/userConsole',
+  //       })
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数] [login] 调用失败', err)
+  //       wx.navigateTo({
+  //         url: '../deployFunctions/deployFunctions',
+  //       })
+  //     }
+  //   })
+  // },
 
   // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
+  // doUpload: function () {
+  //   // 选择图片
+  //   wx.chooseImage({
+  //     count: 1,
+  //     sizeType: ['compressed'],
+  //     sourceType: ['album', 'camera'],
+  //     success: function (res) {
 
-        wx.showLoading({
-          title: '上传中',
-        })
+  //       wx.showLoading({
+  //         title: '上传中',
+  //       })
 
-        const filePath = res.tempFilePaths[0]
+  //       const filePath = res.tempFilePaths[0]
         
-        // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
+  //       // 上传图片
+  //       const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+  //       wx.cloud.uploadFile({
+  //         cloudPath,
+  //         filePath,
+  //         success: res => {
+  //           console.log('[上传文件] 成功：', res)
 
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
+  //           app.globalData.fileID = res.fileID
+  //           app.globalData.cloudPath = cloudPath
+  //           app.globalData.imagePath = filePath
             
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
+  //           wx.navigateTo({
+  //             url: '../storageConsole/storageConsole'
+  //           })
+  //         },
+  //         fail: e => {
+  //           console.error('[上传文件] 失败：', e)
+  //           wx.showToast({
+  //             icon: 'none',
+  //             title: '上传失败',
+  //           })
+  //         },
+  //         complete: () => {
+  //           wx.hideLoading()
+  //         }
+  //       })
 
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
-  onNewUser: function(e) {
-
-  },
-
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    wx.cloud.callFunction({
-      name: 'servicers',
-      data: e.detail.value
-    }).then(res => {
-      console.log('成功：', res)
-    }).catch(console.error)
-  }
+  //     },
+  //     fail: e => {
+  //       console.error(e)
+  //     }
+  //   })
+  // },
 })

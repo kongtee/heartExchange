@@ -50,6 +50,11 @@ Page({
       name: 'servicers',
       data: e.detail.value
     }).then(res => {
+      if (res.errMsg === 'cloud.callFunction:ok') {
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
       console.log('成功：', res)
     }).catch(console.error)
   }
