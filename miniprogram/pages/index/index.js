@@ -21,20 +21,31 @@ Page({
 
     const src = query.src
 
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      console.log('成功：', res.result)
+      if (!src && res.result.errMsg === "collection.get:ok") {
+        wx.redirectTo({
+          url: '/pages/admin/users/admin',
+        })
+      }
+    }).catch(console.error)
+
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log('wx.getSetting:', res);
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log('wx.getUserInfo:', res);
-              if (!src && res.userInfo.nickName === '天外有天') {
-                wx.redirectTo({
-                  url: '/pages/admin/users/admin',
-                })
-              }
+              // console.log('wx.getUserInfo:', res);
+              // if (!src && res.userInfo.nickName === '天外有天') {
+              //   wx.redirectTo({
+              //     url: '/pages/admin/users/admin',
+              //   })
+              // }
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
@@ -56,10 +67,8 @@ Page({
    */
   getServicers: function() {
     wx.cloud.callFunction({
-      name: 'getServicers',
-      data: {}
+      name: 'getServicers'
     }).then(res => {
-      console.log('成功：', res.result)
       this.setData({
         listData: res.result.data || []
       })
