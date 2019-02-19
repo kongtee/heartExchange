@@ -47,12 +47,12 @@ Page({
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     wx.cloud.callFunction({
-      name: 'servicers',
+      name: 'addServicer',
       data: e.detail.value
     }).then(res => {
       if (res.errMsg === 'cloud.callFunction:ok') {
         wx.redirectTo({
-          url: '/pages/index/index',
+          url: '/pages/admin/servicers/servicerList',
         })
       }
       console.log('成功：', res)

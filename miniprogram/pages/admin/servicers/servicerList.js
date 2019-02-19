@@ -11,7 +11,7 @@ Page({
     listData: []
   },
 
-  onLoad: function(query) {
+  onLoad: function() {
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -19,29 +19,17 @@ Page({
       return
     }
 
-    const src = query.src
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
-        console.log('wx.getSetting:', res);
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              console.log('wx.getUserInfo:', res);
-              if (!src && res.userInfo.nickName === '天外有天') {
-                wx.redirectTo({
-                  url: '/pages/admin/users/admin',
-                })
-              }
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
-            },
-            fail: res => {
-
             }
           })
         }
@@ -67,12 +55,12 @@ Page({
   },
 
   /**
-   * 跳转支付页面
+   * 跳转新增客服页面
    */
-  onOrder(e) {
-    const url = `/pages/order/order?id=${e.currentTarget.dataset.id}`
-    console.log(url)
-    wx.navigateTo({ url })
+  onAddServicer() {
+    wx.redirectTo({
+      url: '/pages/admin/servicers/newServicer',
+    })
   }
 
   // onGetUserInfo: function(e) {

@@ -8,7 +8,7 @@
             <view class="th">head4</view>
         </view>
         <block wx:for="{{listData}}" wx:key="{{_id}}">
-            <view class="tr tr-b" data-id="{{item._id}}" bindtap="onOrder">
+            <view class="tr tr-b">
                 <view class="td">{{item.nickName}}</view>
                 <view class="td">{{item.weixin}}</view>
                 <view class="td">{{item.qq}}</view>
@@ -16,6 +16,8 @@
             </view>
         </block>
     </view>
+
+    <view class='add-servicer' bindtap="onAddServicer">+</view>
 
     <!-- 用户 openid -->
     <!-- <view class="userinfo">

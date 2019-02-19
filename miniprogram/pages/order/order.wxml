@@ -1,0 +1,4 @@
+<!--order.wxml-->
+<view class="container">
+  <view bindtap="onPay">支付</view>
+</view>

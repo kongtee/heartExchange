@@ -1,0 +1,15 @@
+<!--admin.wxml-->
+<view class="container">
+  <navigator
+    url="/pages/admin/servicers/servicerList"
+    hover-class="navigator-hover"
+  >
+    进入管理页
+  </navigator>
+  <navigator
+    url="/pages/index/index?src=admin"
+    hover-class="navigator-hover"
+  >
+    进入小程序页
+  </navigator>
+</view>
