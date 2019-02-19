@@ -10,7 +10,7 @@
 	},
 	"appid": "wx17f97b00ff3a14a7",
 	"projectname": "heartexchange",
-	"libVersion": "2.2.5",
+	"libVersion": "2.5.2",
 	"condition": {
 		"search": {
 			"current": -1,
