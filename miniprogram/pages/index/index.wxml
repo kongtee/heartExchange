@@ -1,17 +1,17 @@
 <!--index.wxml-->
 <view class="container">
   <view class="header">
-    <view id="headerImgWrap" class="header-img-wrap" bindtap="enterAlbum" data-id="{{BannerImage.StyleID}}" data-title="{{BannerImage.AlbumName}}">
-      <image class="header-img" src="{{BannerImage.Url}}" mode="aspectFill"></image>
+    <view id="headerImgWrap" class="header-img-wrap" bindtap="enterAlbum" data-id="{{banner._id}}" data-title="{{banner.nickName || '无名'}}">
+      <image class="header-img" src="{{banner.avatarUrl || '/images/banner.jpg'}}" mode="aspectFill"></image>
     </view>
     <view class="banner-container">
       <view class="banner-title">
         <text>最新·更新</text>
       </view>
       <swiper class="slide-wrap" indicator-dots autoplay circular>
-        <block wx:for="{{NewImageList}}" wx:key="{{index}}">
-          <swiper-item bindtap="enterAlbum" data-id="{{item.StyleID}}" data-title="{{item.AlbumName}}">
-            <image src="{{item.Url}}" class="slide-image" mode="aspectFill" />
+        <block wx:for="{{newList}}" wx:key="{{_id}}">
+          <swiper-item bindtap="enterAlbum" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}">
+            <image src="{{item.avatarUrl || '/images/newlist.jpg'}}" class="slide-image" mode="aspectFill" />
           </swiper-item>
         </block>
       </swiper>
@@ -21,22 +21,22 @@
     <view class="catogary">
       <view class="catogary-wrap">
         <view class="split"></view>
-        <text class="title">推荐美女</text>
+        <text class="title">推荐导师</text>
         <view class="split"></view>
       </view>
       <view class="catogary-icon"><text>◇◇◇</text></view>
     </view>
     <view class="pic-list">
-      <block wx:for="{{RecommendImageList}}" wx:key="{{index}}">
-          <view class="zhubo-item" bindtap="enterAlbum" data-id="{{item.StyleID}}" data-title="{{item.AlbumName}}">
+      <block wx:for="{{recommendList}}" wx:key="{{_id}}">
+          <view class="zhubo-item" bindtap="enterAlbum" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}">
             <view class="zhubo-container">
-              <image class="zhubo-bigpic" src="{{item.Url}}" mode="aspectFill" style="height: {{height}}px"></image>
+              <image class="zhubo-bigpic" src="{{item.avatarUrl || '/images/mrtx.jpg'}}" mode="aspectFill" style="height: {{height}}px"></image>
             </view>
             <view class="zhubo-info">
               <view class="zhubo-icon">
-                <image class="zhubo-icon-img" src="{{item.Url}}"></image>
+                <image class="zhubo-icon-img" src="{{item.avatarUrl || '/images/mrtx.jpg'}}"></image>
               </view>
-              <text class="zhubo-desc">{{item.AlbumName}}</text>
+              <text class="zhubo-desc">{{item.nickName || '无名'}}</text>
             </view>
           </view>
         </block>
@@ -47,7 +47,7 @@
     <block wx:for="{{listData}}" wx:key="{{_id}}">
       <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
         <view class="avatar">
-          <image src="{{item.avatarUrl || '/images/mrtx.png'}}" />
+          <image src="{{item.avatarUrl || '/images/mrtx.jpg'}}" />
         </view>
         <view class="content">
           <view class="name-wrap">

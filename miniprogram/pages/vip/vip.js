@@ -13,9 +13,9 @@ Page({
   },
 
   onLoad: function (option) {
-    this.setData({
-      support: app.globalData.userInfo.PayControl
-    })
+    // this.setData({
+    //   support: app.globalData.userInfo.PayControl
+    // })
     wx.setNavigationBarTitle({
       title: '支持我们'
     })

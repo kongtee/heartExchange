@@ -11,9 +11,9 @@ Page({
     requestResult: '',
     listData: [],
 
-    BannerImage: {},
-    NewImageList: [],
-    RecommendImageList: []
+    banner: {},
+    newList: [],
+    recommendList: []
   },
 
   onLoad: function(query) {
@@ -74,8 +74,14 @@ Page({
     wx.cloud.callFunction({
       name: 'getServicers'
     }).then(res => {
+      const data = res.result.data
+      const newList = data.slice(0, 3)
+      const recommendlist = data.slice(3, 5)
       this.setData({
-        listData: res.result.data || []
+        banner: data[0],
+        newList: newList || [],
+        recommendList: recommendlist || [],
+        listData: recommendlist || []
       })
     }).catch(console.error)
   },
