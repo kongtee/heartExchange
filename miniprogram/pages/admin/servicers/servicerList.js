@@ -3,12 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
-    listData: []
+    listData: [],
+    skip: 0,
+    limit: 20,
+    end: false
   },
 
   onLoad: function() {
@@ -25,14 +23,25 @@ Page({
   /**
    * 获取客服信息列表
    */
-  getServicers: function() {
+  getServicers() {
     wx.cloud.callFunction({
-      name: 'getServicers'
+      name: 'getServicers',
+      data: {
+        skip: this.data.skip,
+        limit: this.data.limit
+      }
     }).then(res => {
       console.log('成功：', res.result)
-      this.setData({
-        listData: res.result.data || []
-      })
+      const data = res.result.data || []
+      const listData = this.data.listData.concat(data)
+      if (data.length < this.data.limit) {
+        this.setData({ 
+          listData,
+          end: true 
+        })
+      } else {
+        this.setData({ listData })
+      }
     }).catch(console.error)
   },
 
@@ -67,6 +76,12 @@ Page({
                 icon: 'success',
                 duration: 2000
               })
+              self.setData({
+                listData: [],
+                skip: 0,
+                limit: 20,
+                end: false
+              })
               self.getServicers()
             } else {
               wx.showToast({
@@ -81,5 +96,15 @@ Page({
         }
       }
     })
+  },
+
+  onReachBottom() {
+    if (!this.data.end) {
+      this.setData({
+        skip: this.data.skip + this.data.limit
+      })
+
+      this.getServicers()
+    }
   }
 })

@@ -18,10 +18,4 @@ exports.main = async (event, context) => {
   } catch (e) {
     console.error(e)
   }
-  // return await cloud.callFunction({
-  //   name: 'config'
-  // }).then(res => {
-  //   return res
-  // })
-  // .catch(console.error)
 }

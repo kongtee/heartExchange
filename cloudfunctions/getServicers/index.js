@@ -9,8 +9,11 @@ exports.main = async (event, context) => {
     env: process.env.env
   })
 
+  const skip = event.skip || 0
+  const limit = event.limit || 20
+
   try {
-      return await db.collection('servicers').get()
+    return await db.collection('servicers').skip(skip).limit(limit).get()
   } catch (e) {
     console.error(e)
   }
