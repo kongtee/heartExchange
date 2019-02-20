@@ -8,7 +8,7 @@ cloud.init()
 exports.main = async (event, context) => {
   const { OPENID } = cloud.getWXContext()
   const db = cloud.database({
-    env: 'test-521157'
+    env: process.env.env
   })
 
   try {

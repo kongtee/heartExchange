@@ -1,23 +1,30 @@
 <!--index.wxml-->
 <view class="container">
-    <view class="table">
-        <view class="tr tr-h">
-            <view class="th">head1</view>
-            <view class="th">head2</view>
-            <view class="th">head3</view>
-            <view class="th">head4</view>
+  <view class="list">
+    <block wx:for="{{listData}}" wx:key="{{_id}}">
+      <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
+        <view class="avatar">
+          <image src="{{item.avatarUrl || '/images/mrtx.jpg'}}" />
         </view>
-        <block wx:for="{{listData}}" wx:key="{{_id}}">
-            <view class="tr tr-b">
-                <view class="td">{{item.nickName}}</view>
-                <view class="td">{{item.weixin}}</view>
-                <view class="td">{{item.qq}}</view>
-                <view class="td">{{item.telphone}}</view>
-            </view>
-        </block>
-    </view>
+        <view class="content">
+          <view class="name-wrap">
+              <view class="nickname">{{item.nickName || '无名'}}</view>
+              <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+          </view>
+          <view class="type">{{item.type || '无'}}</view>
+          <view class="status">{{item.status || '空闲'}}</view>
+        </view>
+        <view class="price">¥{{item.price || 0}}</view>
+        <view class="delete" data-id="{{item._id}}" bindtap="onDelete">
+          <image src="/images/delete.png"/>
+        </view>
+      </view>
+    </block>
+  </view>
 
-    <view class='add-servicer' bindtap="onAddServicer">+</view>
+  <view class='add-servicer' bindtap="onAddServicer">
+    <image src='/images/add-user.png' />
+  </view>
 
     <!-- 用户 openid -->
     <!-- <view class="userinfo">

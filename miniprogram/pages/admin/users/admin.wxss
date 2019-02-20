@@ -1,0 +1,29 @@
+page {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  color:#fff;
+  width:120px;
+  height:40px;
+  text-align:center;
+  line-height:40px;
+  border-radius:5px;
+}
+
+.admin {
+  border:1px solid #409EFF;
+  background-color:#409EFF;
+  margin-bottom: 20px;
+}
+
+.client {
+  border:1px solid #67C23A;
+  background-color:#67C23A;
+}

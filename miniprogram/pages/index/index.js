@@ -26,16 +26,16 @@ Page({
 
     const src = query.src
 
-    // wx.cloud.callFunction({
-    //   name: 'login'
-    // }).then(res => {
-    //   console.log('成功：', res.result)
-    //   if (!src && res.result.errMsg === "collection.get:ok") {
-    //     wx.redirectTo({
-    //       url: '/pages/admin/users/admin',
-    //     })
-    //   }
-    // }).catch(console.error)
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      console.log('成功：', res.result)
+      if (!src && res.result.errMsg === "collection.get:ok") {
+        wx.redirectTo({
+          url: '/pages/admin/users/admin',
+        })
+      }
+    }).catch(console.error)
 
 
     // 获取用户信息

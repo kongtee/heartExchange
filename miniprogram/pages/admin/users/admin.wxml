@@ -1,12 +1,14 @@
 <!--admin.wxml-->
 <view class="container">
   <navigator
+    class="btn admin"
     url="/pages/admin/servicers/servicerList"
     hover-class="navigator-hover"
   >
     进入管理页
   </navigator>
   <navigator
+    class="btn client"
     url="/pages/index/index?src=admin"
     hover-class="navigator-hover"
   >

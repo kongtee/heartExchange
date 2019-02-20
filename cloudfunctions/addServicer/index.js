@@ -6,7 +6,7 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const db = cloud.database({
-    env: 'test-521157'
+    env: process.env.env
   })
 
   const time = db.serverDate();
