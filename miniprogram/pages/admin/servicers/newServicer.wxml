@@ -14,6 +14,13 @@
       <input type='text' placeholder='请输入姓名' name="trueName" value="{{userInfo.trueName}}" maxlength="10" />
     </view>
     <view class="wrap">
+      <label>头像：</label>
+      <view class="avatar" bindtap="onUpload">
+        <image src="{{userInfo.avatarUrl || '/images/add-user.png'}}" />
+      </view>
+      <input type="text" hidden name="avatarId" value="{{userInfo.avatarId}}" />
+    </view>
+    <view class="wrap">
       <label>性别：</label>
       <radio-group class="radio-group" bindchange="radioChange" name="sex">
         <label class="radio">
@@ -23,6 +30,10 @@
           <radio value="女" checked="{{userInfo.sex === '女'}}" /> 女
         </label>
       </radio-group>
+    </view>
+    <view class="wrap">
+      <label>身份证：</label>
+      <input type='idcard' placeholder='请输入身份证号码' name="idcard" value="{{userInfo.idcard}}" maxlength="18" />
     </view>
     <view class="wrap">
       <label>微信号：</label>
@@ -35,6 +46,18 @@
     <view class="wrap">
       <label>手机号：</label>
       <input type='number' placeholder='请输入手机号' name="telphone" value="{{userInfo.telphone}}" maxlength="11" />
+    </view>
+    <view class="wrap">
+      <label>婚姻状态：</label>
+      <picker bindchange="onMaritalChange" value="{{userInfo.maritalIndex}}" range="{{maritalStatus}}" name="maritalIndex">
+    <view class="picker">
+      {{maritalStatus[userInfo.maritalIndex]}}
+    </view>
+  </picker>
+    </view>
+    <view class="wrap">
+      <label>价格：</label>
+      <input type='digit' placeholder='请输入价格' name="price" value="{{userInfo.price}}" />
     </view>
     <button type='primary' formType="submit">{{btnText}}</button>
   </form>

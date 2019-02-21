@@ -3,9 +3,12 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: {},
+    userInfo: {
+      maritalIndex: 0,
+    },
     btnText: '新增',
-    id: null
+    id: null,
+    maritalStatus: ['未婚', '已婚无孩', '已婚有孩']
   },
 
   onLoad: function(query) {
@@ -37,6 +40,44 @@ Page({
         btnText: '新增'
       })
     }
+  },
+
+  /**
+   * 上传头像
+   */
+  onUpload() {
+    const self = this
+    wx.chooseImage({
+      success: chooseResult => {
+        console.log(chooseResult)
+        const url = chooseResult.tempFilePaths[0]
+        const imageName = `servicers/${new Date().getTime() + Math.random(100)}.png`
+        //将图片上传至云存储空间
+        wx.cloud.uploadFile({
+          // 指定上传到的云路径
+          cloudPath: imageName,
+          // 指定要上传的文件的小程序临时文件路径
+          filePath: url,
+          // 成功回调
+          success: res => {
+            console.log('上传成功', res)
+            self.setData({
+              'userInfo.avatarUrl': url,
+              'userInfo.avatarId': res.fileID
+            })
+          },
+        })
+      },
+    })
+  },
+
+  /**
+   * 婚姻状态变化
+   */
+  onMaritalChange(e) {
+    this.setData({
+      'userInfo.maritalIndex': e.detail.value
+    })
   },
 
   formSubmit: function (e) {

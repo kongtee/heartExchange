@@ -17,12 +17,16 @@ exports.main = async (event, context) => {
       data: {
         nickName: event.nickName,
         trueName: event.trueName,
+        avatarId: event.avatarId,
         sex: event.sex,
+        idcard: event.idcard,
         // age: event.age,
         // skill: event.skill,
         weixin: event.weixin,
         qq: event.qq,
         telphone: event.telphone,
+        maritalIndex: event.maritalIndex,
+        price: event.price,
         updateTime: db.serverDate()
       }
     })

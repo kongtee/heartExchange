@@ -13,7 +13,6 @@ exports.main = async (event, context) => {
 
   const no = res.data[0].servicerNo
   const servicerNo = (Array(4).join(0) + (parseInt(no) + 1)).slice(-4)
-  // return servicerNo
 
   try {
     return await db.collection('servicers').add({
@@ -22,12 +21,16 @@ exports.main = async (event, context) => {
         servicerNo: servicerNo,
         nickName: event.nickName,
         trueName: event.trueName,
+        avatarId: event.avatarId,
         sex: event.sex,
+        idcard: event.idcard,
         // age: event.age,
         // skill: event.skill,
         weixin: event.weixin,
         qq: event.qq,
         telphone: event.telphone,
+        maritalIndex: event.maritalIndex,
+        price: event.price,
         updateTime: db.serverDate(),
         createTime: db.serverDate()
       }
