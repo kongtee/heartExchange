@@ -1,29 +1,41 @@
 <!--newServicer.wxml-->
 <view class="container">
-    <form bindsubmit="formSubmit">
-        <view>
-            <label>昵称：</label>
-            <input type='text' placeholder='请输入昵称' name="nickName" value="{{userInfo.nickName}}" />
-            <label>姓名：</label>
-            <input type='text' placeholder='请输入姓名' name="trueName" value="{{userInfo.trueName}}" />
-            <label>性别：</label>
-            <radio-group class="radio-group" bindchange="radioChange" name="sex">
-              <label class="radio">
-                <radio value="男" checked="{{userInfo.sex !== '女'}}" />
-                男
-              </label>
-              <label class="radio">
-                <radio value="女" checked="{{userInfo.sex === '女'}}" />
-                女
-              </label>
-            </radio-group>
-            <label>微信号：</label>
-            <input type='text' placeholder='请输入微信号' name="weixin" value="{{userInfo.weixin}}" />
-            <label>QQ号：</label>
-            <input type='text' placeholder='请输入QQ号' name="qq" value="{{userInfo.qq}}" />
-            <label>手机号：</label>
-            <input type='text' placeholder='请输入手机号' name="telphone" value="{{userInfo.telphone}}" />
-            <button formType="submit">{{btnText}}</button>
-        </view>
-    </form>
+  <form bindsubmit="formSubmit">
+    <view class="wrap" hidden="{{!userInfo.servicerNo}}">
+      <label>员工编号：</label>
+      <input type='text' name="servicerNo" value="{{userInfo.servicerNo}}" disabled />
+    </view>
+    <view class="wrap">
+      <label>昵称：</label>
+      <input type='text' placeholder='请输入昵称' name="nickName" value="{{userInfo.nickName}}" maxlength="25" />
+    </view>
+    <view class="wrap">
+      <label>姓名：</label>
+      <input type='text' placeholder='请输入姓名' name="trueName" value="{{userInfo.trueName}}" maxlength="10" />
+    </view>
+    <view class="wrap">
+      <label>性别：</label>
+      <radio-group class="radio-group" bindchange="radioChange" name="sex">
+        <label class="radio">
+          <radio value="男" checked="{{userInfo.sex !== '女'}}" /> 男
+        </label>
+        <label class="radio">
+          <radio value="女" checked="{{userInfo.sex === '女'}}" /> 女
+        </label>
+      </radio-group>
+    </view>
+    <view class="wrap">
+      <label>微信号：</label>
+      <input type='text' placeholder='请输入微信号' name="weixin" value="{{userInfo.weixin}}" />
+    </view>
+    <view class="wrap">
+      <label>QQ号：</label>
+      <input type='number' placeholder='请输入QQ号' name="qq" value="{{userInfo.qq}}" maxlength="11" />
+    </view>
+    <view class="wrap">
+      <label>手机号：</label>
+      <input type='number' placeholder='请输入手机号' name="telphone" value="{{userInfo.telphone}}" maxlength="11" />
+    </view>
+    <button type='primary' formType="submit">{{btnText}}</button>
+  </form>
 </view>

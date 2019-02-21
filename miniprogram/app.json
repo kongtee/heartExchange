@@ -1,12 +1,12 @@
 {
   "cloud": true,
   "pages": [
-    "pages/admin/servicers/servicerList",
     "pages/index/index",
     "pages/personal/personal",
     "pages/vip/vip",
     "pages/order/order",
     "pages/admin/users/admin",
+    "pages/admin/servicers/servicerList",
     "pages/admin/servicers/newServicer",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

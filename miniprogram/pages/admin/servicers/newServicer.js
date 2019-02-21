@@ -46,12 +46,17 @@ Page({
         name: 'addServicer',
         data: e.detail.value
       }).then(res => {
-        if (res.errMsg === 'cloud.callFunction:ok') {
+        if (res.result) {
           wx.redirectTo({
             url: '/pages/admin/servicers/servicerList',
           })
+          console.log('成功：', res)
+        } else {
+          wx.showToast({
+            title: '添加失败',
+            icon: 'none'
+          })
         }
-        console.log('成功：', res)
       }).catch(console.error)
     } else {
       const data = e.detail.value
@@ -60,12 +65,17 @@ Page({
         name: 'updateServicer',
         data: e.detail.value
       }).then(res => {
-        if (res.errMsg === 'cloud.callFunction:ok') {
+        if (res.result) {
           wx.showToast({
             title: '修改成功'
           })
+          console.log('成功：', res)
+        } else {
+          wx.showToast({
+            title: '添加失败',
+            icon: 'none'
+          })
         }
-        console.log('成功：', res)
       }).catch(console.error)
     }
   }

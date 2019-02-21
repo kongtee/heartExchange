@@ -31,7 +31,7 @@ Page({
         limit: this.data.limit
       }
     }).then(res => {
-      // console.log('成功：', res.result)
+      console.log('成功：', res.result)
       const data = res.result.data || []
       const listData = this.data.listData.concat(data)
       if (data.length < this.data.limit) {
@@ -81,9 +81,7 @@ Page({
           }).then(res => {
             if (res.result.errMsg === 'document.remove:ok') {
               wx.showToast({
-                title: '删除成功',
-                icon: 'success',
-                duration: 2000
+                title: '删除成功'
               })
               self.setData({
                 listData: [],
@@ -95,8 +93,7 @@ Page({
             } else {
               wx.showToast({
                 title: '删除失败',
-                icon: 'none',
-                duration: 2000
+                icon: 'none'
               })
             }
             console.log('成功：', res.result)

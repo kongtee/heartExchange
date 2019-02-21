@@ -9,10 +9,17 @@ exports.main = async (event, context) => {
     env: process.env.env
   })
   
+  const res = await db.collection('servicers').orderBy('createTime', 'desc').limit(1).get()
+
+  const no = res.data[0].servicerNo
+  const servicerNo = (Array(4).join(0) + (parseInt(no) + 1)).slice(-4)
+  // return servicerNo
+
   try {
     return await db.collection('servicers').add({
       // data 字段表示需新增的 JSON 数据
       data: {
+        servicerNo: servicerNo,
         nickName: event.nickName,
         trueName: event.trueName,
         sex: event.sex,
