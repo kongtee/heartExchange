@@ -8,9 +8,11 @@ exports.main = async (event, context) => {
   const db = cloud.database({
     env: process.env.env
   })
-  
+
+  const id = event.id
+
   try {
-    return await db.collection('servicers').add({
+    return await db.collection('servicers').doc(id).update({
       // data 字段表示需新增的 JSON 数据
       data: {
         nickName: event.nickName,
@@ -21,8 +23,7 @@ exports.main = async (event, context) => {
         weixin: event.weixin,
         qq: event.qq,
         telphone: event.telphone,
-        updateTime: db.serverDate(),
-        createTime: db.serverDate()
+        updateTime: db.serverDate()
       }
     })
   } catch (e) {

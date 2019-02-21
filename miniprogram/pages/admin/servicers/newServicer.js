@@ -3,12 +3,12 @@ const app = getApp()
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
     userInfo: {},
-    logged: false,
+    btnText: '新增',
+    id: null
   },
 
-  onLoad: function() {
+  onLoad: function(query) {
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -16,46 +16,57 @@ Page({
       return
     }
 
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
-  },
-
-  onGetUserInfo: function(e) {
-    if (!this.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo
+    const id = query.id
+    if (id) {
+      this.data.btnText !== '提交' && this.setData({
+        id,
+        btnText: '提交'
+      })
+      // 修改信息
+      wx.cloud.callFunction({
+        name: 'getServicers',
+        data: {id}
+      }).then(res => {
+        console.log('成功：', res.result)
+        this.setData({
+          userInfo: res.result.data
+        })
+      }).catch(console.error)
+    } else {
+      this.data.btnText !== '新增' && this.setData({
+        btnText: '新增'
       })
     }
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    wx.cloud.callFunction({
-      name: 'addServicer',
-      data: e.detail.value
-    }).then(res => {
-      if (res.errMsg === 'cloud.callFunction:ok') {
-        wx.redirectTo({
-          url: '/pages/admin/servicers/servicerList',
-        })
-      }
-      console.log('成功：', res)
-    }).catch(console.error)
+    console.log('form发生了submit事件，携带数据为：', e.detail.value, this.data.id)
+    if (!this.data.id) {
+      wx.cloud.callFunction({
+        name: 'addServicer',
+        data: e.detail.value
+      }).then(res => {
+        if (res.errMsg === 'cloud.callFunction:ok') {
+          wx.redirectTo({
+            url: '/pages/admin/servicers/servicerList',
+          })
+        }
+        console.log('成功：', res)
+      }).catch(console.error)
+    } else {
+      const data = e.detail.value
+      data.id = this.data.id
+      wx.cloud.callFunction({
+        name: 'updateServicer',
+        data: e.detail.value
+      }).then(res => {
+        if (res.errMsg === 'cloud.callFunction:ok') {
+          wx.showToast({
+            title: '修改成功'
+          })
+        }
+        console.log('成功：', res)
+      }).catch(console.error)
+    }
   }
 })

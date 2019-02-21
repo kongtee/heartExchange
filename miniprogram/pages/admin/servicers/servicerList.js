@@ -31,7 +31,7 @@ Page({
         limit: this.data.limit
       }
     }).then(res => {
-      console.log('成功：', res.result)
+      // console.log('成功：', res.result)
       const data = res.result.data || []
       const listData = this.data.listData.concat(data)
       if (data.length < this.data.limit) {
@@ -51,6 +51,15 @@ Page({
   onAddServicer() {
     wx.redirectTo({
       url: '/pages/admin/servicers/newServicer',
+    })
+  },
+
+  /**
+   * 进入编辑客服信息页
+   */
+  onModify(e) {
+    wx.navigateTo({
+      url: `/pages/admin/servicers/newServicer?id=${e.currentTarget.dataset.id}`,
     })
   },
 
@@ -98,6 +107,9 @@ Page({
     })
   },
 
+  /**
+   * 上拉刷新
+   */
   onReachBottom() {
     if (!this.data.end) {
       this.setData({

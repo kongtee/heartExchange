@@ -2,7 +2,7 @@
 <view class="container">
   <view class="list">
     <block wx:for="{{listData}}" wx:key="{{_id}}">
-      <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
+      <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onModify">
         <view class="avatar">
           <image src="{{item.avatarUrl || '/images/mrtx.jpg'}}" />
         </view>
@@ -15,7 +15,7 @@
           <view class="status">{{item.status || '空闲'}}</view>
         </view>
         <view class="price">¥{{item.price || 0}}</view>
-        <view class="delete" data-id="{{item._id}}" bindtap="onDelete">
+        <view class="delete" data-id="{{item._id}}" catchtap="onDelete">
           <image src="/images/delete.png"/>
         </view>
       </view>

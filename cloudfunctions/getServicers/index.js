@@ -11,9 +11,15 @@ exports.main = async (event, context) => {
 
   const skip = event.skip || 0
   const limit = event.limit || 20
+  const id = event.id
 
   try {
-    return await db.collection('servicers').skip(skip).limit(limit).get()
+    if (id) {
+      // 查询一条信息
+      return await db.collection('servicers').doc(id).get()
+    } else {
+      return await db.collection('servicers').skip(skip).limit(limit).get()
+    } 
   } catch (e) {
     console.error(e)
   }
