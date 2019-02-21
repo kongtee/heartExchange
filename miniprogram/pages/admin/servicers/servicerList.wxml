@@ -4,19 +4,21 @@
     <block wx:for="{{listData}}" wx:key="{{_id}}">
       <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onModify">
         <view class="avatar">
-          <image src="{{item.avatarUrl || '/images/mrtx.jpg'}}" />
+          <image src="{{item.avatarId || '/images/mrtx.jpg'}}" />
         </view>
         <view class="content">
           <view class="name-wrap">
-              <view class="nickname">{{item.nickName || '无名'}}</view>
+              <view class="nickname">{{item.nickName || '无名'}}({{item.servicerNo}})</view>
               <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
           </view>
-          <view class="type">{{item.type || '无'}}</view>
-          <view class="status">{{item.status || '空闲'}}</view>
+          <view class="type">真实姓名：{{item.trueName || '无'}}（{{item.telphone}}）</view>
+          <view class="status">微信：{{item.weixin}} QQ：{{item.qq}}</view>
         </view>
-        <view class="price">¥{{item.price || 0}}</view>
-        <view class="delete" data-id="{{item._id}}" catchtap="onDelete">
-          <image src="/images/delete.png"/>
+        <view class="rightWrap">
+          <view class="price">¥{{item.price || 0}}</view>
+          <view class="delete" data-id="{{item._id}}" catchtap="onDelete">
+            <image src="/images/delete.png"/>
+          </view>
         </view>
       </view>
     </block>

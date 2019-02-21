@@ -1,5 +1,4 @@
-/**index.wxss**/
-
+/**servicerList.wxss**/
 page {
   background: #f8f9fb;
   display: flex;
@@ -18,14 +17,14 @@ page {
   justify-content: flex-start;
   height: 140rpx;
   border-top: solid 1rpx rgba(0, 0, 0, 0.07);
-  padding: 30rpx;
+  padding: 30rpx 0;
 }
 
 .avatar {
   height: 140rpx;
   width: 140rpx;
   border-radius: 10rpx;
-  margin-right: 16rpx;
+  margin: 0 16rpx 0 30rpx;
 }
 
 .avatar image {
@@ -35,7 +34,7 @@ page {
 }
 
 .content {
-  flex-shrink: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -66,14 +65,21 @@ page {
   color: #888;
 }
 
-.price {
+.rightWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100rpx;
-  text-align: right;
-  font-size: 11px;
-  margin-right: 50rpx;
+  margin-right: 30rpx;
 }
 
-.delete {
+.rightWrap .price {
+  font-size: 12px;
+  margin-right:10rpx;
+}
+
+.rightWrap .delete {
   width: 50rpx;
   height: 50rpx;
 }
