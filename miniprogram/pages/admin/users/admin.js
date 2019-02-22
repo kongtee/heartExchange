@@ -12,7 +12,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '传送门'
+    })
+  },
 
+  /**
+   * 进入到客户端页面
+   */
+  onGotoClient() {
+    try {
+      wx.setStorageSync('admin', true)
+    } catch (e) { 
+
+    }
+    wx.switchTab({
+      url: '/pages/index/index'
+    })
   },
 
   /**

@@ -23,20 +23,35 @@ Page({
       })
       return
     }
-
-    const src = query.src
-
-    wx.cloud.callFunction({
-      name: 'login'
-    }).then(res => {
-      console.log('成功：', res.result)
-      if (!src && res.result.errMsg === "collection.get:ok") {
-        wx.redirectTo({
-          url: '/pages/admin/users/admin',
+ 
+    try {
+      const admin = wx.getStorageSync('admin')
+      if (admin) {
+        wx.removeStorage({
+          key: 'admin'
         })
+      } else {
+        wx.cloud.callFunction({
+          name: 'login'
+        }).then(res => {
+          if (!wx.cloud.callFunction({
+            name: 'login'
+          }).then(res => {
+            if (res.result.data.length > 0) {
+              wx.redirectTo({
+                url: '/pages/admin/users/admin',
+              })
+            }
+          }).catch(console.error) && res.result.data.length > 0) {
+            wx.redirectTo({
+              url: '/pages/admin/users/admin',
+            })
+          }
+        }).catch(console.error)
       }
-    }).catch(console.error)
-
+    } catch (e) {
+      console.err('获取本地admin参数失败')
+    }
 
     // 获取用户信息
     wx.getSetting({

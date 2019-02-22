@@ -9,6 +9,10 @@
     <button class="userinfo-btn" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户信息</button>
     <image class="userinfo-card" src="../../images/personal-card.png"></image>
   </view>  
+  <!-- <view>
+    <button bindtap="onGetOpenId">获取OpenId</button>
+    <input type='text' value='{{openid}}' />
+  </view> -->
   <view class="func">
     <view class="func-wrap" bindtap="onVipTap">
       <image class="func-icon" src="../../images/financial.png"></image>

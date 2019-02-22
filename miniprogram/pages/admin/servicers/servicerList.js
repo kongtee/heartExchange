@@ -10,6 +10,10 @@ Page({
   },
 
   onLoad: function() {
+    wx.setNavigationBarTitle({
+      title: '后台管理 - 客服列表'
+    })
+
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -49,7 +53,7 @@ Page({
    * 跳转新增客服页面
    */
   onAddServicer() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/admin/servicers/newServicer',
     })
   },

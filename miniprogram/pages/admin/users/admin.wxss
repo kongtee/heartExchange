@@ -24,6 +24,6 @@ page {
 }
 
 .client {
-  border:1px solid #67C23A;
+  font-size: 16px;
   background-color:#67C23A;
 }

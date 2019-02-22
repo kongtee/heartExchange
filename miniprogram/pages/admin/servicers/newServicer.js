@@ -12,6 +12,10 @@ Page({
   },
 
   onLoad: function(query) {
+    wx.setNavigationBarTitle({
+      title: '后台管理 - 新增客服'
+    })
+
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -21,6 +25,9 @@ Page({
 
     const id = query.id
     if (id) {
+      wx.setNavigationBarTitle({
+        title: '后台管理 - 修改客服信息'
+      })
       this.data.btnText !== '提交' && this.setData({
         id,
         btnText: '提交'

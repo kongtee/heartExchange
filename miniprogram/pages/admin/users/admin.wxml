@@ -7,11 +7,5 @@
   >
     进入管理页
   </navigator>
-  <navigator
-    class="btn client"
-    url="/pages/index/index?src=admin"
-    hover-class="navigator-hover"
-  >
-    进入小程序页
-  </navigator>
+  <button class="btn client" bindtap="onGotoClient">进入客户端</button>
 </view>

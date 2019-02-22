@@ -5,7 +5,8 @@ Page({
   data: {
     userInfo: {},
     qrcodeClass: 'hidden',
-    hasAuth: app.globalData.hasAuth
+    hasAuth: app.globalData.hasAuth,
+    openid: ''
   },
   enterAlbum: function (e) {
     let url = '../detail/detail?id=' + e.currentTarget.dataset.id + '&title=' + e.currentTarget.dataset.title;
@@ -14,24 +15,7 @@ Page({
     })
   },
   onLoad: function () {
-    // wx.request({
-    //   url: recommend.queryrecommendlist,
-    //   data: {
-    //     QueryStartPos: 0,
-    //     QueryNumber: 10
-    //   },
-    //   method: 'POST',
-    //   success: (res) => {
-    //     let resData = res.data || {};
-    //     if (resData.RspHeader && resData.RspHeader.ErrNo == 200) {
-    //       let rspJson = resData.RspJson || [];
-    //       this.setData({
-    //         BannerList: rspJson.BannerList,
-    //         RecommendImageList: rspJson.RecommendImageList
-    //       });
-    //     }
-    //   }
-    // })
+    console.log(app.globalData)
     if (this.data.hasAuth) {
       this.setData({
         userInfo: app.globalData.userInfo
@@ -64,6 +48,19 @@ Page({
       userInfo: e.detail.userInfo,
       hasAuth: true
     })
+  },
+  /**
+   * 获取用户OpenId
+   */
+  onGetOpenId(e) {
+    wx.cloud.callFunction({
+      name: 'getUserInfo'
+    }).then(res => {
+      console.log(res.result.openid)
+      this.setData({
+        openid: res.result.openid
+      })
+    }).catch(console.error)
   },
   /**
    * 支持我们
