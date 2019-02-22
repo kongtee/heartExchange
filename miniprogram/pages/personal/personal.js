@@ -15,7 +15,9 @@ Page({
     })
   },
   onLoad: function () {
-    console.log(app.globalData)
+    wx.setNavigationBarTitle({
+      title: '个人中心'
+    })
     if (this.data.hasAuth) {
       this.setData({
         userInfo: app.globalData.userInfo
@@ -101,7 +103,7 @@ Page({
         if (res.tapIndex === 0) {
           //下载要保存的图片
           wx.downloadFile({
-            url: 'https://girlstyle.oss-cn-shanghai.aliyuncs.com/static/erweima.png',
+            url: '/images/erweima.jpg',
             success(res) {
               //保存到本地相册
               wx.saveImageToPhotosAlbum({

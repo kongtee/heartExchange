@@ -34,7 +34,7 @@
   <view id="mask" class="mask {{qrcodeClass}}" bindtap="onMaskTap">
     <view class="qrcode-wrap">
       <image id="maskClose" class="qrcode-close" src="../../images/close.png" bindtap="onMaskTap"></image>
-      <image class="qrcode-image" mode="aspectFill" bindlongpress="onLongPressQRCode" src="https://7465-test-521157-1257827183.tcb.qcloud.la/source/erweima.jpg?sign=4975d13c731463d11387893bafb4935d&t=1550593584"></image>
+      <image class="qrcode-image" mode="aspectFill" bindlongpress="onLongPressQRCode" src="/images/erweima.jpg"></image>
     </view>
   </view>
 </view>
