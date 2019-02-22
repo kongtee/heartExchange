@@ -57,12 +57,12 @@
     </view>
     <view class="wrap">
       <label>专业分类：</label>
-      <radio-group class="radio-group" name="professionalType">
+      <radio-group class="radio-group" name="proType">
         <label class="radio">
-          <radio value="0" checked="{{userInfo.professionalType !== '1'}}" /> 专业
+          <radio value="0" checked="{{userInfo.proType !== '1'}}" />业余
         </label>
         <label class="radio">
-          <radio value="1" checked="{{userInfo.professionalType === '1'}}" /> 非专业
+          <radio value="1" checked="{{userInfo.proType === '1'}}" />专业
         </label>
       </radio-group>
     </view>

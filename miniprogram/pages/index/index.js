@@ -11,9 +11,11 @@ Page({
     requestResult: '',
     listData: [],
 
-    banner: {},
-    newList: [],
-    recommendList: []
+    banner: {
+      url: '/images/banner.jpg'
+    },
+    proList: [],
+    nonProList: []
   },
 
   onLoad: function(query) {
@@ -60,12 +62,6 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              // console.log('wx.getUserInfo:', res);
-              // if (!src && res.userInfo.nickName === '天外有天') {
-              //   wx.redirectTo({
-              //     url: '/pages/admin/users/admin',
-              //   })
-              // }
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
@@ -83,31 +79,56 @@ Page({
   },
 
   /**
+   * 获取专业客服列表
+   */
+  getProServicers() {
+    wx.cloud.callFunction({
+      name: 'getServicers',
+      data: {
+        proType: '1'
+      }
+    }).then(res => {
+      console.log('专业列表：', res)
+      const data = res.result.data
+      this.setData({
+        proList: data || []
+      })
+    }).catch(console.error)
+  },
+
+  /**
+   * 获取业余客服列表
+   */
+  getNonProServicers() {
+    wx.cloud.callFunction({
+      name: 'getServicers',
+      data: {
+        proType: '0'
+      }
+    }).then(res => {
+      console.log('业余列表：', res)
+      const data = res.result.data
+      this.setData({
+        nonProList: data || []
+      })
+    }).catch(console.error)
+  },
+
+  /**
    * 获取客服信息列表
    */
   getServicers: function() {
-    wx.cloud.callFunction({
-      name: 'getServicers'
-    }).then(res => {
-      const data = res.result.data
-      const newList = data.slice(0, 3)
-      const recommendlist = data.slice(3, 5)
-      this.setData({
-        banner: data[0],
-        newList: newList || [],
-        recommendList: recommendlist || [],
-        listData: recommendlist || []
-      })
-    }).catch(console.error)
+    this.getProServicers()
+    this.getNonProServicers()
   },
 
   /**
    * 跳转支付页面
    */
   onOrder(e) {
-    const url = `/pages/order/order?id=${e.currentTarget.dataset.id}`
-    console.log(url)
-    wx.navigateTo({ url })
+    // const url = `/pages/order/order?id=${e.currentTarget.dataset.id}`
+    // console.log(url)
+    // wx.navigateTo({ url })
   },
 
   onShareAppMessage: function (res) {

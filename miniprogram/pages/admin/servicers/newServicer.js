@@ -94,11 +94,12 @@ Page({
         name: 'addServicer',
         data: e.detail.value
       }).then(res => {
+        console.log('新增')
         if (res.result) {
           wx.redirectTo({
             url: '/pages/admin/servicers/servicerList',
           })
-          console.log('成功：', res)
+          console.log('添加成功：', res)
         } else {
           wx.showToast({
             title: '添加失败',
@@ -107,20 +108,21 @@ Page({
         }
       }).catch(console.error)
     } else {
+      console.log('修改')
       const data = e.detail.value
       data.id = this.data.id
       wx.cloud.callFunction({
         name: 'updateServicer',
         data: e.detail.value
       }).then(res => {
+        console.log('修改：', res)
         if (res.result) {
           wx.showToast({
             title: '修改成功'
           })
-          console.log('成功：', res)
         } else {
           wx.showToast({
-            title: '添加失败',
+            title: '修改失败',
             icon: 'none'
           })
         }
