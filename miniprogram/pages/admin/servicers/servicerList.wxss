@@ -15,14 +15,14 @@ page {
   display: flex;
   width: 100%;
   justify-content: flex-start;
-  height: 140rpx;
+  height: 165rpx;
   border-top: solid 1rpx rgba(0, 0, 0, 0.07);
   padding: 30rpx 0;
 }
 
 .avatar {
-  height: 140rpx;
-  width: 140rpx;
+  height: 165rpx;
+  width: 165rpx;
   border-radius: 10rpx;
   margin: 0 16rpx 0 30rpx;
 }
