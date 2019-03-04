@@ -1,0 +1,19 @@
+<!--messageList.wxml-->
+<view class="container">
+  <view class="main">
+    <view class="list">
+        <button class="contact-wrap" open-type="contact" data-id="{{item._id}}" bindcontact="onDetail">
+          <view class="avatar">
+            <image src="{{'/images/logo.png'}}" />
+          </view>
+          <view class="content">
+            <view class="name-wrap">
+                <view class="nickname">心灵交换客服</view>
+                <view class="create-date">2019-03-04</view>
+            </view>
+            <view class="welcome">您好，我是心灵交换客服，欢迎来到心灵交换倾诉……</view>
+          </view>
+        </button>
+    </view>
+  </view>
+</view>

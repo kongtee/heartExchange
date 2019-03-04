@@ -2,6 +2,8 @@
   "cloud": true,
   "pages": [
     "pages/index/index",
+    "pages/message/messageList",
+    "pages/servicers/servicer",
     "pages/personal/personal",
     "pages/vip/vip",
     "pages/order/order",
@@ -32,6 +34,11 @@
           "iconPath": "images/home.png",
           "pagePath": "pages/index/index",
           "text": "首页"
+      }, {
+        "selectedIconPath": "images/message-active.png",
+        "iconPath": "images/message.png",
+        "pagePath": "pages/message/messageList",
+        "text": "消息"
       }, {
         "selectedIconPath": "images/personal-active.png",
         "iconPath": "images/personal.png",
