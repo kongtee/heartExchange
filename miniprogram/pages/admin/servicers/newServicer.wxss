@@ -9,7 +9,11 @@ page {
 
 .wrap {
   display: flex;
-  margin: 20px 0;
+  margin: 50rpx 30rpx;
+}
+
+.wrap>label {
+  min-width: 200rpx;
 }
 
 .avatar {

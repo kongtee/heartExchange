@@ -67,6 +67,15 @@
       </radio-group>
     </view>
     <view class="wrap">
+      <label>擅长领域：</label>
+      <checkbox-group bindchange="onGoodChange" name="goodFields">
+        <label class="goodField" wx:for="{{goodFields}}" wx:key="tiem.name">
+          <checkbox value="{{item.name}}" checked="{{item.checked}}" />
+          {{item.value}}
+        </label>
+      </checkbox-group>
+    </view>
+    <view class="wrap">
       <label>价格：</label>
       <input type='digit' placeholder='请输入价格' name="price" value="{{userInfo.price}}" />
     </view>

@@ -4,11 +4,12 @@ const app = getApp()
 Page({
   data: {
     userInfo: {
-      maritalIndex: 0,
+      maritalIndex: 0,  // 婚姻状况
     },
     btnText: '新增',
     id: null,
-    maritalStatus: ['未婚', '已婚无孩', '已婚有孩']
+    maritalStatus: [ '未婚', '已婚无孩', '已婚有孩' ],
+    goodFields: []  // 擅长领域
   },
 
   onLoad: function(query) {
@@ -25,6 +26,7 @@ Page({
 
     const id = query.id
     if (id) {
+      // 修改信息
       wx.setNavigationBarTitle({
         title: '后台管理 - 修改客服信息'
       })
@@ -43,9 +45,27 @@ Page({
         })
       }).catch(console.error)
     } else {
+      // 新增信息
       this.data.btnText !== '新增' && this.setData({
         btnText: '新增'
       })
+
+      // 获取擅长领域数据
+      wx.cloud.callFunction({
+        name: 'getGoodFields'
+      }).then(res => {
+        if (res.result) {
+          console.log('获取擅长领域成功：', res)
+          this.setData({
+            goodFields: res.result.data || []
+          })
+        } else {
+          wx.showToast({
+            title: '获取擅长领域失败',
+            icon: 'none'
+          })
+        }
+      }).catch(console.error)
     }
   },
 
@@ -87,8 +107,13 @@ Page({
     })
   },
 
+  onGoodChange(e) {
+
+  },
+
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value, this.data.id)
+
     if (!this.data.id) {
       wx.cloud.callFunction({
         name: 'addServicer',
