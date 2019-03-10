@@ -9,7 +9,7 @@ Page({
     btnText: '新增',
     id: null,
     maritalStatus: [ '未婚', '已婚无孩', '已婚有孩' ],
-    goodFields: ['婚姻家庭', '恋爱情感', '亲子关系', '职场减压', '学业问题', '人际关系', '情绪疏导']  // 擅长领域
+    goodFields: []  // 擅长领域
   },
 
   onLoad: function(query) {
@@ -34,39 +34,53 @@ Page({
         id,
         btnText: '提交'
       })
-      // 修改信息
-      wx.cloud.callFunction({
-        name: 'getServicers',
-        data: {id}
-      }).then(res => {
-        console.log('成功：', res.result)
-        this.setData({
-          userInfo: res.result.data
-        })
-      }).catch(console.error)
+
+      this.getGoodFields()
+      this.getServicers(id)
     } else {
       // 新增信息
       this.data.btnText !== '新增' && this.setData({
         btnText: '新增'
       })
 
-      // 获取擅长领域数据
-      wx.cloud.callFunction({
-        name: 'getGoodFields'
-      }).then(res => {
-        if (res.result) {
-          console.log('获取擅长领域成功：', res)
-          this.setData({
-            goodFields: res.result.data || []
-          })
-        } else {
-          wx.showToast({
-            title: '获取擅长领域失败',
-            icon: 'none'
-          })
-        }
-      }).catch(console.error)
+      this.getGoodFields()
     }
+  },
+
+  /**
+   * 获取擅长领域数据
+   */
+  getGoodFields() {
+    wx.cloud.callFunction({
+      name: 'getGoodFields'
+    }).then(res => {
+      if (res.result) {
+        console.log('获取擅长领域成功：', res)
+        this.setData({
+          goodFields: res.result.data || []
+        })
+      } else {
+        wx.showToast({
+          title: '获取擅长领域失败',
+          icon: 'none'
+        })
+      }
+    }).catch(console.error)
+  },
+
+  /**
+   * 修改信息
+   */
+  getServicers(id) {
+    wx.cloud.callFunction({
+      name: 'getServicers',
+      data: { id }
+    }).then(res => {
+      console.log('成功：', res.result)
+      this.setData({
+        userInfo: res.result.data
+      })
+    }).catch(console.error)
   },
 
   /**
@@ -105,10 +119,6 @@ Page({
     this.setData({
       'userInfo.maritalIndex': e.detail.value
     })
-  },
-
-  onGoodChange(e) {
-
   },
 
   formSubmit: function (e) {

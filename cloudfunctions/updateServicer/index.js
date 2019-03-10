@@ -29,6 +29,7 @@ exports.main = async (event, context) => {
         proType: event.proType,
         goodFields: event.goodFields,
         price: event.price,
+        intro: event.intro,
         updateTime: db.serverDate()
       }
     })
