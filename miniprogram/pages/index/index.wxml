@@ -10,8 +10,23 @@
       </view>
       <swiper class="slide-wrap" indicator-dots autoplay circular>
         <block wx:for="{{proList}}" wx:key="{{_id}}">
-          <swiper-item bindtap="enterAlbum" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}">
+          <swiper-item class="pro-item-wrap" bindtap="enterAlbum" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}" bindtap="onDetail">
             <image src="{{item.avatarId || '/images/newlist.jpg'}}" class="slide-image" mode="aspectFill" />
+            <view class="content">
+              <view class="name-wrap">
+                  <view class="nickname">{{item.nickName || '无名'}}</view>
+                  <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+              </view>
+              <view class="status">工号：{{item.servicerNo || ''}}</view>
+              <view class="status">{{maritalStatus[item.maritalIndex]}}</view>
+              <view class="status">年龄:{{item.age || '保密'}}</view>
+              <view class="price">¥{{item.price || 0}}</view>
+              <view class="status">
+                <block wx:for="{{item.goodFields}}" wx:for-item="subItem" wx:key="{{subItem}}">
+                  <view class="goodLabel" style="color:{{goodColor[subItem]}}; border-color: {{goodColor[subItem]}}; background-color: {{goodBgColor[subItem]}}">{{subItem}}</view>
+                </block>
+              </view>
+            </view>
           </swiper-item>
         </block>
       </swiper>
@@ -28,21 +43,30 @@
     </view>
     <view class="list">
       <block wx:for="{{nonProList}}" wx:key="{{_id}}">
-        <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onOrder">
+        <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onDetail">
           <view class="avatar">
-            <image src="{{item.avatarId || '/images/mrtx.jpg'}}" />
+            <image src="{{item.avatarId || '/images/newlist.jpg'}}" />
           </view>
           <view class="content">
             <view class="name-wrap">
                 <view class="nickname">{{item.nickName || '无名'}}</view>
                 <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
             </view>
-            <view class="type">{{item.servicerNo || ''}}</view>
-            <view class="price">¥{{item.price || 0}}</view>
+            <view class="status">工号：{{item.servicerNo || ''}}</view>
+            <view class="status">{{maritalStatus[item.maritalIndex]}}</view>
+            <view class="status">年龄:{{item.age || '保密'}}</view>
+            <view class="status">
+              <block wx:for="{{item.goodFields}}" wx:for-item="subItem" wx:key="{{subItem}}">
+                <view class="goodLabel" style="color:{{goodColor[subItem]}}; border-color: {{goodColor[subItem]}}; background-color: {{goodBgColor[subItem]}}">{{subItem}}</view>
+              </block>
+            </view>
             <!-- <view class="status">{{item.status || '空闲'}}</view> -->
           </view>
           <view class="right-wrap">
-            <image class="enter" src="/images/enter.png" />
+            <view class="price">¥{{item.price || 0}}</view>
+            <view class="enter" data-id="{{item._id}}">
+              <image src="/images/enter.png"/>
+            </view>
           </view>
         </view>
       </block>

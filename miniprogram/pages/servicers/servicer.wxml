@@ -1,0 +1,14 @@
+<!--servicer.wxml-->
+<view class="container">
+  <view class="avatar">
+    <image src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
+  </view>
+  <view class="name-wrap">
+      <view class="nickname">{{servicer.nickName || '无名'}}</view>
+      <image class="sex" src="{{servicer.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+  </view>
+  <view class="type">{{servicer.servicerNo || ''}}</view>
+  <view class="price">¥{{servicer.price || 0}}</view>
+
+  <!-- <view bindtap="onPay">支付</view> -->
+</view>

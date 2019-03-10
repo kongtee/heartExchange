@@ -20,7 +20,7 @@
             </block>
           </view>
         </view>
-        <view class="rightWrap">
+        <view class="right-wrap">
           <view class="price">¥{{item.price || 0}}</view>
           <view class="delete" data-id="{{item._id}}" catchtap="onDelete">
             <image src="/images/delete.png"/>

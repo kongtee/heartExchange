@@ -12,12 +12,12 @@ page {
   margin: 0;
   padding: 0;
   width: 750rpx;
-  height: 850rpx;
+  height: 550rpx;
 }
 
 .header .header-img-wrap {
   width: 750rpx;
-  height: 750rpx;
+  height: 400rpx;
 }
 
 .header .header-img {
@@ -46,11 +46,70 @@ page {
   height: 360rpx;
 }
 
+.header .pro-item-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
 .header .slide-image {
-  width: 620rpx;
+  width: 360rpx;
   height: 360rpx;
   margin: 0 30rpx;
+  border-radius: 10rpx;
 }
+
+.header .content {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.header .content .name-wrap {
+  display: flex;
+}
+
+.header.content .name-wrap .nickname {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.header .content .name-wrap .sex {
+  width: 13px;
+  height: 13px;
+  margin: 3px;
+}
+
+.content .status {
+  font-size: 12px;
+  color: #888;
+}
+
+.header .price {
+  font-size: 11px;
+}
+
+.status {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.status .goodLabel {
+  background-color:rgba(255,193,37,0.2);
+  line-height:16px;
+  height:16px;
+  padding:0 5px;
+  border-radius:2px;
+  color:#FFC125;
+  border:1px solid #FFC125;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
 
 .main {
   width: 100%;
@@ -95,14 +154,14 @@ page {
   display: flex;
   width: 100%;
   justify-content: flex-start;
-  height: 140rpx;
+  /* height: 140rpx; */
   border-top: solid 1rpx rgba(0, 0, 0, 0.07);
   padding: 30rpx 0;
 }
 
 .main .avatar {
-  height: 140rpx;
-  width: 140rpx;
+  height: 165rpx;
+  width: 165rpx;
   border-radius: 10rpx;
   margin: 0 16rpx 0 30rpx;
 }
@@ -114,10 +173,9 @@ page {
 }
 
 .main .content {
-  flex-shrink: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
 .main .content .name-wrap {
@@ -146,20 +204,31 @@ page {
   color: #888;
 }
 
-.main .price {
-  font-size: 11px;
-}
-
 .main .right-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 20rpx;
+  align-items: flex-end;
+  width: 100rpx;
+  margin-right: 30rpx;
+  position:relative;
 }
 
-.main .enter {
+.main .right-wrap .price {
+  font-size: 12px;
+  position:absolute;
+  top:0;
+  right:10rpx;
+}
+
+.main .right-wrap .enter {
   width: 20px;
   height: 20px;
+}
+
+.main .right-wrap .enter image {
+  width: 100%;
+  height: 100%;
 }
 
 
