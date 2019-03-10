@@ -9,7 +9,7 @@ Page({
     btnText: '新增',
     id: null,
     maritalStatus: [ '未婚', '已婚无孩', '已婚有孩' ],
-    goodFields: []  // 擅长领域
+    goodFields: ['婚姻家庭', '恋爱情感', '亲子关系', '职场减压', '学业问题', '人际关系', '情绪疏导']  // 擅长领域
   },
 
   onLoad: function(query) {

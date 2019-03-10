@@ -69,9 +69,9 @@
     <view class="wrap">
       <label>擅长领域：</label>
       <checkbox-group bindchange="onGoodChange" name="goodFields">
-        <label class="goodField" wx:for="{{goodFields}}" wx:key="tiem.name">
-          <checkbox value="{{item.name}}" checked="{{item.checked}}" />
-          {{item.value}}
+        <label class="goodField" wx:for="{{goodFields}}" wx:key="item">
+          <checkbox value="{{item}}" checked="{{userInfo.goodFields[item]}}" />
+          {{item}}
         </label>
       </checkbox-group>
     </view>

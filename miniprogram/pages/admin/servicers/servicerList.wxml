@@ -11,9 +11,14 @@
               <view class="nickname">{{item.nickName || '无名'}}({{item.servicerNo}})</view>
               <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
           </view>
-          <view class="type">真实姓名：{{item.trueName || '无'}}（{{item.telphone}}）</view>
+          <view class="status">{{item.trueName || '无'}}（{{item.telphone}}）</view>
           <view class="status">微信：{{item.weixin}}</view>
           <view class="status">QQ：{{item.qq}}</view>
+          <view class="status">
+            <block wx:for="{{item.goodFields}}" wx:for-item="subItem" wx:key="{{subItem}}">
+              <view class="goodLabel" style="color:{{goodColor[subItem]}}; border-color: {{goodColor[subItem]}}; background-color: {{goodBgColor[subItem]}}">{{subItem}}</view>
+            </block>
+          </view>
         </view>
         <view class="rightWrap">
           <view class="price">¥{{item.price || 0}}</view>

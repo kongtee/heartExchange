@@ -15,7 +15,6 @@ page {
   display: flex;
   width: 100%;
   justify-content: flex-start;
-  height: 165rpx;
   border-top: solid 1rpx rgba(0, 0, 0, 0.07);
   padding: 30rpx 0;
 }
@@ -54,15 +53,24 @@ page {
   margin: 3px;
 }
 
-.content .type {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: auto;
-}
-
 .content .status {
   font-size: 12px;
   color: #888;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.content .status .goodLabel {
+  background-color:rgba(255,193,37,0.2);
+  line-height:16px;
+  height:16px;
+  padding:0 5px;
+  border-radius:2px;
+  color:#FFC125;
+  border:1px solid #FFC125;
+  font-size: 10px;
+  margin-top: 3px;
 }
 
 .rightWrap {
