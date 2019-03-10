@@ -16,7 +16,7 @@
     <view class="wrap">
       <label>头像：</label>
       <view class="avatar" bindtap="onUpload">
-        <image src="{{userInfo.avatarUrl || '/images/add-user.png'}}" />
+        <image src="{{userInfo.avatarId || '/images/add-user.png'}}" />
       </view>
       <input type="text" hidden name="avatarId" value="{{userInfo.avatarId}}" />
     </view>
@@ -70,7 +70,7 @@
       <label>擅长领域：</label>
       <checkbox-group name="goodFields">
         <label class="goodField" wx:for="{{goodFields}}" wx:key="item.value">
-          <checkbox value="{{item.value}}" checked="{{userInfo.goodFields[item.value]}}" />
+          <checkbox value="{{item.value}}" checked="{{item.checked}}" />
           {{item.name}}
         </label>
       </checkbox-group>

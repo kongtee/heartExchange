@@ -36,7 +36,9 @@ Page({
       })
 
       this.getGoodFields()
-      this.getServicers(id)
+        .then(() => this.getServicers(id))
+      .catch(err => console.log('获取擅长领域错误：',err))
+      
     } else {
       // 新增信息
       this.data.btnText !== '新增' && this.setData({
@@ -51,7 +53,7 @@ Page({
    * 获取擅长领域数据
    */
   getGoodFields() {
-    wx.cloud.callFunction({
+    return wx.cloud.callFunction({
       name: 'getGoodFields'
     }).then(res => {
       if (res.result) {
@@ -59,6 +61,8 @@ Page({
         this.setData({
           goodFields: res.result.data || []
         })
+
+        return
       } else {
         wx.showToast({
           title: '获取擅长领域失败',
@@ -80,7 +84,23 @@ Page({
       this.setData({
         userInfo: res.result.data
       })
+
+      this.transGoodFieldsData()
     }).catch(console.error)
+  },
+
+  /**
+   * 处理擅长领域数据
+   */
+  transGoodFieldsData() {
+    let goodFields = [...this.data.goodFields]
+    for (let goodField of goodFields) {
+      goodField.checked = this.data.userInfo.goodFields.indexOf(goodField.value) > -1
+    }
+
+    this.setData({
+      goodFields
+    })
   },
 
   /**
