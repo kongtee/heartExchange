@@ -1,14 +1,36 @@
 <!--servicer.wxml-->
 <view class="container">
-  <view class="avatar">
-    <image src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
+  <view class="wrap">
+    <view class="avatar">
+      <image src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
+    </view>
+    <view class="content-wrap">
+      <view class="title">基本信息</view>
+      <view class="name-wrap">
+          <view class="nickname">{{servicer.nickName || '无名'}}</view>
+          <image class="sex" src="{{servicer.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+      </view>
+      <view class="base-wrap">
+        <view class="base-info">工号：{{servicer.servicerNo || ''}}</view>
+        <view class="seperator">|</view>
+        <view class="base-info">{{maritalStatus[servicer.maritalIndex]}}</view>
+        <view class="seperator">|</view>
+        <view class="base-info">年龄:{{servicer.age || '保密'}}</view>
+      </view>
+    </view>
+    <view class="content-wrap">
+      <view class="title">擅长领域</view>
+      <view class="good-wrap">
+        <block wx:for="{{servicer.goodFields}}" wx:key="{{item}}">
+          <view class="goodLabel" style="color:{{goodColor[item]}}; border-color: {{goodColor[item]}}; background-color: {{goodBgColor[item]}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="content-wrap">
+      <view class="title">个人简介</view>
+      <view class="intro-content">{{servicer.intro}}</view>
+    </view>
   </view>
-  <view class="name-wrap">
-      <view class="nickname">{{servicer.nickName || '无名'}}</view>
-      <image class="sex" src="{{servicer.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
-  </view>
-  <view class="type">{{servicer.servicerNo || ''}}</view>
-  <view class="price">¥{{servicer.price || 0}}</view>
 
-  <!-- <view bindtap="onPay">支付</view> -->
+  <view class="talk" bindtap="onGoToPay">找TA倾诉</view>
 </view>

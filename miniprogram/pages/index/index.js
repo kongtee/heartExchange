@@ -52,23 +52,23 @@ Page({
           key: 'admin'
         })
       } else {
-        // wx.cloud.callFunction({
-        //   name: 'login'
-        // }).then(res => {
-        //   if (!wx.cloud.callFunction({
-        //     name: 'login'
-        //   }).then(res => {
-        //     if (res.result.data.length > 0) {
-        //       wx.redirectTo({
-        //         url: '/pages/admin/users/admin',
-        //       })
-        //     }
-        //   }).catch(console.error) && res.result.data.length > 0) {
-        //     wx.redirectTo({
-        //       url: '/pages/admin/users/admin',
-        //     })
-        //   }
-        // }).catch(console.error)
+        wx.cloud.callFunction({
+          name: 'login'
+        }).then(res => {
+          if (!wx.cloud.callFunction({
+            name: 'login'
+          }).then(res => {
+            if (res.result.data.length > 0) {
+              wx.redirectTo({
+                url: '/pages/admin/users/admin',
+              })
+            }
+          }).catch(console.error) && res.result.data.length > 0) {
+            wx.redirectTo({
+              url: '/pages/admin/users/admin',
+            })
+          }
+        }).catch(console.error)
       }
     } catch (e) {
       console.err('获取本地admin参数失败')

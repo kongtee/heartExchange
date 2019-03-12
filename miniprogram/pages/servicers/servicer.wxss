@@ -1,4 +1,13 @@
 /* pages/servicers/servicer.wxss */
+page,
+.container {
+  height: 100%;
+}
+
+.wrap {
+  flex-grow: 1;
+}
+
 .avatar {
   width: 100%;
   height: 500rpx;
@@ -9,18 +18,78 @@
   height: 100%;
 }
 
-.name-wrap {
-  display: flex;
+.content-wrap {
+  margin:20rpx 30rpx;
 }
 
+.title {
+  font-weight:bold;
+}
+
+.name-wrap {
+  display: flex;
+  margin-top: 10rpx;
+  margin-left:40rpx;
+}
 
 .name-wrap .nickname {
   font-size: 14px;
-  font-weight: bold;
 }
 
 .name-wrap .sex {
   width: 13px;
   height: 13px;
   margin: 3px;
+}
+
+.base-wrap {
+  display: flex;
+  margin-left:40rpx;
+}
+
+.base-wrap .base-info {
+  font-size: 12px;
+  color: #888;
+}
+
+.base-wrap .seperator {
+  font-size: 12px;
+  color: #888;
+  padding: 0 20rpx;
+}
+
+.good-wrap {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 40rpx;
+}
+
+.good-wrap .goodLabel {
+  background-color:rgba(255,193,37,0.2);
+  line-height:16px;
+  height:16px;
+  padding:0 5px;
+  border-radius:2px;
+  color:#FFC125;
+  border:1px solid #FFC125;
+  font-size: 10px;
+  margin: 15rpx 20rpx 0 0;
+}
+
+.intro-content {
+  margin-left: 40rpx;
+  font-size: 12px;
+  color: #888;
+}
+
+.talk {
+  height:38px;
+  line-height:38px;
+  width:100%;
+  text-align:center;
+  box-shadow:0px -1px 2px #c8c8c8;
+  color:#DC143C;
+  font-size:14px;
 }
