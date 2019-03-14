@@ -20,7 +20,7 @@
               <view class="status">工号：{{item.servicerNo || ''}}</view>
               <view class="status">{{maritalStatus[item.maritalIndex]}}</view>
               <view class="status">年龄:{{item.age || '保密'}}</view>
-              <view class="price">¥{{item.price || 0}}</view>
+              <!-- <view class="price">¥{{item.price || 0}}</view> -->
               <view class="status">
                 <block wx:for="{{item.goodFields}}" wx:for-item="subItem" wx:key="{{subItem}}">
                   <view class="goodLabel" style="color:{{goodColor[subItem]}}; border-color: {{goodColor[subItem]}}; background-color: {{goodBgColor[subItem]}}">{{subItem}}</view>
@@ -63,7 +63,7 @@
             <!-- <view class="status">{{item.status || '空闲'}}</view> -->
           </view>
           <view class="right-wrap">
-            <view class="price">¥{{item.price || 0}}</view>
+            <!-- <view class="price">¥{{item.price || 0}}</view> -->
             <view class="enter" data-id="{{item._id}}">
               <image src="/images/enter.png"/>
             </view>
