@@ -44,7 +44,7 @@ page,
 
 .base-wrap {
   display: flex;
-  margin-left:40rpx;
+  margin-left: 40rpx;
 }
 
 .base-wrap .base-info {
@@ -68,18 +68,18 @@ page,
 
 .good-wrap .goodLabel {
   background-color:rgba(255,193,37,0.2);
-  line-height:16px;
-  height:16px;
-  padding:0 5px;
-  border-radius:2px;
-  color:#FFC125;
-  border:1px solid #FFC125;
+  line-height: 16px;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 2px;
+  color: #FFC125;
+  border: 1px solid #FFC125;
   font-size: 10px;
   margin: 15rpx 20rpx 0 0;
 }
 
 .intro-content {
-  margin-left: 40rpx;
+  margin: 20rpx 40rpx;
   font-size: 12px;
   color: #888;
 }
@@ -92,4 +92,165 @@ page,
   box-shadow:0px -1px 2px #c8c8c8;
   color:#DC143C;
   font-size:14px;
+}
+
+/* 订单蒙层 */
+.mask {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:rgba(0, 0, 0, 0.5);
+  display:flex;
+  justify-content:flex-end;
+  flex-direction:column;
+}
+
+.mask .order {
+  background-color:#fff;
+  height:574rpx;
+}
+
+.mask .order .header {
+  display:flex;
+  height:130rpx;
+  background-color:#f8f8f8;
+}
+
+.mask .order .header .avatar {
+  width:150rpx;
+  height:150rpx;
+  margin-top:-40rpx;
+  margin-left:40rpx;
+}
+
+.mask .order .header .avatar image {
+  border-radius: 10rpx;
+}
+
+.mask .order .header .nickname {
+  line-height:100rpx;
+  margin-left:30rpx;  
+}
+
+.mask .order .order-title-wrap {
+  display:flex;
+  height:80rpx;
+  line-height:80rpx;
+  color:#888;
+  text-align:center;
+  border-bottom:1px solid #888;
+  padding:0 40rpx;
+}
+
+.mask .order .order-title {
+  width:50%;
+}
+
+.mask .order .order-title.active {
+  border-bottom:1px solid #dc143c;
+}
+
+.mask .order .order-content {
+  padding:0 40rpx;
+}
+
+.mask .order-content .order-type {
+  display: none;
+}
+
+.mask .order-content .order-type.active {
+  display: block;
+}
+
+.mask .order-type .order-price-wrap {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  border-bottom:1px solid #d9d9d9;
+  padding: 10rpx 0;
+}
+
+.mask .order-type .order-price {
+  background-color: #f0f0f0;
+  font-size: 13px;
+  border-radius: 8rpx;
+  padding: 10rpx 30rpx;
+  margin: 10rpx 10rpx; 
+}
+
+.mask .order .order-content .order-detail {
+  color:#888;
+  font-size:14px;
+  display:flex;
+  justify-content:space-between;
+  line-height:100rpx;
+  border-bottom:1px solid #d9d9d9;
+}
+
+.mask .order-detail .order-time-wrap {
+  display:flex;
+  align-items:center;
+}
+
+.mask .order-detail .btn-add-minus {
+  color:#fff;
+  background-color:#dc143c;
+  height:60rpx;
+  width:80rpx;
+  line-height:52rpx;
+  text-align:center;
+  font-size:22px;
+  margin: 0 20rpx;
+}
+
+.mask .order-detail .order-time {
+  margin: 0 10rpx;
+}
+
+.mask .order-content .order-tips-wrap {
+  display:flex;
+  height:60rpx;
+  align-items:center;
+}
+
+.mask .order-tips-wrap .order-tips-image {
+  width:40rpx;
+  height:40rpx;
+}
+
+.mask .order-tips-wrap .order-tips {
+  color:#d8d8d8;
+  font-size:12px;
+}
+
+.mask .order-footer {
+  display:flex;
+  font-size:14px;
+  padding:0 40rpx;
+  height:100rpx;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid #d8d8d8;
+}
+
+.mask .order-footer .order-sum-wrap {
+  display: flex;
+  align-items:center;
+}
+
+.mask .order-footer .order-sum {
+  color:#dc143c;
+  font-size:16px;
+}
+
+.mask .order-footer .btn-order-confirm {
+  height:100rpx;
+  line-height:100rpx;
+  background-color:#dc143c;
+  color:#fff;
+  width:200rpx;
+  text-align:center;
+  border-radius:8rpx;
 }

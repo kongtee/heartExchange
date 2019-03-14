@@ -1,0 +1,16 @@
+{
+  "name": "createOrder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "blueimp-md5": "^2.10.0",
+    "wx-server-sdk": "latest",
+    "xml2js": "^0.4.19"
+  }
+}

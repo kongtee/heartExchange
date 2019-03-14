@@ -2,7 +2,7 @@
 <view class="container">
   <view class="wrap">
     <view class="avatar">
-      <image src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
+      <image mode="aspectFill" src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
     </view>
     <view class="content-wrap">
       <view class="title">基本信息</view>
@@ -32,5 +32,80 @@
     </view>
   </view>
 
-  <view class="talk" bindtap="onGoToPay">找TA倾诉</view>
+  <view class="talk" bindtap="onShowOrder">找TA倾诉</view>
+
+  <view class="mask" hidden="{{hidden}}" bindtap="onHideOrder">
+    <view class="order">
+      <view class="header">
+        <view class="avatar">
+          <image mode="aspectFill" src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
+        </view>
+        <view class="nickname">{{servicer.nickName || '无名'}}</view>
+      </view>
+      <view class="order-tab">
+        <view class="order-title-wrap">
+          <view class="order-title {{orderTalk}}" catchtap="onTalk">通话</view>
+          <view class="order-title {{orderWord}}" catchtap="onWord">文字</view>
+        </view>
+        <view class="order-content">
+          <view class="order-type {{orderTalk}}">
+            <view class="order-price-wrap">
+              <block wx:for="{{talkPriceList}}" wx:key="{{item._id}}">
+                <view class="order-price">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
+              </block>
+            </view>
+            <!-- 每个人价格不同模板 -->
+            <!-- <view class="order-detail">
+              <view>单价</view>
+              <view>¥{{servicer.price}}</view>
+            </view>
+            <view class="order-detail">
+              <view>时长</view>
+              <view class="order-time-wrap">
+                <view class="btn-add-minus">-</view>
+                <view class="order-time">30</view>
+                <view class="btn-add-minus">+</view>
+                <view>分钟</view>
+              </view>
+            </view> -->
+            <view class="order-tips-wrap">
+              <image class="order-tips-image" mode="aspectFill" src="/images/tips.png"></image>
+              <view class="order-tips">该订单为通话订单，将以通话形式进行服务。</view>
+            </view>
+          </view> 
+          <view class="order-type {{orderWord}}">
+            <view class="order-price-wrap">
+              <block wx:for="{{wordPriceList}}" wx:key="{{item._id}}">
+                <view class="order-price">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
+              </block>
+            </view>
+            <!-- <view class="order-detail">
+              <view>单价</view>
+              <view>¥{{servicer.price}}</view>
+            </view>
+            <view class="order-detail">
+              <view>时长</view>
+              <view class="order-time-wrap">
+                <view class="btn-add-minus">-</view>
+                <view class="order-time">60</view>
+                <view class="btn-add-minus">+</view>
+                <view>分钟</view>
+              </view>
+            </view> -->
+            <view class="order-tips-wrap">
+              <image class="order-tips-image" mode="aspectFill" src="/images/tips.png"></image>
+              <view class="order-tips">该订单为通话订单，将以通话形式进行服务。</view>
+            </view>
+          </view> 
+        </view>
+      </view>
+      <view class="order-footer">
+        <view class="order-sum-wrap">
+          <view>合计：</view>
+          <view class="order-sum">¥20020</view>
+        </view>
+        <view class="btn-order-confirm" catchtap="onOrderConfirm">确认下单</view>
+      </view>
+    </view>
+  </view>
 </view>
