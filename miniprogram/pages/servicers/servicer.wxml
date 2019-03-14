@@ -49,9 +49,9 @@
         </view>
         <view class="order-content">
           <view class="order-type {{orderTalk}}">
-            <view class="order-price-wrap">
-              <block wx:for="{{talkPriceList}}" wx:key="{{item._id}}">
-                <view class="order-price">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
+            <view class="order-price-wrap" catchtap="onTalkSelected">
+              <block wx:for="{{talkPriceList}}" wx:key="{{item.id}}">
+                <view class="order-price {{talkSelected === index ? 'selected' : ''}}" data-price="{{item}}" data-index="{{index}}">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
               </block>
             </view>
             <!-- 每个人价格不同模板 -->
@@ -74,9 +74,9 @@
             </view>
           </view> 
           <view class="order-type {{orderWord}}">
-            <view class="order-price-wrap">
+            <view class="order-price-wrap" catchtap="onWordSelected">
               <block wx:for="{{wordPriceList}}" wx:key="{{item._id}}">
-                <view class="order-price">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
+                <view class="order-price {{wordSelected === index ? 'selected' : ''}}" data-price="{{item}}" data-index="{{index}}">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
               </block>
             </view>
             <!-- <view class="order-detail">
@@ -102,7 +102,7 @@
       <view class="order-footer">
         <view class="order-sum-wrap">
           <view>合计：</view>
-          <view class="order-sum">¥20020</view>
+          <view class="order-sum">¥{{priceInfo.price / 100}}</view>
         </view>
         <view class="btn-order-confirm" catchtap="onOrderConfirm">确认下单</view>
       </view>

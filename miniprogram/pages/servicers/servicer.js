@@ -27,7 +27,13 @@ Page({
     orderTalk: 'active',
     orderWord: '',
     wordPriceList: [],
-    talkPriceList: []
+    talkPriceList: [],
+    wordSelected: -1,
+    talkSelected: -1,
+    priceInfo: {
+      price: 0
+    },
+    proType: [ '业余', '专业' ]
   },
 
   onLoad(query) {
@@ -101,7 +107,10 @@ Page({
   onTalk() {
     this.setData({
       orderTalk: 'active',
-      orderWord: ''
+      orderWord: '',
+      priceInfo: {
+        price: 0
+      }
     })
   },
 
@@ -111,7 +120,31 @@ Page({
   onWord() {
     this.setData({
       orderTalk: '',
-      orderWord: 'active'
+      orderWord: 'active',
+      priceInfo: {
+        price: 0
+      }
+    })
+  },
+
+  /**
+   * 选择通话价格
+   */
+  onTalkSelected(e) {
+    const index = e.target.dataset.index
+    this.setData({
+      talkSelected: index,
+      priceInfo: e.target.dataset.price
+    })
+  },
+
+  /**
+   * 选择文字价格
+   */
+  onWordSelected(e) {
+    const index = e.target.dataset.index
+    this.setData({
+      wordSelected: index
     })
   },
 
@@ -119,7 +152,6 @@ Page({
    * 发起微信支付
    */
   requestPayment(param) {
-    // console.log('e.currentTarget.dataset.id')
     console.log('requestPayment:', param)
     wx.requestPayment({
       timeStamp: param.timeStamp.toString(),
@@ -149,10 +181,20 @@ Page({
    * 跳转支付页面
    */
   onOrderConfirm(e) {
+    const priceInfo = this.data.priceInfo
+    const price = priceInfo.price
+    if (price === 0) {
+      wx.showToast({
+        title: '请选择价格',
+        icon: 'loading'
+      })
+      return
+    }
+
     const param = {
-      goodsDesc: '通话-支付',
-      goodsDetail: '1小时',
-      amount: 1
+      goodsDesc: `${priceInfo.exchangeType}-${this.data.proType[priceInfo.proType]}`,
+      goodsDetail: `${priceInfo.time / 60}小时`,
+      amount: price
     }
     wx.cloud.callFunction({
       name: 'createOrder',
