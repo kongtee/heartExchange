@@ -2,6 +2,7 @@
 const cloud = require('wx-server-sdk')
 const request = require('request')
 const xml2js = require('xml2js')
+const date = require('./date.js')
 const randomStr = require('./randomStr.js')
 const sign = require('./sign.js')
 const xmlData = require('./xmlData.js')
@@ -17,32 +18,29 @@ exports.main = async (event, context) => {
 
   // 接口参数参考：https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1&index=1
 
+  const tradeNo = date() + randomStr(8)
+
   // 生成sign签名的参数
   const signParam = {
     appid: wxContext.APPID,
+    attach: event.attach,
     body: event.goodsDesc,
     mch_id: '1528145281',
     nonce_str: randomStr(32),
     notify_url: 'https://weixin.qq.com/',
     openid: wxContext.OPENID,
-    out_trade_no: randomStr(8),
+    out_trade_no: tradeNo,
     sign_type: 'MD5',
     spbill_create_ip: '127.0.0.1',
     total_fee: event.amount,
     trade_type: 'JSAPI'
   }
-  // detail: event.goodsDetail,
 
   const xmlParam = Object.assign(signParam, {
     sign: sign(signParam)
   })
 
   const data = xmlData(xmlParam)
-
-  // return {
-  //   xmlParam,
-  //   data
-  // }
 
   return new Promise((resolve, reject) => request({
     url: 'https://api.mch.weixin.qq.com/pay/unifiedorder',

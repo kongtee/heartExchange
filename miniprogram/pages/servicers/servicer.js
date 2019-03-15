@@ -1,6 +1,8 @@
 //servicer.js
 const app = getApp()
 
+let contactInfo = ''
+
 Page({
   data: {
     servicer: {},
@@ -33,7 +35,8 @@ Page({
     priceInfo: {
       price: 0
     },
-    proType: [ '业余', '专业' ]
+    proType: [ '业余', '专业' ],
+    focus: false
   },
 
   onLoad(query) {
@@ -52,8 +55,6 @@ Page({
       this.setData({
         servicer: data || {}
       })
-
-      console.log('servicer:', data)
     }).catch(console.error)
   },
 
@@ -66,7 +67,6 @@ Page({
       data: { proType }
     }).then(res => {
       const data = res.result.data
-      console.log('getPrice:', res.result.data)
       let wordArry = []
       let talkArry = []
       for (let item of data) {
@@ -95,7 +95,10 @@ Page({
   /**
    * 隐藏订单弹窗 
    */
-  onHideOrder() {
+  onHideOrder(e) {
+    if (e.target.dataset.id === 'contact') {
+      return
+    }
     this.setData({
       hidden: true
     })
@@ -148,11 +151,14 @@ Page({
     })
   },
 
+  onContactInput(e) {
+    contactInfo = e.detail.value
+  },
+
   /**
    * 发起微信支付
    */
   requestPayment(param) {
-    console.log('requestPayment:', param)
     wx.requestPayment({
       timeStamp: param.timeStamp.toString(),
       nonceStr: param.nonceStr,
@@ -181,6 +187,7 @@ Page({
    * 跳转支付页面
    */
   onOrderConfirm(e) {
+    console.log(e)
     const priceInfo = this.data.priceInfo
     const price = priceInfo.price
     if (price === 0) {
@@ -189,12 +196,25 @@ Page({
         icon: 'loading'
       })
       return
+    } 
+    console.log(this.data.contact)
+    if (contactInfo === '') {
+      wx.showToast({
+        title: '请填写联系方式',
+        icon: 'loading'
+      })
+      this.setData({
+        focus: true
+      })
+
+      return
     }
 
     const param = {
       goodsDesc: `${priceInfo.exchangeType}-${this.data.proType[priceInfo.proType]}`,
       goodsDetail: `${priceInfo.time / 60}小时`,
-      amount: price
+      amount: price,
+      attach: contactInfo
     }
     wx.cloud.callFunction({
       name: 'createOrder',

@@ -5,6 +5,7 @@ module.exports = function(param) {
   return [
     '<xml>',
     `<appid>${param.appid}</appid>`,
+    `<attach>${param.attach}</attach>`,
     `<body>${param.body}</body>`,
     `<mch_id>${param.mch_id}</mch_id>`,
     `<nonce_str>${param.nonce_str}</nonce_str>`,

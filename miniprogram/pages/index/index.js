@@ -46,24 +46,19 @@ Page({
     }
  
     try {
+      // 获取管理员信息
       const admin = wx.getStorageSync('admin')
       if (admin) {
+        // 存在管理员信息先清除掉
         wx.removeStorage({
           key: 'admin'
         })
       } else {
+        // 获取管理员信息
         wx.cloud.callFunction({
           name: 'login'
         }).then(res => {
-          if (!wx.cloud.callFunction({
-            name: 'login'
-          }).then(res => {
-            if (res.result.data.length > 0) {
-              wx.redirectTo({
-                url: '/pages/admin/users/admin',
-              })
-            }
-          }).catch(console.error) && res.result.data.length > 0) {
+          if (res.result.data.length > 0) {
             wx.redirectTo({
               url: '/pages/admin/users/admin',
             })
@@ -117,7 +112,6 @@ Page({
         proType: '1'
       }
     }).then(res => {
-      console.log('专业列表：', res)
       const data = res.result.data
       this.transServicersData(data)
     }).catch(console.error)
@@ -133,7 +127,6 @@ Page({
         proType: '0'
       }
     }).then(res => {
-      console.log('业余列表：', res)
       const data = res.result.data
       this.setData({
         nonProList: data || []
