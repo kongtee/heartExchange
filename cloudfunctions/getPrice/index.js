@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
   })
 
   const where = {
-    proType: event.proType
+    proType: event.proType || '0'
   }
 
   try {

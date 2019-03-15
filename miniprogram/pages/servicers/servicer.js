@@ -147,7 +147,8 @@ Page({
   onWordSelected(e) {
     const index = e.target.dataset.index
     this.setData({
-      wordSelected: index
+      wordSelected: index,
+      priceInfo: e.target.dataset.price
     })
   },
 
@@ -187,7 +188,6 @@ Page({
    * 跳转支付页面
    */
   onOrderConfirm(e) {
-    console.log(e)
     const priceInfo = this.data.priceInfo
     const price = priceInfo.price
     if (price === 0) {
