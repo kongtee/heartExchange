@@ -2,7 +2,7 @@
 <view class="container">
   <view class="main">
     <view class="list">
-        <button class="contact-wrap" open-type="contact" data-id="{{item._id}}" bindcontact="onDetail">
+        <button class="contact-wrap" open-type="contact">
           <view class="avatar">
             <image src="{{'/images/logo.png'}}" />
           </view>

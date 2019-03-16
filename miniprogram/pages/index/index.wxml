@@ -72,6 +72,11 @@
       </block>
     </view>
   </view>
+  <view class="right-bar">
+    <button class="contact-wrap" open-type="contact">
+      <image src="/images/servicer.png"></image>
+    </button>
+  </view>
 
     <!-- 用户 openid -->
     <!-- <view class="userinfo">

@@ -154,9 +154,12 @@ Page({
     return share
   },
 
+  /**
+   * 获取年龄
+   */
   getAge(idCard) {
     return util.getAgeFromIdCard(idCard)
-  }
+  },
 
   // onGetUserInfo: function(e) {
   //   if (!this.logged && e.detail.userInfo) {

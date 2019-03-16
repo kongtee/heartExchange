@@ -2,9 +2,5 @@
 const app = getApp()
 Page({
   data: {
-  },
-
-  onDetail(e) {
-    
   }
 })

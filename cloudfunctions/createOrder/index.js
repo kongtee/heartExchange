@@ -30,6 +30,7 @@ exports.main = async (event, context) => {
     notify_url: 'https://weixin.qq.com/',
     openid: wxContext.OPENID,
     out_trade_no: tradeNo,
+    product_id: event.productId,
     sign_type: 'MD5',
     spbill_create_ip: '127.0.0.1',
     total_fee: event.amount,

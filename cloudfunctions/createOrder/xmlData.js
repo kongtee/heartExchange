@@ -12,6 +12,7 @@ module.exports = function(param) {
     `<notify_url>${param.notify_url}</notify_url>`,
     `<openid>${param.openid}</openid>`,
     `<out_trade_no>${param.out_trade_no}</out_trade_no>`,
+    `<product_id>${param.product_id}</product_id>`,
     `<sign_type>${param.sign_type}</sign_type>`,
     `<spbill_create_ip>${param.spbill_create_ip}</spbill_create_ip>`,
     `<total_fee>${param.total_fee}</total_fee>`,

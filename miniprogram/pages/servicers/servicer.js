@@ -214,7 +214,8 @@ Page({
       goodsDesc: `${priceInfo.exchangeType}-${this.data.proType[priceInfo.proType]}`,
       goodsDetail: `${priceInfo.time / 60}小时`,
       amount: price,
-      attach: contactInfo
+      attach: contactInfo,
+      productId: this.data.servicer.servicerNo
     }
     wx.cloud.callFunction({
       name: 'createOrder',
