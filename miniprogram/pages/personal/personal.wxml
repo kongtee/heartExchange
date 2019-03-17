@@ -1,5 +1,5 @@
 <!--personal.wxml-->
-<view class="container">
+<view class="container" bindtap="onAdmin">
   <view class="bg"></view>
   <view class="userinfo" >
     <block wx:if="{{hasAuth}}">

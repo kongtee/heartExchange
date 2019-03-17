@@ -2,6 +2,7 @@
 const app = getApp()
 const share = require('../../common/share')
 const util = require('../../common/util')
+const admin = require('../../common/admin')
 
 Page({
   data: {
@@ -45,29 +46,7 @@ Page({
       return
     }
  
-    try {
-      // 获取管理员信息
-      const admin = wx.getStorageSync('admin')
-      if (admin) {
-        // 存在管理员信息先清除掉
-        wx.removeStorage({
-          key: 'admin'
-        })
-      } else {
-        // 获取管理员信息
-        wx.cloud.callFunction({
-          name: 'login'
-        }).then(res => {
-          if (res.result.data.length > 0) {
-            wx.redirectTo({
-              url: '/pages/admin/users/admin',
-            })
-          }
-        }).catch(console.error)
-      }
-    } catch (e) {
-      console.err('获取本地admin参数失败')
-    }
+    admin.getAdmin()
 
     // 获取用户信息
     wx.getSetting({

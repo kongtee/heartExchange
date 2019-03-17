@@ -1,5 +1,9 @@
 const app = getApp()
 const share = require('../../common/share')
+const admin = require('../../common/admin')
+let count = -1
+let timeStart = null
+let timeEnd = null
 
 Page({
   data: {
@@ -39,6 +43,22 @@ Page({
           console.log('res.userInfo:', res)
         }
       })
+    }
+  },
+  /**
+   * 获取管理员权限
+   */
+  onAdmin() {
+    count++
+    if (count === 0) {
+      timeStart = new Date().getTime()
+    } else if (count === 5) {
+      count = -1;
+      timeEnd = new Date().getTime()
+      let time = (timeEnd - timeStart)
+      if (time < 1000) {
+        admin.getAdmin()
+      }
     }
   },
   getUserInfo: function (e) {
