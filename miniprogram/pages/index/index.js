@@ -92,14 +92,24 @@ Page({
     this.getServicers()
   },
 
-  transServicersData(data) {
+  /**
+   * 处理身份证信息，计算年龄
+   */
+  transServicersData(data, proType) {
     let servicers = [ ...data ]
     for (let servicer of servicers) {
       servicer.age = this.getAge(servicer.idcard)
     }
-    this.setData({
-      proList: servicers || []
-    })
+
+    if (proType === '0') {
+      this.setData({
+        nonProList: data || []
+      })
+    } else {
+      this.setData({
+        proList: servicers || []
+      })
+    }
   },
 
   /**
@@ -113,7 +123,7 @@ Page({
       }
     }).then(res => {
       const data = res.result.data
-      this.transServicersData(data)
+      this.transServicersData(data, '1')
     }).catch(console.error)
   },
   
@@ -128,9 +138,7 @@ Page({
       }
     }).then(res => {
       const data = res.result.data
-      this.setData({
-        nonProList: data || []
-      })
+      this.transServicersData(data, '0')
     }).catch(console.error)
   },
 

@@ -10,7 +10,7 @@
       </view>
       <swiper class="slide-wrap" indicator-dots autoplay circular>
         <block wx:for="{{proList}}" wx:key="{{_id}}">
-          <swiper-item class="pro-item-wrap" bindtap="enterAlbum" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}" bindtap="onDetail">
+          <swiper-item class="pro-item-wrap" data-id="{{item._id}}" data-title="{{item.nickName || '无名'}}" bindtap="onDetail">
             <image src="{{item.avatarId || '/images/newlist.jpg'}}" class="slide-image" mode="aspectFill" />
             <view class="content">
               <view class="name-wrap">
