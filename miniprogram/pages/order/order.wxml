@@ -1,4 +1,55 @@
 <!--order.wxml-->
 <view class="container">
-  <view bindtap="onPay">支付</view>
+  <form class="form" bindsubmit="onOrder">
+    <view class="wrap">
+      <label>交流类型：</label>
+      <radio-group class="radio-group" name="talkType">
+        <label class="radio">
+          <radio value="文字" checked="{{exchangeType !== '通话'}}" />文字
+        </label>
+        <label class="radio">
+          <radio value="通话" checked="{{exchangeType === '通话'}}" />通话
+        </label>
+      </radio-group>
+    </view>
+    <view class="wrap">
+      <label>微信号：</label>
+      <input type='text' placeholder='请输入微信号' name="weixin" placeholder-style="color: #ccc;" />
+    </view>
+    <view class="wrap">
+      <label>QQ号：</label>
+      <input type='number' placeholder='请输入QQ号' name="qq" maxlength="11" placeholder-style="color: #ccc;" />
+    </view>
+    <view class="wrap">
+      <label>手机号：</label>
+      <input type='number' placeholder='请输入手机号' name="telphone" maxlength="11" placeholder-style="color: #ccc;" />
+    </view>
+    <view class="wrap intro-wrap">
+      <label>简单描述一下您的需求（选填）：</label>
+      <textarea class="intro" placeholder="例如：我想找个声音甜美的老师" name="intro" placeholder-style="color: #ccc;" maxlength="140" />
+    </view>
+    <view class="wrap">
+      <label>专业类型：</label>
+      <radio-group class="radio-group" name="proType">
+        <label class="radio">
+          <radio value="专业" />专业
+        </label>
+        <label class="radio">
+          <radio value="业余" />业余
+        </label>
+      </radio-group>
+    </view>
+    <view class="order-price-wrap" bindtap="onWordSelected">
+      <block wx:for="{{priceList}}" wx:key="{{item._id}}">
+        <view class="order-price {{selected === index ? 'selected' : ''}}" data-price="{{item}}" data-index="{{index}}">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
+      </block>
+    </view>
+    <view class="order-confirm-wrap">
+      <view class="order-sum-wrap">
+        <view>合计：</view>
+        <view class="order-sum">¥{{priceInfo.price / 100}}</view>
+      </view>
+      <view class="btn-order-confirm" catchtap="onOrderConfirm">确认下单</view>
+    </view>
+  </form>
 </view>

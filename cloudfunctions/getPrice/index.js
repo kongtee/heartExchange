@@ -9,8 +9,10 @@ exports.main = async (event, context) => {
     env: process.env.env
   })
 
-  const where = {
-    proType: event.proType || '0'
+  const where = {}
+
+  if (event.proType !== 'undefined') {
+    where.proType = event.proType
   }
 
   try {

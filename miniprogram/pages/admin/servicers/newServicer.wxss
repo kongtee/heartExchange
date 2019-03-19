@@ -9,7 +9,7 @@ page {
 
 .wrap {
   display: flex;
-  margin: 50rpx 30rpx;
+  margin: 50rpx 60rpx;
 }
 
 .wrap>label {
