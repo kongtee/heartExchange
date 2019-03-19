@@ -2,7 +2,6 @@
 const app = getApp()
 const share = require('../../common/share')
 const util = require('../../common/util')
-const admin = require('../../common/admin')
 
 Page({
   data: {
@@ -45,8 +44,6 @@ Page({
       })
       return
     }
- 
-    admin.getAdmin()
 
     // 获取用户信息
     wx.getSetting({
@@ -146,6 +143,14 @@ Page({
    */
   getAge(idCard) {
     return util.getAgeFromIdCard(idCard)
+  },
+
+  /**
+   * 跳转到随机订单页
+   */
+  onOrder() {
+    const url = '/pages/order/order'
+    wx.navigateTo({ url })
   },
 
   // onGetUserInfo: function(e) {

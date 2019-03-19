@@ -73,6 +73,9 @@
     </view>
   </view>
   <view class="right-bar">
+    <button class="contact-wrap" bindtap="onOrder">
+      <image src="/images/talk.png"></image>
+    </button>
     <button class="contact-wrap" open-type="contact">
       <image src="/images/servicer.png"></image>
     </button>
