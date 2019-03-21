@@ -47,7 +47,9 @@
           <view class="order-title {{orderTalk}}" catchtap="onTalk">通话</view>
           <view class="order-title {{orderWord}}" catchtap="onWord">文字</view>
         </view>
+        <!-- 价格内容 start -->
         <view class="order-content">
+          <!-- 专业 -->
           <view class="order-type {{orderTalk}}">
             <view class="order-price-wrap" catchtap="onTalkSelected">
               <block wx:for="{{talkPriceList}}" wx:key="{{item.id}}">

@@ -168,7 +168,7 @@ Page({
       paySign: param.paySign,
       success(res) {
         wx.showToast({
-          title: '支持成功',
+          title: '支付成功',
           icon: 'success',
           success: function () {
             
@@ -177,7 +177,7 @@ Page({
       },
       fail(res) {
         wx.showToast({
-          title: '支持未成功',
+          title: '支付未成功',
           icon: 'loading'
         })
       }
