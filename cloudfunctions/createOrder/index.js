@@ -2,19 +2,16 @@
 const cloud = require('wx-server-sdk')
 const request = require('request')
 const xml2js = require('xml2js')
-const date = require('./date.js')
-const randomStr = require('./randomStr.js')
-const sign = require('./sign.js')
-const xmlData = require('./xmlData.js')
+const date = require('./date')
+const randomStr = require('./randomStr')
+const sign = require('./sign')
+const xmlData = require('./xmlData')
 
 cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  const db = cloud.database({
-    env: process.env.env
-  })
 
   // 接口参数参考：https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=9_1&index=1
 
@@ -54,6 +51,7 @@ exports.main = async (event, context) => {
       (error, result) => {
         const xml = result.xml || {}
         if (xml.result_code === 'SUCCESS') {
+
           const paySignParam = {
             appId: signParam.appid,
             nonceStr: signParam.nonce_str,
@@ -62,16 +60,31 @@ exports.main = async (event, context) => {
             timeStamp: Date.parse(new Date()) / 1000
           }
 
-          const data2 = Object.assign(paySignParam, {
+          const orderInfo = event.orderInfo
+          const newOrderParam = {
+            outTradeNo: signParam.out_trade_no,
+            servicerNo: signParam.product_id,
+            nickName: orderInfo.nickName,
+            proType: orderInfo.proType,
+            exchangeType: orderInfo.exchangeType,
+            time: orderInfo.time,
+            price: signParam.total_fee,
+            orderTime: paySignParam.timeStamp,
+            custWeixin: '',
+            memo: '',
+          }
+
+          const resData = Object.assign(paySignParam, {
             paySign: sign(paySignParam),
-            xmlParam: xmlParam,
-            xml: xml,
-            result: result
+            newOrderParam
+            // xmlParam: xmlParam,
+            // xml: xml,
+            // result: result
           })
           
           return resolve({
             errMsg: 'ok',
-            data: data2
+            data: resData
           })
         } else {
           return reject({

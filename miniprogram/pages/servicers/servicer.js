@@ -157,6 +157,16 @@ Page({
   },
 
   /**
+   * 新增订单列表
+   */
+  newOrder(param) {
+    wx.cloud.callFunction({
+      name: 'addOrder',
+      data: param
+    })
+  },
+
+  /**
    * 发起微信支付
    */
   requestPayment(param) {
@@ -167,10 +177,11 @@ Page({
       signType: 'MD5',
       paySign: param.paySign,
       success(res) {
+        this.newOrder(param.newOrderParam)
         wx.showToast({
           title: '支付成功',
           icon: 'success',
-          success: function () {
+          success: () => {
             
           }
         })
@@ -197,7 +208,7 @@ Page({
       })
       return
     } 
-    console.log(this.data.contact)
+    console.log('priceInfo:', priceInfo)
     if (contactInfo === '') {
       wx.showToast({
         title: '请填写联系方式',
@@ -210,12 +221,20 @@ Page({
       return
     }
 
+    const proType = this.data.proType[priceInfo.proType]
+
     const param = {
-      goodsDesc: `${priceInfo.exchangeType}-${this.data.proType[priceInfo.proType]}`,
+      goodsDesc: `${priceInfo.exchangeType}-${proType}`,
       goodsDetail: `${priceInfo.time / 60}小时`,
       amount: price,
       attach: contactInfo,
-      productId: this.data.servicer.servicerNo
+      productId: this.data.servicer.servicerNo,
+      orderInfo: {
+        nickName: this.data.servicer.nickName,
+        proType: priceInfo.proType,
+        exchangeType: priceInfo.exchangeType,
+        time: priceInfo.time,
+      }
     }
     wx.cloud.callFunction({
       name: 'createOrder',
@@ -223,6 +242,8 @@ Page({
     }).then(res => {
       const data = res.result.data
       console.log('createOrder:', res, data)
+      console.log(data.newOrderParam)
+      this.newOrder(data.newOrderParam)
       this.requestPayment(data);
     }).catch(console.error)
   }

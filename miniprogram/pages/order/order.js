@@ -144,7 +144,7 @@ Page({
     const value = e.detail.value
     if (value.weixin === '' && value.qq === '' && value.telphone === '') {
       wx.showToast({
-        title: '请填写至少一种联系方式',
+        title: '填写联系方式',
         icon: 'loading'
       })
 
