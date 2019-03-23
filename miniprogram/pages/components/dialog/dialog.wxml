@@ -1,0 +1,10 @@
+<view class="mask">
+  <view class="dialog">
+    <view class="title">{{innerText}}</view>
+    <slot></slot>
+    <view>
+      <view>取消</view>
+      <view>确定</view>
+    </view>
+  </view>
+</view>

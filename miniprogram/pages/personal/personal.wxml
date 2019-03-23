@@ -30,6 +30,13 @@
       <text class="func-name">我的推广</text>
       <image class="func-enter" src="../../images/enter.png"></image>
     </view>
+    <view class="func-wrap">
+      <button open-type="feedback">
+        <image class="func-icon" src="../../images/feedback.png"></image>
+        <text class="func-name">意见反馈</text>
+        <image class="func-enter" src="../../images/enter.png"></image>
+      </button>
+    </view>
   </view>
   <view id="mask" class="mask {{qrcodeClass}}" bindtap="onMaskTap">
     <view class="qrcode-wrap">

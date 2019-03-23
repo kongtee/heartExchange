@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
   }
 
   try {
-    return await db.collection('price').where(where).get()
+    return await db.collection('price').where(where).orderBy('price', 'asc').get()
   } catch (e) {
     console.error(e)
   }
