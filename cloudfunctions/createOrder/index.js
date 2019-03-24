@@ -64,13 +64,14 @@ exports.main = async (event, context) => {
           const newOrderParam = {
             outTradeNo: signParam.out_trade_no,
             servicerNo: signParam.product_id,
-            nickName: orderInfo.nickName,
+            serviceNickName: orderInfo.serviceNickName,
             proType: orderInfo.proType,
             exchangeType: orderInfo.exchangeType,
             time: orderInfo.time,
             price: signParam.total_fee,
             orderTime: paySignParam.timeStamp,
-            custWeixin: '',
+            custNickName: orderInfo.custNickName,
+            telphone: orderInfo.telphone,
             memo: '',
           }
 

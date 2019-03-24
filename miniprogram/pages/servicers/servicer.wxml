@@ -106,9 +106,9 @@
       </view>
       <view class="order-footer">
         <view class="contact-wrap">
-          <view class="contact-title">联系方式（必填）</view>
+          <!-- <view class="contact-title">请务必留下手机号码以便我们能联系到您</view> -->
           <view>
-            <textarea class="contact" data-id="contact" placeholder="请留下您的手机号，微信或者QQ，以便我们可以联系到您（限50个字以内）" placeholder-style="color:#888;font-size:12px;" maxlength="50" focus="{{focus}}" bindinput="onContactInput" />
+            <textarea class="contact" data-id="contact" placeholder="请务必留下手机号码以便我们能联系到您" placeholder-style="color:#888;font-size:14px;" maxlength="11" focus="{{focus}}" bindinput="onContactInput" />
           </view>
         </view>
         <view class="order-confirm-wrap">

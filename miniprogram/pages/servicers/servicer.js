@@ -164,69 +164,24 @@ Page({
   },
 
   /**
-   * 新增订单列表
-   */
-  newOrder(param) {
-    wx.cloud.callFunction({
-      name: 'addOrder',
-      data: param
-    })
-  },
-
-  /**
-   * 发起微信支付
-   */
-  requestPayment(param) {
-    wx.requestPayment({
-      timeStamp: param.timeStamp.toString(),
-      nonceStr: param.nonceStr,
-      package: param.package,
-      signType: 'MD5',
-      paySign: param.paySign,
-      success(res) {
-        this.newOrder(param.newOrderParam)
-        wx.showToast({
-          title: '支付成功',
-          icon: 'success',
-          success: () => {
-            
-          }
-        })
-      },
-      fail(res) {
-        wx.showToast({
-          title: '支付未成功',
-          icon: 'loading'
-        })
-      }
-    })
-  },
-
-  /**
    * 跳转支付页面
    */
   onOrderConfirm(e) {
     const priceInfo = this.data.priceInfo
     const price = priceInfo.price
-    // if (price === 0) {
-    //   wx.showToast({
-    //     title: '请选择价格',
-    //     icon: 'loading'
-    //   })
-    //   return
-    // } 
-    console.log('priceInfo:', priceInfo)
-    // if (contactInfo === '') {
-    //   wx.showToast({
-    //     title: '请填写联系方式',
-    //     icon: 'loading'
-    //   })
-    //   this.setData({
-    //     focus: true
-    //   })
 
-    //   return
-    // }
+    console.log('priceInfo:', priceInfo)
+    if (contactInfo === '') {
+      wx.showToast({
+        title: '请填写联系方式',
+        icon: 'loading'
+      })
+      this.setData({
+        focus: true
+      })
+
+      return
+    }
 
     const proType = this.data.proType[priceInfo.proType]
 
@@ -237,15 +192,23 @@ Page({
       attach: contactInfo,
       productId: this.data.servicer.servicerNo,
       orderInfo: {
-        nickName: this.data.servicer.nickName,
+        serviceNickName: this.data.servicer.nickName,
         proType: priceInfo.proType,
         exchangeType: priceInfo.exchangeType,
         time: priceInfo.time,
+        custNickName: this.data.userInfo.nickName,
+        telphone: contactInfo
       }
     }
 
-    payment.createOrder(param, (param) => {
-
+    // 创建订单，支付
+    payment.createOrder(param, (res) => {
+      if (res.errNo !== 200) {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'loading'
+        })
+      }
     })
   },
   /**
