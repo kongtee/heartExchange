@@ -1,5 +1,6 @@
 //servicer.js
 const app = getApp()
+const payment = require('../../common/payment')
 
 let contactInfo = ''
 
@@ -30,19 +31,22 @@ Page({
     orderWord: '',
     wordPriceList: [],
     talkPriceList: [],
-    wordSelected: -1,
-    talkSelected: -1,
+    wordSelected: 0,
+    talkSelected: 0,
     priceInfo: {
       price: 0
     },
     proType: [ '业余', '专业' ],
-    focus: false
+    focus: false,
+    userInfo: null
   },
 
   onLoad(query) {
     wx.setNavigationBarTitle({
       title: '客服信息'
     })
+
+    // 获取客服信息
     wx.cloud.callFunction({
       name: 'getServicers',
       data: {
@@ -56,6 +60,12 @@ Page({
         servicer: data || {}
       })
     }).catch(console.error)
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
   },
 
   /**
@@ -78,7 +88,8 @@ Page({
       }
       this.setData({
         wordPriceList: wordArry,
-        talkPriceList: talkArry
+        talkPriceList: talkArry,
+        priceInfo: talkArry[0]
       })
     }).catch(console.error)
   },
@@ -111,9 +122,7 @@ Page({
     this.setData({
       orderTalk: 'active',
       orderWord: '',
-      priceInfo: {
-        price: 0
-      }
+      priceInfo: this.data.talkPriceList[this.data.talkSelected]
     })
   },
 
@@ -124,9 +133,7 @@ Page({
     this.setData({
       orderTalk: '',
       orderWord: 'active',
-      priceInfo: {
-        price: 0
-      }
+      priceInfo: this.data.wordPriceList[this.data.wordSelected]
     })
   },
 
@@ -201,25 +208,25 @@ Page({
   onOrderConfirm(e) {
     const priceInfo = this.data.priceInfo
     const price = priceInfo.price
-    if (price === 0) {
-      wx.showToast({
-        title: '请选择价格',
-        icon: 'loading'
-      })
-      return
-    } 
+    // if (price === 0) {
+    //   wx.showToast({
+    //     title: '请选择价格',
+    //     icon: 'loading'
+    //   })
+    //   return
+    // } 
     console.log('priceInfo:', priceInfo)
-    if (contactInfo === '') {
-      wx.showToast({
-        title: '请填写联系方式',
-        icon: 'loading'
-      })
-      this.setData({
-        focus: true
-      })
+    // if (contactInfo === '') {
+    //   wx.showToast({
+    //     title: '请填写联系方式',
+    //     icon: 'loading'
+    //   })
+    //   this.setData({
+    //     focus: true
+    //   })
 
-      return
-    }
+    //   return
+    // }
 
     const proType = this.data.proType[priceInfo.proType]
 
@@ -236,15 +243,22 @@ Page({
         time: priceInfo.time,
       }
     }
-    wx.cloud.callFunction({
-      name: 'createOrder',
-      data: param
-    }).then(res => {
-      const data = res.result.data
-      console.log('createOrder:', res, data)
-      console.log(data.newOrderParam)
-      this.newOrder(data.newOrderParam)
-      this.requestPayment(data);
-    }).catch(console.error)
+
+    payment.createOrder(param, (param) => {
+
+    })
+  },
+  /**
+   * 获取用户信息
+   */
+  onGetUserInfo(e) {
+    wx.getUserInfo({
+      success: (res) => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
+    })
   }
 })

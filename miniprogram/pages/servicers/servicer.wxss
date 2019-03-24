@@ -132,6 +132,18 @@ page,
 .mask .order .header .nickname {
   line-height:100rpx;
   margin-left:30rpx;  
+  flex: 1;
+}
+
+.mask .header .login-wrap {
+  display:flex;
+  align-items:center;
+  margin-right:30rpx;
+}
+
+.mask .header .btn-login {
+  font-size:14px;
+  height:35px;
 }
 
 .mask .order .order-title-wrap {
