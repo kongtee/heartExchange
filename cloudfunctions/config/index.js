@@ -1,4 +1,12 @@
 // 云函数入口函数
+const cloud = require('wx-server-sdk')
+
+cloud.init()
+
 exports.main = async (event, context) => {
-  env: 'test-521157'
+  const db = cloud.database({
+    env: process.env.env
+  })
+   
+  return event.x + event.y
 }

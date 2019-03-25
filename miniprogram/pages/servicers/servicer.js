@@ -202,7 +202,7 @@ Page({
     }
 
     // 创建订单，支付
-    payment.createOrder(param, (res) => {
+    payment.submitOrder(param, (res) => {
       if (res.errNo !== 200) {
         wx.showToast({
           title: res.errMsg,

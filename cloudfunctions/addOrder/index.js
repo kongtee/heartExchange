@@ -24,6 +24,7 @@ exports.main = async (event, context) => {
         custNickName: event.custNickName,
         telphone: event.telphone,
         memo: event.memo,
+        status: event.status,
         updateTime: db.serverDate(),
         createTime: db.serverDate()
       }

@@ -51,7 +51,6 @@ Page({
     // }).catch(console.error)
 
     userInfo.getUserInfo((param => {
-      console.log(param)
     }))
 
     this.getServicers()

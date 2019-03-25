@@ -1,41 +1,60 @@
+/**
+ * 提交订单，记录订单，支付封装
+ * 
+ * const payment = require('../../common/payment')
+ * const param = {
+      goodsDesc: `${priceInfo.exchangeType}-${proType}`,
+      goodsDetail: `${priceInfo.time / 60}小时`,
+      amount: price,
+      attach: contactInfo,
+      productId: this.data.servicer.servicerNo,
+      orderInfo: {
+        serviceNickName: this.data.servicer.nickName,
+        proType: priceInfo.proType,
+        exchangeType: priceInfo.exchangeType,
+        time: priceInfo.time,
+        custNickName: this.data.userInfo.nickName,
+        telphone: contactInfo
+      }
+    }
+
+ * payment.submitOrder(param, (res) => {})
+ */
 const app = getApp()
 const userInfo = require('./userInfo')
 
 module.exports = {
   /**
-   * 创建订单
+   * 提交订单
    */
-  createOrder(param, cb) {
+  submitOrder(param, cb) {
     console.log('createOrder:', param)
     if (!app.globalData.userInfo) {
-      userInfo.getUserInfo((param) => {
-        if (param.errNo === 200) {
-          wx.cloud.callFunction({
-            name: 'createOrder',
-            data: param
-          }).then(res => {
-            const data = res.result.data
-            console.log('createOrder:', res, data)
-            console.log(data.newOrderParam)
-            this.newOrder(data.newOrderParam)
-            this.requestPayment(data);
-          }).catch(console.error)
+      userInfo.getUserInfo((res) => {
+        if (res.errNo === 200) {
+          this.createOrder(param)
         } else {
-          cb(param)
+          cb(res)
         }
       })
     } else {
-      wx.cloud.callFunction({
-        name: 'createOrder',
-        data: param
-      }).then(res => {
-        const data = res.result.data
-        console.log('createOrder:', res, data)
-        console.log(data.newOrderParam)
-        this.newOrder(data.newOrderParam)
-        this.requestPayment(data);
-      }).catch(console.error)
+      this.createOrder(param)
     }
+  },
+  /**
+   * 创建订单
+   */
+  createOrder(param) {
+    wx.cloud.callFunction({
+      name: 'createOrder',
+      data: param
+    }).then(res => {
+      const data = res.result.data
+      console.log('createOrder:', res, data)
+      data.newOrderParam.status = '待支付' 
+      this.newOrder(data.newOrderParam)
+      this.requestPayment(data);
+    }).catch(console.error)
   },
 
   /**
@@ -44,6 +63,16 @@ module.exports = {
   newOrder(param) {
     wx.cloud.callFunction({
       name: 'addOrder',
+      data: param
+    })
+  },
+
+  /**
+   * 更新订单状态
+   */
+  updateOrder(param) {
+    wx.cloud.callFunction({
+      name: 'updateOrder',
       data: param
     })
   },
@@ -59,7 +88,11 @@ module.exports = {
       signType: 'MD5',
       paySign: param.paySign,
       success(res) {
-        this.newOrder(param.newOrderParam)
+        const updateOrderParam = {
+          outTradeNo: param.newOrderParam.outTradeNo,
+          status: '已支付' 
+        }
+        this.updateOrder(updateOrderParam)
         wx.showToast({
           title: '支付成功',
           icon: 'success',
