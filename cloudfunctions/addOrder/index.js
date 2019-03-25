@@ -15,13 +15,14 @@ exports.main = async (event, context) => {
       data: {
         outTradeNo: event.outTradeNo,
         servicerNo: event.servicerNo,
-        nickName: event.nickName,
+        serviceNickName: event.serviceNickName,
         proType: event.proType,
         exchangeType: event.exchangeType,
         time: event.time,
         price: event.price,
         orderTime: event.orderTime,
-        custWeixin: event.custWeixin,
+        custNickName: event.custNickName,
+        telphone: event.telphone,
         memo: event.memo,
         updateTime: db.serverDate(),
         createTime: db.serverDate()
@@ -30,12 +31,4 @@ exports.main = async (event, context) => {
   } catch (e) {
     console.error(e)
   }
-  // const wxContext = cloud.getWXContext()
-
-  // return {
-  //   event,
-  //   openid: wxContext.OPENID,
-  //   appid: wxContext.APPID,
-  //   unionid: wxContext.UNIONID,
-  // }
 }

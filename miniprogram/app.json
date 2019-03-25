@@ -10,6 +10,7 @@
     "pages/admin/users/admin",
     "pages/admin/servicers/servicerList",
     "pages/admin/servicers/newServicer",
+    "pages/admin/orders/orderList",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -26,7 +27,7 @@
   },
   "tabBar": {
       "color": "#adadad",
-      "selectedColor": "#DC143C",
+      "selectedColor": "#dc143c",
       "backgroundColor": "#fff",
       "borderStyle": "black",
       "list": [{

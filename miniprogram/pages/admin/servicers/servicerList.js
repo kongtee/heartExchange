@@ -6,7 +6,7 @@ Page({
     listData: [],
     skip: 0,
     limit: 20,
-    end: false,
+    end: false,   // 是否还有数据
     goodColor: {
       '婚姻家庭': '#FFC125',
       '恋爱情感': '#FF69B4',

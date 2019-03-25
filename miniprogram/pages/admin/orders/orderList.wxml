@@ -1,0 +1,25 @@
+<!--orderList.wxml-->
+<view class="container">
+  <view class="list">
+    <block wx:for="{{listData}}" wx:key="{{_id}}">
+      <view class="order-item-wrap" data-id="{{item._id}}">
+        <view class="content">
+          <view class="order-wrap">
+              <view class="order">订单号：{{item.outTradeNo}}</view>
+              <view class="price">¥{{item.price / 100 || 0}}</view>
+          </view>
+          <view class="status">订单时间：{{item.orderTime}}</view>
+          <view class="status">
+            <view>客服：{{item.serviceNickName || '无'}}（{{item.servicerNo}}）</view>
+            <view>类型：{{proType[item.proType]}}-{{item.exchangeType}}({{item.time / 60}}小时)
+            </view>
+          </view>
+          <view class="status">
+            <view>用户名：{{item.custNickName || '无'}}</view>
+            <view>联系方式：{{item.telphone || '无'}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

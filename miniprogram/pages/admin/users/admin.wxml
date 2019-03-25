@@ -5,7 +5,14 @@
     url="/pages/admin/servicers/servicerList"
     hover-class="navigator-hover"
   >
-    进入管理页
+    客服列表
   </navigator>
-  <button class="btn client" bindtap="onGotoClient">进入客户端</button>
+  <navigator
+    class="btn admin"
+    url="/pages/admin/orders/orderList"
+    hover-class="navigator-hover"
+  >
+    订单列表
+  </navigator>
+  <button class="btn client" bindtap="onGotoClient">回到客户端</button>
 </view>
