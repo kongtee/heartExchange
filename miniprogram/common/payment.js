@@ -50,7 +50,7 @@ module.exports = {
       data: param
     }).then(res => {
       const data = res.result.data
-      console.log('createOrder:', res, data)
+      console.log('createOrder:', data.newOrderParam)
       data.newOrderParam.status = '待支付' 
       this.newOrder(data.newOrderParam)
       this.requestPayment(data);
@@ -58,29 +58,10 @@ module.exports = {
   },
 
   /**
-   * 新增订单列表
-   */
-  newOrder(param) {
-    wx.cloud.callFunction({
-      name: 'addOrder',
-      data: param
-    })
-  },
-
-  /**
-   * 更新订单状态
-   */
-  updateOrder(param) {
-    wx.cloud.callFunction({
-      name: 'updateOrder',
-      data: param
-    })
-  },
-
-  /**
    * 发起微信支付
    */
   requestPayment(param) {
+    const self = this
     wx.requestPayment({
       timeStamp: param.timeStamp.toString(),
       nonceStr: param.nonceStr,
@@ -90,9 +71,10 @@ module.exports = {
       success(res) {
         const updateOrderParam = {
           outTradeNo: param.newOrderParam.outTradeNo,
-          status: '已支付' 
+          status: '已支付'
         }
-        this.updateOrder(updateOrderParam)
+        console.log('updateOrderParam:', updateOrderParam)
+        self.updateOrder(updateOrderParam)
         wx.showToast({
           title: '支付成功',
           icon: 'success',
@@ -108,5 +90,30 @@ module.exports = {
         })
       }
     })
+  },
+
+  /**
+   * 新增订单列表
+   */
+  newOrder(param) {
+    wx.cloud.callFunction({
+      name: 'addOrder',
+      data: param
+    }).then(res => {
+      console.log('newOrder:', res.result)
+    }).catch(console.error)
+  },
+
+  /**
+   * 更新订单状态
+   */
+  updateOrder(param) {
+    console.log('updateOrder', param)
+    wx.cloud.callFunction({
+      name: 'updateOrder',
+      data: param
+    }).then(res => {
+      console.log('updateOrder:', res.result)
+    }).catch(console.error)
   }
-}
+} 

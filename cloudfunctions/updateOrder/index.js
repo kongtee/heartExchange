@@ -9,10 +9,12 @@ exports.main = async (event, context) => {
     env: process.env.env
   })
 
-  const outTradeNo = event.outTradeNo
+  const condition = {
+    outTradeNo: event.outTradeNo
+  }
 
   try {
-    return await db.collection('orders').doc(outTradeNo).update({
+    return await db.collection('orders').where(condition).update({
       // data 字段表示需新增的 JSON 数据
       data: {
         status: event.status,

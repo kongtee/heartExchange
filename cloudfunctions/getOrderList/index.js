@@ -33,7 +33,7 @@ exports.main = async (event, context) => {
     // } else {
       // return await db.collection('orders').where(where).skip(skip).limit(limit).get()
 
-    return await db.collection('orders').skip(skip).limit(limit).get()
+    return await db.collection('orders').orderBy('updateTime', 'desc').skip(skip).limit(limit).get()
     // }
   } catch (e) {
     console.error(e)
