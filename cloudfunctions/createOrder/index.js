@@ -73,7 +73,7 @@ exports.main = async (event, context) => {
             orderTime: paySignParam.timeStamp,
             custNickName: orderInfo.custNickName,
             telphone: orderInfo.telphone,
-            memo: '',
+            memo: orderInfo.memo,
           }
 
           const resData = Object.assign(paySignParam, {

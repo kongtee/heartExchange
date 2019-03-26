@@ -2,11 +2,13 @@
 <view class="container" bindtap="onAdmin">
   <view class="bg"></view>
   <view class="userinfo" >
-    <block wx:if="{{hasAuth}}">
+    <block wx:if="{{!!userInfo}}">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
-    <button class="userinfo-btn" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户信息</button>
+    <view class="login-wrap" wx:else>
+      <button class="userinfo-btn"open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">用户授权</button>
+    </view>
     <image class="userinfo-card" src="../../images/personal-card.png"></image>
   </view>  
   <!-- <view>

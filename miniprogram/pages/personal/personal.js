@@ -7,9 +7,8 @@ let timeEnd = null
 
 Page({
   data: {
-    userInfo: {},
+    userInfo: app.globalData.userInfo,
     qrcodeClass: 'hidden',
-    hasAuth: app.globalData.hasAuth,
     openid: ''
   },
   enterAlbum: function (e) {
@@ -22,25 +21,24 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心'
     })
-    if (this.data.hasAuth) {
+
+    console.log(!!app.globalData.userInfo)
+    if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo
       })
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.showToast({
+        title: '请授权',
+        icon: 'loading'
+      })
+      
       wx.getUserInfo({
-        success: res => {
-          if (!app.globalData.userInfo) {
-            app.globalData.userInfo = {}
-          }
-          Object.assign(app.globalData.userInfo, res.userInfo)
+        success: (res) => {
+          app.globalData.userInfo = res.userInfo
           this.setData({
-            userInfo: res.userInfo,
-            hasAuth: true
+            userInfo: res.userInfo
           })
-        },
-        fail: res => {
-          console.log('res.userInfo:', res)
         }
       })
     }
@@ -61,14 +59,17 @@ Page({
       }
     }
   },
-  getUserInfo: function (e) {
-    if (!app.globalData.userInfo) {
-      app.globalData.userInfo = {}
-    }
-    Object.assign(app.globalData.userInfo, e.detail.userInfo)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasAuth: true
+  /**
+   * 用户授权
+   */
+  onGetUserInfo() {
+    wx.getUserInfo({
+      success: (res) => {
+        app.globalData.userInfo = res.userInfo
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
     })
   },
   /**

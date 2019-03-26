@@ -167,6 +167,14 @@ Page({
    * 跳转支付页面
    */
   onOrderConfirm(e) {
+    if (!this.data.userInfo) {
+      wx.showToast({
+        title: '请授权登录',
+        icon: 'loading'
+      })
+
+      return
+    }
     const priceInfo = this.data.priceInfo
     const price = priceInfo.price
 

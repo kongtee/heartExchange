@@ -25,9 +25,12 @@
   position: relative;
 }
 
+.userinfo .login-wrap {
+  display:flex;
+}
+
 .userinfo .userinfo-btn {
   height: 45px;
-  margin-top: 50px;
 }
 
 .userinfo .userinfo-avatar {

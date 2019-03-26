@@ -1,5 +1,6 @@
 //index.js
 const app = getApp()
+const payment = require('../../common/payment')
 
 Page({
   data: {
@@ -15,14 +16,22 @@ Page({
     proWordPriceList: [],
     amaWordPriceList: [],
     priceList: [],
-    priceAllList: []
+    priceAllList: [],
+    userInfo: null
   },
 
   onLoad() {
     wx.setNavigationBarTitle({
       title: '马上倾诉'
     })
+
     this.getPrice()
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
   },
 
   /**
@@ -110,41 +119,21 @@ Page({
   },
 
   /**
-   * 发起微信支付
-   */
-  requestPayment(param) {
-    wx.requestPayment({
-      timeStamp: param.timeStamp.toString(),
-      nonceStr: param.nonceStr,
-      package: param.package,
-      signType: 'MD5',
-      paySign: param.paySign,
-      success(res) {
-        wx.showToast({
-          title: '支付成功',
-          icon: 'success',
-          success: function () {
-
-          }
-        })
-      },
-      fail(res) {
-        wx.showToast({
-          title: '支付未成功',
-          icon: 'loading'
-        })
-      }
-    })
-  },
-
-  /**
    * 跳转支付页面
    */
   onOrder(e) {
+    if (!this.data.userInfo) {
+      wx.switchTab({
+        url: '/pages/personal/personal',
+      })
+
+      return
+    }
+
     const value = e.detail.value
-    if (value.weixin === '' && value.qq === '' && value.telphone === '') {
+    if (value.telphone === '') {
       wx.showToast({
-        title: '填写联系方式',
+        title: '填写手机号',
         icon: 'loading'
       })
 
@@ -163,15 +152,26 @@ Page({
       goodsDesc: `${this.data.exchangeType}-${this.data.proTypeValue[value.proType]}`,
       goodsDetail: `${priceInfo.time / 60}小时`,
       amount: price,
-      attach
+      attach,
+      orderInfo: {
+        serviceNickName: '随机',
+        proType: value.proType,
+        exchangeType: this.data.exchangeType,
+        time: priceInfo.time,
+        custNickName: this.data.userInfo.nickName,
+        telphone: value.telphone,
+        memo: value.requirement
+      }
     }
-    wx.cloud.callFunction({
-      name: 'createOrder',
-      data: param
-    }).then(res => {
-      const data = res.result.data
-      console.log('createOrder:', res, data)
-      this.requestPayment(data);
-    }).catch(console.error)
+
+    // 创建订单，支付
+    payment.submitOrder(param, (res) => {
+      if (res.errNo !== 200) {
+        wx.showToast({
+          title: res.errMsg,
+          icon: 'loading'
+        })
+      }
+    })
   }
 })

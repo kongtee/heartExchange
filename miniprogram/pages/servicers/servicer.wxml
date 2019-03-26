@@ -41,7 +41,7 @@
           <image mode="aspectFill" src="{{servicer.avatarId || '/images/newlist.jpg'}}" />
         </view>
         <view class="nickname">{{servicer.nickName || '无名'}}</view>
-        <view class="login-wrap" >
+        <view class="login-wrap">
           <button class="btn-login" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" hidden="{{!!userInfo}}">用户授权</button>
         </view>
       </view>
