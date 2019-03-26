@@ -3,7 +3,7 @@
     {
       "name": "getAccessTokenTrigger",
       "type": "timer",
-      "config": "* */10 * * * * *"
+      "config": "0 0 */1 * * * *"
     }
   ]
 }

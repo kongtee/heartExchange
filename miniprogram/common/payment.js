@@ -32,12 +32,14 @@ module.exports = {
     if (!app.globalData.userInfo) {
       userInfo.getUserInfo((res) => {
         if (res.errNo === 200) {
+          // 创建订单
           this.createOrder(param)
         } else {
           cb(res)
         }
       })
     } else {
+      // 创建订单
       this.createOrder(param)
     }
   },
@@ -69,10 +71,10 @@ module.exports = {
       signType: 'MD5',
       paySign: param.paySign,
       success(res) {
-        const updateOrderParam = {
-          outTradeNo: param.newOrderParam.outTradeNo,
-          status: '已支付'
-        }
+        // 支付完成更新订单信息
+        let updateOrderParam = { ...param.newOrderParam}
+        updateOrderParam.status = '已支付'
+        updateOrderParam.form_id = param.package
         console.log('updateOrderParam:', updateOrderParam)
         self.updateOrder(updateOrderParam)
         wx.showToast({

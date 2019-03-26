@@ -60,6 +60,7 @@ exports.main = async (event, context) => {
             timeStamp: Date.parse(new Date()) / 1000
           }
 
+          // 订单参数
           const orderInfo = event.orderInfo
           const newOrderParam = {
             outTradeNo: signParam.out_trade_no,
@@ -82,7 +83,7 @@ exports.main = async (event, context) => {
             // xml: xml,
             // result: result
           })
-          
+
           return resolve({
             errMsg: 'ok',
             data: resData

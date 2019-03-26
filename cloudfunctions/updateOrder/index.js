@@ -1,7 +1,9 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init()
+cloud.init({
+  env: process.env.env
+})
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -14,7 +16,7 @@ exports.main = async (event, context) => {
   }
 
   try {
-    return await db.collection('orders').where(condition).update({
+    db.collection('orders').where(condition).update({
       // data 字段表示需新增的 JSON 数据
       data: {
         status: event.status,
@@ -24,4 +26,9 @@ exports.main = async (event, context) => {
   } catch (e) {
     console.error(e)
   }
+
+  return await cloud.callFunction({
+    name: 'sendMessage',
+    data: event
+  })
 }
