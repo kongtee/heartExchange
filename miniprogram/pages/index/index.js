@@ -42,14 +42,17 @@ Page({
         url: '../chooseLib/chooseLib',
       })
       return
-    } 
+    }
+       
+    wx.cloud.callFunction({
+      name: 'getAccessToken'
+    }).then(res => {
+      console.log('test:', res.result)
+    }).catch(console.error)
 
-    // wx.cloud.callFunction({
-    //   name: 'common'
-    // }).then(res => {
-    //   console.log('test:', res)
-    // }).catch(console.error)
 
+
+    // 获取用户信息
     userInfo.getUserInfo((param => {
     }))
 

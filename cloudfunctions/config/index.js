@@ -1,12 +1,8 @@
 // 云函数入口函数
-const cloud = require('wx-server-sdk')
-
-cloud.init()
-
 exports.main = async (event, context) => {
-  const db = cloud.database({
-    env: process.env.env
-  })
-   
-  return event.x + event.y
+  return {
+    secret: '3b2b4c07aa4a29a684e9b0260efa5ffd',  // AppSecret
+    touser: 'oc7Er5NAqLBsVC843adeS2y7Pxew',  // 接收者（用户）的 openid（阿连）
+    template_id: 'EloOLhY6sHUlNRHmhtsIvmH4Ja4qHc_BLOBBC22HYxk',  // 所需下发的模板消息的id
+  }
 }
