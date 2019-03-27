@@ -44,13 +44,11 @@ Page({
       return
     }
        
-    wx.cloud.callFunction({
-      name: 'getAccessToken'
-    }).then(res => {
-      console.log('test:', res.result)
-    }).catch(console.error)
-
-
+    // wx.cloud.callFunction({
+    //   name: 'getAccessToken'
+    // }).then(res => {
+    //   console.log('test:', res.result)
+    // }).catch(console.error)
 
     // 获取用户信息
     userInfo.getUserInfo((param => {
