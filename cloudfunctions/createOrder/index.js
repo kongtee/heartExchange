@@ -71,6 +71,7 @@ exports.main = async (event, context) => {
             time: orderInfo.time,
             price: signParam.total_fee,
             orderTime: paySignParam.timeStamp,
+            custOpenid: wxContext.OPENID,
             custNickName: orderInfo.custNickName,
             telphone: orderInfo.telphone,
             memo: orderInfo.memo,
