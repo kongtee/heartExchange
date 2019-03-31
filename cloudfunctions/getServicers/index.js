@@ -8,21 +8,19 @@ exports.main = async (event, context) => {
   const db = cloud.database({
     env: process.env.env
   })
-
+  const _ = db.command
   const skip = event.skip || 0
   const limit = event.limit || 20
   const id = event.id
   const proType = event.proType
-  let where = {}
+  let where = {
+    drop: _.neq(true)
+  }
   if (proType) {
     if (proType === '1') {
-      where = {
-        proType: proType
-      }
+      where.proType = proType
     } else {
-      where = {
-        proType: db.command.neq('1')
-      }
+      where.proType = _.neq('1')
     }
   }
 

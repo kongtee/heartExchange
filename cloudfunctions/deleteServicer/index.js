@@ -9,7 +9,12 @@ exports.main = async (event, context) => {
   })
 
   try {
-    return await db.collection('servicers').doc(event.id).remove()
+    return await db.collection('servicers').doc(event.id).update({
+      data: {
+        drop: true
+      }
+    })
+    // return await db.collection('servicers').doc(event.id).remove()
   } catch (e) {
     console.error(e)
   }
