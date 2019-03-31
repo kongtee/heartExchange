@@ -1,13 +1,26 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init()
+cloud.init({
+  env: process.env.env
+})
 
 // 云函数入口函数
 exports.main = async (event, context) => {
   const db = cloud.database({
     env: process.env.env
   })
+
+  const randomResult = await cloud.callFunction({
+    name: 'common',
+    data: {
+      random: {
+        param: 10
+      }
+    }
+  });
+
+  const random = randomResult.result.random || ''
   
   const res = await db.collection('servicers').orderBy('createTime', 'desc').limit(1).get()
 
@@ -29,11 +42,12 @@ exports.main = async (event, context) => {
         weixin: event.weixin,
         qq: event.qq,
         telphone: event.telphone,
-        maritalIndex: event.maritalIndex,
-        proType: event.proType,
+        maritalIndex: event.maritalIndex,//0:'未婚', 1:'已婚无孩', 2:'已婚有孩'
+        proType: event.proType, //0：业余，1：专业
         goodFields: event.goodFields,
-        price: event.price,
+        // price: event.price,
         intro: event.intro,
+        servicerCode: random,
         updateTime: db.serverDate(),
         createTime: db.serverDate()
       }

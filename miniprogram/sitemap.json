@@ -1,0 +1,20 @@
+{
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "pages/admin/users/admin"
+    },
+    {
+      "action": "disallow",
+      "page": "pages/admin/servicers/servicerList"
+    },
+    {
+      "action": "disallow",
+      "page": "pages/admin/orders/orderList"
+    },
+    {
+      "action": "disallow",
+      "page": "pages/admin/servicers/newServicer"
+    }
+  ]
+}

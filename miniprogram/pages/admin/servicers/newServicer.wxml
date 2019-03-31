@@ -75,10 +75,10 @@
         </label>
       </checkbox-group>
     </view>
-    <view class="wrap">
+    <!-- <view class="wrap">
       <label>价格：</label>
       <input type='digit' placeholder='请输入价格' name="price" value="{{userInfo.price}}" />
-    </view>
+    </view> -->
     <view class="wrap">
       <label>个人简介：</label>
       <textarea class="intro" auto-height placeholder="请填写个人简介" name="intro" value="{{userInfo.intro}}" />
