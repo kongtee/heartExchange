@@ -17,27 +17,32 @@
   </view> -->
   <view class="func">
     <view class="func-wrap" bindtap="onVipTap">
-      <image class="func-icon" src="../../images/financial.png"></image>
+      <image class="func-icon" src="/images/share.png"></image>
       <text class="func-name">支持我们</text>
-      <image class="func-enter" src="../../images/enter.png"></image>
+      <image class="func-enter" src="/images/enter.png"></image>
     </view>
-    <view class="func-wrap">
-      <image class="func-icon" src="../../images/share.png"></image>
+    <!-- <view class="func-wrap">
+      <image class="func-icon" src="/images/share.png"></image>
       <text class="func-name">与民同乐</text>
-      <image class="func-enter" src="../../images/enter.png"></image>
+      <image class="func-enter" src="/images/enter.png"></image>
       <button class="func-share-btn" open-type="share"></button>
-    </view>
+    </view> -->
     <view class="func-wrap" bindtap="onQRCodeTap">
-      <image class="func-icon" src="../../images/qrcode.png"></image>
+      <image class="func-icon" src="/images/qrcode.png"></image>
       <text class="func-name">我的推广</text>
-      <image class="func-enter" src="../../images/enter.png"></image>
+      <image class="func-enter" src="/images/enter.png"></image>
     </view>
     <view class="func-wrap">
       <button open-type="feedback">
-        <image class="func-icon" src="../../images/feedback.png"></image>
+        <image class="func-icon" src="/images/feedback.png"></image>
         <text class="func-name">意见反馈</text>
-        <image class="func-enter" src="../../images/enter.png"></image>
+        <image class="func-enter" src="/images/enter.png"></image>
       </button>
+    </view>
+    <view class="func-wrap" bindtap="onSetting">
+      <image class="func-icon" src="/images/setting.png"></image>
+      <text class="func-name">设置</text>
+      <image class="func-enter" src="/images/enter.png"></image>
     </view>
   </view>
   <view id="mask" class="mask {{qrcodeClass}}" bindtap="onMaskTap">

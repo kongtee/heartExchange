@@ -22,7 +22,7 @@ Page({
       title: '个人中心'
     })
 
-    console.log(!!app.globalData.userInfo)
+    console.log(!!app.globalData.userInfo, app.globalData.userInfo)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo
@@ -154,6 +154,14 @@ Page({
           title: res.errMsg
         })
       }
+    })
+  },
+  /**
+   * 去设置页面
+   */
+  onSetting() {
+    wx.navigateTo({
+      url: '/pages/personal/settings/servicerAuth',
     })
   }
 })

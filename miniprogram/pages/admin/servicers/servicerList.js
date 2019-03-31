@@ -154,6 +154,7 @@ Page({
       if (res.result) {
         const random = res.result.random
         const param = Object.assign(data, {
+          id: data._id,
           servicerCode: random
         })
         console.log('更新参数:',param)

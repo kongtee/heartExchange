@@ -95,7 +95,7 @@ Page({
   transGoodFieldsData() {
     let goodFields = [...this.data.goodFields]
     for (let goodField of goodFields) {
-      goodField.checked = this.data.userInfo.goodFields.indexOf(goodField.value) > -1
+      goodField.checked = this.data.userInfo.goodFields && this.data.userInfo.goodFields.indexOf(goodField.value) > -1
     }
 
     this.setData({
