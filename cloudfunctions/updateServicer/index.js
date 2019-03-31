@@ -28,7 +28,8 @@ exports.main = async (event, context) => {
         maritalIndex: event.maritalIndex,
         proType: event.proType,
         goodFields: event.goodFields,
-        price: event.price,
+        // price: event.price,
+        servicerCode: event.servicerCode,
         intro: event.intro,
         updateTime: db.serverDate()
       }

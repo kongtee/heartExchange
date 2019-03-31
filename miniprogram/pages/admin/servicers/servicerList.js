@@ -137,5 +137,64 @@ Page({
 
       this.getServicers()
     }
+  },
+
+  /**
+   * 获取客服确认码
+   */
+  getServicerCode(data, index) {
+    wx.cloud.callFunction({
+      name: 'common',
+      data: {
+        random: {
+          param: 10
+        }
+      }
+    }).then(res => {
+      if (res.result) {
+        const random = res.result.random
+        const param = Object.assign(data, {
+          servicerCode: random
+        })
+        console.log('更新参数:',param)
+
+        wx.cloud.callFunction({
+          name: 'updateServicer',
+          data: param
+        }).then(res => {
+          console.log('修改成功：', res)
+          this.data.listData[index].servicerCode = random
+          this.setData({
+            listData: this.data.listData
+          })
+          wx.showModal({
+            title: '客服确认码',
+            content: this.data.listData[index].servicerCode,
+            showCancel: false
+          })
+        }).catch('更新客户信息', console.error)
+      } else {
+        console.log('获取随机数失败')
+      }
+    }).catch(console.error)
+  },
+
+  /**
+   * 获取客服确认码
+   */
+  onGetServicerCode(e) {
+    console.log(e._relatedInfo.anchorTargetText)
+    const index = e.target.dataset.index
+    const data = this.data.listData[index]
+
+    if (e._relatedInfo.anchorTargetText === '生成确认码') {
+      this.getServicerCode(data, index)
+    } else {
+      wx.showModal({
+        title: '客服确认码',
+        content: data.servicerCode,
+        showCancel: false
+      })
+    }
   }
 })
