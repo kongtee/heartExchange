@@ -1,22 +1,38 @@
 <!--personal.wxml-->
-<view class="container" bindtap="onAdmin">
-  <view class="func">
-    <view class="func-wrap" bindtap="onVipTap">
-      <image class="func-icon" src="/images/auth.png"></image>
-      <text class="func-name">客服认证</text>
-      <image class="func-enter" src="/images/enter.png"></image>
+<view class="container">
+  <hc-form class="func" bindsubmit="onAuth" >
+    <view slot="content">
+      <view class="func-wrap">
+        <view class="input-wrap">
+          <view class="input-label">
+            <view class="input-must">*</view>
+          </view>
+          <input class="func-input" name="servicerNo" placeholder="请输入客服编号"></input>
+        </view>
+        <view class="input-err-wrap" hidden="{{servicerNoErr}}">
+          <view class="input-label">
+            <view class="input-must">*</view>
+          </view>
+          <view class="input-err">客服编号不能为空</view>
+        </view>
+      </view>
+      <view class="func-wrap">
+        <view class="input-wrap">
+          <view class="input-label">
+            <view class="input-must">*</view>
+          </view>
+          <input class="func-input" name="servicerCode" placeholder="请输入客服认证码"></input>
+        </view>
+        <view class="input-err-wrap" hidden="{{servicerCodeErr}}">
+          <view class="input-label">
+            <view class="input-must">*</view>
+          </view>
+          <view class="input-err">客服认证码不能为空</view>
+        </view>
+      </view>
+      <view class="func-wrap">
+        <button class="btn-auth" form-type="submit" bindtap="onTest">认证</button>
+      </view>
     </view>
-    <view class="func-wrap">
-      <image class="func-icon" src="/images/about.png"></image>
-      <text class="func-name">关于心灵交换</text>
-      <image class="func-enter" src="/images/enter.png"></image>
-      <button class="func-share-btn" open-type="share"></button>
-    </view>
-  </view>
-  <view id="mask" class="mask {{qrcodeClass}}" bindtap="onMaskTap">
-    <view class="qrcode-wrap">
-      <image id="maskClose" class="qrcode-close" src="/images/close.png" bindtap="onMaskTap"></image>
-      <image class="qrcode-image" mode="aspectFill" bindlongpress="onLongPressQRCode" src="/images/erweima.jpg"></image>
-    </view>
-  </view>
+  </hc-form>
 </view>

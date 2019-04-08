@@ -1,0 +1,15 @@
+<!--personal.wxml-->
+<view class="container">
+  <view class="func">
+    <view class="func-wrap" bindtap="onServiceAuth">
+      <image class="func-icon" src="/images/auth.png"></image>
+      <text class="func-name">客服认证</text>
+      <image class="func-enter" src="/images/enter.png"></image>
+    </view>
+    <view class="func-wrap">
+      <image class="func-icon" src="/images/about.png"></image>
+      <text class="func-name">关于心灵交换</text>
+      <image class="func-enter" src="/images/enter.png"></image>
+    </view>
+  </view>
+</view>

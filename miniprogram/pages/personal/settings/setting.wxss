@@ -1,0 +1,28 @@
+/* pages/personal/settings/setting.wxss */
+.func {
+  width:650rpx;
+  font-size:14px;
+  color: #222;
+}
+
+.func-wrap {
+  display: flex;
+  border-bottom:1px solid #ccc;
+  padding:20px 0;
+  position: relative
+}
+
+.func-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.func-name {
+  flex: 1;
+  margin-left: 5px;
+}
+
+.func-enter {
+  width: 20px;
+  height: 20px;
+}

@@ -14,9 +14,7 @@ exports.main = async (event, context) => {
   const randomResult = await cloud.callFunction({
     name: 'common',
     data: {
-      random: {
-        param: 10
-      }
+      random: 10
     }
   });
 

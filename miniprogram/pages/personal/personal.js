@@ -161,7 +161,7 @@ Page({
    */
   onSetting() {
     wx.navigateTo({
-      url: '/pages/personal/settings/servicerAuth',
+      url: '/pages/personal/settings/setting',
     })
   }
 })
