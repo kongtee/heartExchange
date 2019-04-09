@@ -12,10 +12,13 @@ exports.main = async (event, context) => {
 
   // 获取 AppSecret
   const resConfig = await cloud.callFunction({
-    name: 'config'
+    name: 'common',
+    data: {
+      config: true
+    }
   })
 
-  const config = resConfig.result
+  const config = resConfig.result.config
 
   const url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${wxContext.APPID}&secret=${config.secret}`
 

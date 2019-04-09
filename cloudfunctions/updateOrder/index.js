@@ -28,7 +28,10 @@ exports.main = async (event, context) => {
   }
 
   return await cloud.callFunction({
-    name: 'sendMessage',
-    data: event
+    name: 'common',
+    data: {
+      sendMail: event,
+      sendMessage: event
+    }
   })
 }

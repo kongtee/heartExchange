@@ -1,13 +1,13 @@
 {
   "cloud": true,
   "pages": [
-    "pages/personal/settings/servicerAuth",
     "pages/index/index",
     "pages/message/messageList",
     "pages/servicers/servicer",
     "pages/order/order",
     "pages/personal/personal",
     "pages/personal/settings/setting",
+    "pages/personal/settings/servicerAuth",
     "pages/vip/vip",
     "pages/admin/users/admin",
     "pages/admin/servicers/servicerList",
