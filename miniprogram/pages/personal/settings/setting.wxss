@@ -22,6 +22,16 @@
   margin-left: 5px;
 }
 
+.func-right {
+  display: flex;
+  align-items:center;
+}
+
+.version {
+  font-size: 13px;
+  color: #888;
+}
+
 .func-enter {
   width: 20px;
   height: 20px;

@@ -1,0 +1,19 @@
+/* pages/personal/settings/about.wxss */
+.qrcode-wrap {
+  width:500rpx;
+  margin:60rpx 0;
+}
+
+.qrcode-image {
+  width: 100%;
+}
+
+.info {
+  font-size: 14px;
+}
+
+.version {
+  color: #888;
+  font-size: 12px;
+  margin-top: 20rpx;
+}

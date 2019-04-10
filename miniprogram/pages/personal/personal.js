@@ -22,7 +22,6 @@ Page({
       title: '个人中心'
     })
 
-    console.log(!!app.globalData.userInfo, app.globalData.userInfo)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo

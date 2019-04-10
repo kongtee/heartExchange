@@ -12,6 +12,7 @@ App({
     }
 
     this.globalData = {
+      version: 'V1.4.0',
       userInfo: null
     }
   }
