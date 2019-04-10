@@ -85,6 +85,15 @@ Page({
       })
     }).catch(console.error)
   },
+
+  /**
+   * 我的订单
+   */
+  onMyOrder() {
+    wx.navigateTo({
+      url: '/pages/order/myOrder'
+    })
+  },
   /**
    * 支持我们
    */

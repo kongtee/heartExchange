@@ -16,6 +16,11 @@
     <input type='text' value='{{openid}}' />
   </view> -->
   <view class="func">
+    <view class="func-wrap" bindtap="onMyOrder" wx:if="{{!!userInfo}}">
+      <image class="func-icon" src="/images/order.png"></image>
+      <text class="func-name">我的订单</text>
+      <image class="func-enter" src="/images/enter.png"></image>
+    </view>
     <view class="func-wrap" bindtap="onVipTap">
       <image class="func-icon" src="/images/share.png"></image>
       <text class="func-name">支持我们</text>
