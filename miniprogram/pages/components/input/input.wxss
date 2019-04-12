@@ -1,0 +1,49 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input-label {
+  margin-right: 20rpx;
+}
+
+.input-must {
+  color: red;
+}
+
+.input {
+  box-shadow:0 1px 5px #888;
+  font-size:14px;
+  padding:10rpx;
+}
+
+.error .input {
+  border:1px solid red;
+}
+
+.input-err-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5rpx 0 15rpx;
+  visibility: hidden;
+}
+
+.error .input-err-wrap {
+  visibility: visible;
+}
+
+.input-err-wrap .input-label {
+  visibility: hidden;
+}
+
+.input-err {
+  color: red;
+  font-size:12px;
+}

@@ -1,4 +1,3 @@
-<form class="form" bindsubmit="onSubmit">
-  <slot name="content"></slot>
-  <button form-type="submit">sdsd</button>
-</form>
+<view class="form">
+  <slot></slot>
+</view>

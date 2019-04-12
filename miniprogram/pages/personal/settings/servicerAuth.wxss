@@ -1,4 +1,5 @@
 /* pages/personal/settings/servicerAuth.wxss */
+@import "../../components/input/input.wxss";
 .func {
   width:650rpx;
   font-size:14px;
@@ -7,45 +8,8 @@
   justify-content: center;
 }
 
-.func .func-wrap {
-  display: flex;
-  padding:20px 0;
-  flex-direction: column;
-}
-
-.input-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.input-err-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.input-label {
-  margin-right: 20rpx;
-}
-
-.input-err-wrap .input-label {
-  visibility: hidden;
-}
-
-.input-must {
-  color: red;
-}
-
-.func .func-input {
-  box-shadow:0 1px 5px #888;
-  font-size:14px;
-  padding:10rpx;
-}
-
-.input-err {
-  color: red;
-  font-size:12px;
-  margin-top:19rpx;
+.content {
+  margin:100rpx 0 10rpx;
 }
 
 .btn-auth {

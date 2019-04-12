@@ -1,38 +1,13 @@
 <!--personal.wxml-->
+<import src="../../components/input/input.wxml" />
 <view class="container">
-  <hc-form class="func" bindsubmit="onAuth" >
-    <view slot="content">
-      <view class="func-wrap">
-        <view class="input-wrap">
-          <view class="input-label">
-            <view class="input-must">*</view>
-          </view>
-          <input class="func-input" name="servicerNo" placeholder="请输入客服编号"></input>
-        </view>
-        <view class="input-err-wrap" hidden="{{servicerNoErr}}">
-          <view class="input-label">
-            <view class="input-must">*</view>
-          </view>
-          <view class="input-err">客服编号不能为空</view>
-        </view>
-      </view>
-      <view class="func-wrap">
-        <view class="input-wrap">
-          <view class="input-label">
-            <view class="input-must">*</view>
-          </view>
-          <input class="func-input" name="servicerCode" placeholder="请输入客服认证码"></input>
-        </view>
-        <view class="input-err-wrap" hidden="{{servicerCodeErr}}">
-          <view class="input-label">
-            <view class="input-must">*</view>
-          </view>
-          <view class="input-err">客服认证码不能为空</view>
-        </view>
-      </view>
-      <view class="func-wrap">
-        <button class="btn-auth" form-type="submit" bindtap="onTest">认证</button>
-      </view>
+  <form class="func" bindsubmit="onAuth" >
+    <view class="content">
+      <template is="input" data="{{...inputFields.servicerNo}}" />
+      <template is="input" data="{{...inputFields.servicerCode}}" />
     </view>
-  </hc-form>
+    <view class="func-wrap">
+      <button class="btn-auth" form-type="submit">认证</button>
+    </view>
+  </form>
 </view>

@@ -1,0 +1,16 @@
+<template name="input">
+  <view class="input-container {{errClass}}">
+    <view class="input-wrap">
+      <view class="input-label">
+        <view class="input-must">*</view>
+      </view>
+      <input class="input" name="{{name}}" placeholder="{{placeholder}}" bindblur="onBlur"></input>
+    </view>
+    <view class="input-err-wrap">
+      <view class="input-label">
+        <view class="input-must">*</view>
+      </view>
+      <view class="input-err">{{errMsg}}</view>
+    </view>
+  </view>
+</template>

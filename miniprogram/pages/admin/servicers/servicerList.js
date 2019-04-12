@@ -146,9 +146,7 @@ Page({
     wx.cloud.callFunction({
       name: 'common',
       data: {
-        random: {
-          param: 10
-        }
+        random: 10
       }
     }).then(res => {
       if (res.result) {
