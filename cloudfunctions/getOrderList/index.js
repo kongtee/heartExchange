@@ -21,14 +21,7 @@ exports.main = async (event, context) => {
   }
 
   try {
-    // if (id) {
-    //   // 查询一条信息
-    //   return await db.collection('servicers').doc(id).get()
-    // } else {
-      // return await db.collection('orders').where(where).skip(skip).limit(limit).get()
-
     return await db.collection('orders').where(where).orderBy('updateTime', 'desc').skip(skip).limit(limit).get()
-    // }
   } catch (e) {
     console.error(e)
   }

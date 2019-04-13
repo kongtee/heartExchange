@@ -9,6 +9,7 @@
       attach: contactInfo,
       productId: this.data.servicer.servicerNo,
       orderInfo: {
+        avatarId: this.data.servicer.avatarId,
         serviceNickName: this.data.servicer.nickName,
         proType: priceInfo.proType,
         exchangeType: priceInfo.exchangeType,
@@ -28,7 +29,7 @@ module.exports = {
    * 提交订单
    */
   submitOrder(param, cb) {
-    console.log('createOrder:', param)
+    console.log('submitOrder:', param)
     if (!app.globalData.userInfo) {
       userInfo.getUserInfo((res) => {
         if (res.errNo === 200) {

@@ -64,6 +64,7 @@ exports.main = async (event, context) => {
           const orderInfo = event.orderInfo
           const newOrderParam = {
             outTradeNo: signParam.out_trade_no,
+            avatarId: orderInfo.avatarId,
             servicerNo: signParam.product_id,
             serviceNickName: orderInfo.serviceNickName,
             proType: orderInfo.proType,

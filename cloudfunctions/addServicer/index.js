@@ -11,6 +11,7 @@ exports.main = async (event, context) => {
     env: process.env.env
   })
 
+  // 获取随机数
   const randomResult = await cloud.callFunction({
     name: 'common',
     data: {

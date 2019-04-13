@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
       // data 字段表示需新增的 JSON 数据
       data: {
         outTradeNo: event.outTradeNo,
+        avatarId: event.avatarId,
         servicerNo: event.servicerNo,
         serviceNickName: event.serviceNickName,
         proType: event.proType,

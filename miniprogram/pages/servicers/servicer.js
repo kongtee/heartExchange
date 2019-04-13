@@ -200,6 +200,7 @@ Page({
       attach: contactInfo,
       productId: this.data.servicer.servicerNo,
       orderInfo: {
+        avatarId: this.data.servicer.avatarId,
         serviceNickName: this.data.servicer.nickName,
         proType: priceInfo.proType,
         exchangeType: priceInfo.exchangeType,
