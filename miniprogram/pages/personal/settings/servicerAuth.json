@@ -1,6 +1,4 @@
 {
   "usingComponents": {
-    "hc-form": "/pages/components/form/form",
-    "hc-input": "/pages/components/input/input"
   }
 }

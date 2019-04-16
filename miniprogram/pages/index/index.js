@@ -44,10 +44,17 @@ Page({
       return
     }
        
+
     // wx.cloud.callFunction({
-    //   name: 'getAccessToken'
+    //   name: 'common',
+    //   data: {
+    //     random: {
+    //       param: 5
+    //     }
+    //   }
     // }).then(res => {
-    //   console.log('test:', res.result)
+    //   const result = res.result
+    //   console.log('test:', res)
     // }).catch(console.error)
 
     // 获取用户信息
