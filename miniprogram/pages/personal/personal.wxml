@@ -11,11 +11,12 @@
     </view>
     <image class="userinfo-card" src="../../images/personal-card.png"></image>
   </view>  
-  <!-- <view>
-    <button bindtap="onGetOpenId">获取OpenId</button>
-    <input type='text' value='{{openid}}' />
-  </view> -->
   <view class="func">
+    <view class="func-wrap" bindtap="onServicerOrder" wx:if="{{!!userInfo && isServicer}}">
+      <image class="func-icon" src="/images/servicer-order.png"></image>
+      <text class="func-name">客服订单</text>
+      <image class="func-enter" src="/images/enter.png"></image>
+    </view>
     <view class="func-wrap" bindtap="onMyOrder" wx:if="{{!!userInfo}}">
       <image class="func-icon" src="/images/order.png"></image>
       <text class="func-name">我的订单</text>

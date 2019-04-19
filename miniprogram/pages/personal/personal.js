@@ -9,7 +9,7 @@ Page({
   data: {
     userInfo: app.globalData.userInfo,
     qrcodeClass: 'hidden',
-    openid: ''
+    isServicer: false  // 是不是客服
   },
   enterAlbum: function (e) {
     let url = '../detail/detail?id=' + e.currentTarget.dataset.id + '&title=' + e.currentTarget.dataset.title;
@@ -23,9 +23,7 @@ Page({
     })
 
     if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
+      this.setUserInfo(app.globalData.userInfo)
     } else {
       wx.showToast({
         title: '请授权',
@@ -35,12 +33,40 @@ Page({
       wx.getUserInfo({
         success: (res) => {
           app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo
-          })
+          this.setUserInfo(app.globalData.userInfo)
         }
       })
     }
+  },
+  /**
+   * 获取用户是不是客服
+   */
+  getServicer() {
+    wx.cloud.callFunction({
+      name: 'getServicers',
+      data: {
+        servicer: true
+      }
+    }).then(res => {
+      console.log(res.result)
+      const data = res.result.data
+      if (data.length > 0) {
+        app.globalData.userInfo.isServicer = true
+        this.setData({
+          isServicer: true
+        })
+      }
+    }).catch(console.error)
+  },
+  /**
+   * 设置用户信息
+   */
+  setUserInfo(info) {
+    this.setData({
+      userInfo: info
+    })
+
+    this.getServicer()
   },
   /**
    * 获取管理员权限
@@ -72,17 +98,12 @@ Page({
     })
   },
   /**
-   * 获取用户OpenId
+   * 客服订单
    */
-  onGetOpenId(e) {
-    wx.cloud.callFunction({
-      name: 'getUserInfo'
-    }).then(res => {
-      console.log(res.result.openid)
-      this.setData({
-        openid: res.result.openid
-      })
-    }).catch(console.error)
+  onServicerOrder() {
+    wx.navigateTo({
+      url: '/pages/order/servicerOrder'
+    })
   },
 
   /**

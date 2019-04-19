@@ -6,6 +6,7 @@
     "pages/servicers/servicer",
     "pages/order/order",
     "pages/personal/personal",
+    "pages/order/servicerOrder",
     "pages/order/myOrder",
     "pages/vip/vip",
     "pages/personal/settings/setting",
