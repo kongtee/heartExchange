@@ -6,6 +6,12 @@
   margin:20rpx 40rpx;
 }
 
+.noOrder {
+  font-size: 14px;
+  color:#888;
+  margin-top:200rpx;
+}
+
 .list {
   width: 100%;
 }
