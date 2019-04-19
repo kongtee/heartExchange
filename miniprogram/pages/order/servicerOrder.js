@@ -1,6 +1,7 @@
 // pages/order/servicerOrder.js
 const app = getApp()
-const Date = require('../../common/date')
+const getServicers = require('../../request/getServicers')
+const getOrderList = require('../../request/getOrderList')
 
 Page({
   /**
@@ -19,43 +20,45 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '客服订单'
+      title: '心灵交换 - 客服订单'
     })
 
-    console.log(app.globalData.userInfo)
-
-    this.getOrderList()
+    this.getServicerNo()
   },
 
   /**
    * 获取订单列表
    */
-  getOrderList() {
-    wx.cloud.callFunction({
-      name: 'getOrderList',
-      data: {
-        cust: true,
-        skip: this.data.skip,
-        limit: this.data.limit
-      }
-    }).then(res => {
-      console.log('成功：', res.result)
-      const data = res.result.data || []
-      const listData = this.data.listData.concat(data)
-      for (let data of listData) {
-        data.orderTime = new Date(data.orderTime * 1000).Format('yyyy-MM-dd hh:mm:ss')
-      }
-      if (data.length < this.data.limit) {
+  getOrderList(servicerNo) {
+    getOrderList({
+      servicerNo,
+      skip: this.data.skip,
+      limit: this.data.limit
+    }, (data) => {
+      let listData = this.data.listData
+      listData = listData.concat(data)
+      if (data && data.length < this.data.limit) {
         this.setData({
           listData,
           end: true
         })
       } else {
-        this.setData({ listData })
+        this.setData({ 
+          listData 
+        })
       }
-    }).catch(console.error)
+    })
   },
-
+  /**
+   * 获取客服编号
+   */
+  getServicerNo() {
+    getServicers({
+      servicer: true
+    }, (data) => {
+      this.getOrderList(data[0].servicerNo)
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -65,7 +68,7 @@ Page({
         skip: this.data.skip + this.data.limit
       })
 
-      this.getServicers()
+      this.getServicerNo()
     }
   }
 })

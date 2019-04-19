@@ -1,11 +1,11 @@
 //app.js
 App({
   onLaunch: function () {
+    // 检查新的版本
     const updateManager = wx.getUpdateManager()
 
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
-      console.log(res.hasUpdate)
       if (res.hasUpdate) {
         updateManager.onUpdateReady(function () {
           wx.showModal({
@@ -39,9 +39,21 @@ App({
       })
     }
 
-    this.globalData = {
-      version: 'V1.4.0',
-      userInfo: null
-    }
+    this.getUserInfo()
+  },
+  globalData: {
+    version: 'V1.4.0',
+    userInfo: null,
+    isServicer: false
+  },
+  /**
+   * 获取用户信息
+   */
+  getUserInfo() {
+    wx.getUserInfo({
+      success: (res) => {
+        this.globalData.userInfo = res.userInfo
+      }
+    })
   }
 })

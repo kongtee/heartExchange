@@ -1,6 +1,8 @@
 const app = getApp()
 const share = require('../../common/share')
 const admin = require('../../common/admin')
+const getServicers = require('../../request/getServicers')
+
 let count = -1
 let timeStart = null
 let timeEnd = null
@@ -22,41 +24,24 @@ Page({
       title: '个人中心'
     })
 
-    if (app.globalData.userInfo) {
+    if (!!app.globalData.userInfo) {
       this.setUserInfo(app.globalData.userInfo)
-    } else {
-      wx.showToast({
-        title: '请授权',
-        icon: 'loading'
-      })
-      
-      wx.getUserInfo({
-        success: (res) => {
-          app.globalData.userInfo = res.userInfo
-          this.setUserInfo(app.globalData.userInfo)
-        }
-      })
     }
   },
   /**
    * 获取用户是不是客服
    */
   getServicer() {
-    wx.cloud.callFunction({
-      name: 'getServicers',
-      data: {
-        servicer: true
-      }
-    }).then(res => {
-      console.log(res.result)
-      const data = res.result.data
+    getServicers({
+      servicer: true
+    }, (data) => {
       if (data.length > 0) {
-        app.globalData.userInfo.isServicer = true
+        app.globalData.isServicer = true
         this.setData({
           isServicer: true
         })
       }
-    }).catch(console.error)
+    })
   },
   /**
    * 设置用户信息
@@ -66,7 +51,7 @@ Page({
       userInfo: info
     })
 
-    this.getServicer()
+    !app.globalData.isServicer && this.getServicer()
   },
   /**
    * 获取管理员权限

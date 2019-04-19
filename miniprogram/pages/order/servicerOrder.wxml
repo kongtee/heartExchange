@@ -1,6 +1,7 @@
 <!--servicerOrder.wxml-->
 <view class="container">
-  <view class="list">
+  <view class="noOrder" wx:if="{{listData.length <= 0}}">暂无订单</view>
+  <view class="list" wx:else>
     <block wx:for="{{listData}}" wx:key="{{_id}}">
       <view class="order-item-wrap" data-id="{{item._id}}">
         <view class="content">
