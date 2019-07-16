@@ -1,4 +1,4 @@
-/* pages/personal/settings/servicerAuth.wxss */
+/* pages/personal/settings/servicerAuth.wxss 客服认证 */
 @import "../../components/input/input.wxss";
 .func {
   width:650rpx;

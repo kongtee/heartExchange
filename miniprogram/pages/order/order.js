@@ -154,7 +154,7 @@ Page({
       amount: price,
       attach,
       orderInfo: {
-        serviceNickName: '随机',
+        orderType: 0,
         proType: value.proType,
         exchangeType: this.data.exchangeType,
         time: priceInfo.time,

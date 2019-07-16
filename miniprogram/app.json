@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/admin/orders/orderList",
     "pages/index/index",
     "pages/message/messageList",
     "pages/servicers/servicer",
@@ -15,7 +16,6 @@
     "pages/admin/users/admin",
     "pages/admin/servicers/servicerList",
     "pages/admin/servicers/newServicer",
-    "pages/admin/orders/orderList",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -31,25 +31,30 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-      "color": "#adadad",
-      "selectedColor": "#dc143c",
-      "backgroundColor": "#fff",
-      "borderStyle": "black",
-      "list": [{
-          "selectedIconPath": "images/home-active.png",
-          "iconPath": "images/home.png",
-          "pagePath": "pages/index/index",
-          "text": "首页"
-      }, {
+    "color": "#adadad",
+    "selectedColor": "#dc143c",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "images/home-active.png",
+        "iconPath": "images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
         "selectedIconPath": "images/message-active.png",
         "iconPath": "images/message.png",
         "pagePath": "pages/message/messageList",
         "text": "消息"
-      }, {
+      },
+      {
         "selectedIconPath": "images/personal-active.png",
         "iconPath": "images/personal.png",
         "pagePath": "pages/personal/personal",
         "text": "我的"
-      }]
-  }
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

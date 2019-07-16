@@ -22,7 +22,8 @@ module.exports = async (option) => {
   });
 
   const proType = ['业余', '专业']
-  const html = [
+  // 支付信息模板
+  const payHtml = [
     '<h3>支付信息</h3>',
     '<table border="1">',
     '<tr>',
@@ -43,7 +44,11 @@ module.exports = async (option) => {
     '</tr>',
     '<tr>',
     '<td>价格</td>',
-    `<td>${option.price}</td>`,
+    `<td>${option.price / 100}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>订单时间</td>',
+    `<td>${option.orderTime}</td>`,
     '</tr>',
     '<tr>',
     '<td>订单时间</td>',
@@ -60,10 +65,60 @@ module.exports = async (option) => {
     '</table>'
   ].join('')
 
+  // 分配信息模板
+  const dispatchHtml = [
+    '<h3>分配信息</h3>',
+    '<table border="1">',
+    '<tr>',
+    `<td>单号</td>`,
+    `<td>${option.outTradeNo}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>分配客服</td>',
+    `<td>${option.serviceNickName}（${option.servicerNo}）</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>类型</td>',
+    `<td>${proType[option.proType]}-${option.exchangeType}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>时长</td>',
+    `<td>${option.time / 60}小时</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>价格</td>',
+    `<td>${option.price / 100}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>订单时间</td>',
+    `<td>${option.orderTime}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>订单时间</td>',
+    `<td>${new Date(option.orderTime * 1000).Format("yyyy-MM-dd hh:mm:ss")}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>用户昵称</td>',
+    `<td>${option.custNickName}</td>`,
+    '</tr>',
+    '<tr>',
+    '<td>联系方式</td>',
+    `<td>${option.telphone}</td>`,
+    '</tr>',
+    '</table>'
+  ].join('')
+
+  let html = payHtml
+  let subject = '支付消息'
+  if (option.mailType === 'dispatch') {
+    html = dispatchHtml
+    subject = '分配订单消息'
+  }
+
   const mailOptions = {
     from: config.mail.from,   // 发件地址
-    to: config.mail.to.join(','),    // 收件列表
-    subject: '支付消息',      // 标题
+    to: '79959261@qq.com', //config.mail.to.join(','),    // 收件列表
+    subject: subject,      // 标题
     html: html
   };
 

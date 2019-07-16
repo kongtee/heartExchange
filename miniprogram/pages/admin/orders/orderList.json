@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "he-action-sheet": "../../components/actionSheet/actionSheet"
+  }
 }

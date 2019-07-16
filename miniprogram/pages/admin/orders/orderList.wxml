@@ -1,4 +1,5 @@
-<!--orderList.wxml-->
+<!-- orderList.wxml 后台-订单列表 -->
+<import src="../../components/input/input.wxml" />
 <view class="container">
   <view class="list">
     <block wx:for="{{listData}}" wx:key="{{_id}}">
@@ -9,11 +10,11 @@
               <view class="price">¥{{item.status || '待支付'}}</view>
           </view>
           <view class="status">
-            <view>订单时间：{{item.orderTime}}</view>
+            <view>订单时间：{{item.orderFullTime}}</view>
             <view class="price">¥{{item.price / 100 || 0}}</view>
           </view>
           <view class="status">
-            <view>客服：{{item.serviceNickName || '无'}}（{{item.servicerNo}}）</view>
+            <view>客服：{{item.serviceNickName || '无'}}（{{item.servicerNo}}）（{{item.servicerNo}}）</view>
             <view>类型：{{proType[item.proType]}}-{{item.exchangeType}}({{item.time / 60}}小时)
             </view>
           </view>
@@ -21,8 +22,19 @@
             <view>用户名：{{item.custNickName || '无'}}</view>
             <view>联系方式：{{item.telphone || '无'}}</view>
           </view>
+          <view class="status" wx:if="{{item.orderType == 0 || !item.servicerNo}}">
+            <view class="btn" bindtap="onDispatchSevicer" data-outtradeno="{{item.outTradeNo}}">分配客服</view>
+          </view>
         </view>
       </view>
     </block>
   </view>
+  <he-action-sheet class="dispatch-container" hidden="{{dispatchHidden}}">
+    <form bindsubmit="onSubmitDispatch">
+      <view class="wrap">
+        <template is="input" data="{{...inputFields.servicerNo}}" />
+      </view>
+      <button type='primary' formType="submit">提交</button>
+    </form>
+  </he-action-sheet>
 </view>

@@ -1,4 +1,5 @@
 /* pages/admin/orders/orderList.wxss */
+@import "../../components/input/input.wxss";
 .container {
   display:flex;
   flex-direction:column;
@@ -30,4 +31,31 @@
 .status {
   display: flex;
   justify-content: space-between;
+}
+
+.btn {
+  width:100%;
+  text-align:center;
+  background-color:#1AAD16;
+  color:#fff;
+  height:70rpx;
+  line-height:70rpx;
+  border-radius:5rpx;
+}
+
+.dispatch-container .wrap {
+  display: flex;
+  font-size: 14px;
+  margin: 50rpx 60rpx;
+  justify-content: center;
+}
+
+.dispatch-container label {
+  line-height: 30px;
+}
+
+.dispatch-container input {
+  box-shadow:0 1px 5px #888;
+  font-size:14px;
+  padding:10rpx;
 }

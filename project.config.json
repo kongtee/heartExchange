@@ -10,7 +10,10 @@
 	},
 	"appid": "wx17f97b00ff3a14a7",
 	"projectname": "heartexchange",
-	"libVersion": "2.6.2",
+	"libVersion": "2.5.0",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,

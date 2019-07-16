@@ -18,6 +18,14 @@ exports.main = async (event, context) => {
   let where = {
     drop: _.neq(true)
   }
+
+  // 根据客服编号查询
+  const servicerNo = event.servicerNo
+  console.log('getServicers', servicerNo)
+  if (servicerNo) {
+    where.servicerNo = servicerNo
+  }
+
   // 专业类型
   if (proType) {
     if (proType === '1') {
