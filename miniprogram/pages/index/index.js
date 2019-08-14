@@ -105,7 +105,7 @@ Page({
         proType: '1'
       }
     }).then(res => {
-      const data = res.result.data
+      const data = res.result && res.result.data || []
       this.transServicersData(data, '1')
     }).catch(console.error)
   },
@@ -122,7 +122,7 @@ Page({
         limit: this.data.nonProSkipLimit
       }
     }).then(res => {
-      const data = res.result.data
+      const data = res.result && res.result.data || []
       this.transServicersData(data, '0')
     }).catch(console.error)
   },
