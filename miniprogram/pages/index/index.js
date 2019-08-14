@@ -15,6 +15,9 @@ Page({
     },
     proList: [],
     nonProList: [],
+    nonProSkip: 0,
+    nonProLimit: 20,
+    nonProEnd: false,   // 是否还有数据
     maritalStatus: ['未婚', '已婚无孩', '已婚有孩'],
     goodColor: {
       '婚姻家庭': '#FFC125',
@@ -74,9 +77,17 @@ Page({
     }
 
     if (proType === '0') {
-      this.setData({
-        nonProList: data || []
-      })
+      const nonProListData = this.data.nonProList.concat(data) || []
+      if (data.length < this.data.nonProLimit) {
+        this.setData({
+          nonProList: nonProListData,
+          nonProEnd: true
+        })
+      } else {
+        this.setData({ 
+          nonProList: nonProListData 
+        })
+      }
     } else {
       this.setData({
         proList: servicers || []
@@ -94,7 +105,7 @@ Page({
         proType: '1'
       }
     }).then(res => {
-      const data = res.result.data
+      const data = res.result && res.result.data || []
       this.transServicersData(data, '1')
     }).catch(console.error)
   },
@@ -106,10 +117,12 @@ Page({
     wx.cloud.callFunction({
       name: 'getServicers',
       data: {
-        proType: '0'
+        proType: '0',
+        skip: this.data.nonProSkip,
+        limit: this.data.nonProSkipLimit
       }
     }).then(res => {
-      const data = res.result.data
+      const data = res.result && res.result.data || []
       this.transServicersData(data, '0')
     }).catch(console.error)
   },
@@ -147,5 +160,18 @@ Page({
   onOrder() {
     const url = '/pages/order/order'
     wx.navigateTo({ url })
-  }
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    if (!this.data.nonProEnd) {
+      this.setData({
+        nonProSkip: this.data.nonProSkip + this.data.nonProLimit
+      })
+
+      this.getNonProServicers()
+    }
+  },
 })
