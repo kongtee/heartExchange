@@ -84,7 +84,7 @@ Page({
    * 分配客服
    */
   onDispatchSevicer(e) {
-    console.log(e.currentTarget.dataset.outtradeno, this.data.curOutTradeNo)
+    console.log('outtradeno:' + e.currentTarget.dataset.outtradeno, 'curOutTradeNo:' +this.data.curOutTradeNo)
     this.setData({
       curOutTradeNo: e.currentTarget.dataset.outtradeno || '',
       dispatchHidden: false
@@ -96,6 +96,7 @@ Page({
   onSubmitDispatch(e) {
     const value = e.detail.value
     const outTradeNo = this.data.curOutTradeNo
+    console.log('outTradeNo:' + outTradeNo)
     if (outTradeNo === '') {
       wx.showToast({
         title: '获取订单号失败',
@@ -123,7 +124,8 @@ Page({
           outTradeNo
         }
       }).then(res => {
-        if (res.result.errMsg === 'callFunction:ok') {
+        console.log(res)
+        if (res.result.errMsg === 'collection.update:ok') {
           wx.showToast({
             title: '分配成功',
             icon: 'success'
