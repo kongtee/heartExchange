@@ -101,7 +101,8 @@ Page({
             name: 'deleteServicer',
             data: { id }
           }).then(res => {
-            if (res.result.errMsg === 'document.remove:ok') {
+            console.log(res)
+            if (res.result.errMsg === 'document.update:ok') {
               wx.showToast({
                 title: '删除成功'
               })

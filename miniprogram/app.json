@@ -1,7 +1,6 @@
 {
   "cloud": true,
   "pages": [
-    "pages/admin/orders/orderList",
     "pages/index/index",
     "pages/message/messageList",
     "pages/servicers/servicer",
@@ -16,6 +15,7 @@
     "pages/admin/users/admin",
     "pages/admin/servicers/servicerList",
     "pages/admin/servicers/newServicer",
+    "pages/admin/orders/orderList",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",

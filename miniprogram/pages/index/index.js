@@ -119,7 +119,7 @@ Page({
       data: {
         proType: '0',
         skip: this.data.nonProSkip,
-        limit: this.data.nonProSkipLimit
+        limit: this.data.nonProLimit
       }
     }).then(res => {
       const data = res.result && res.result.data || []
