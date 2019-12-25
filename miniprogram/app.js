@@ -34,7 +34,6 @@ App({
       console.error('请使用 2.6.5 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        env: 'test-521157',
         traceUser: true
       })
     }
