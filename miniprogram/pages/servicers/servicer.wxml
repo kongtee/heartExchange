@@ -21,7 +21,7 @@
     <view class="content-wrap">
       <view class="title">擅长领域</view>
       <view class="good-wrap">
-        <block wx:for="{{servicer.goodFields}}" wx:key="{{item}}">
+        <block wx:for="{{servicer.goodFields}}" wx:key="item">
           <view class="goodLabel" style="color:{{goodColor[item]}}; border-color: {{goodColor[item]}}; background-color: {{goodBgColor[item]}}">{{item}}</view>
         </block>
       </view>
@@ -55,7 +55,7 @@
           <!-- 专业价格 -->
           <view class="order-type {{orderTalk}}">
             <view class="order-price-wrap" catchtap="onTalkSelected">
-              <block wx:for="{{talkPriceList}}" wx:key="{{item.id}}">
+              <block wx:for="{{talkPriceList}}" wx:key="id">
                 <view class="order-price {{talkSelected === index ? 'selected' : ''}}" data-price="{{item}}" data-index="{{index}}">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
               </block>
             </view>
@@ -80,7 +80,7 @@
           </view> 
           <view class="order-type {{orderWord}}">
             <view class="order-price-wrap" catchtap="onWordSelected">
-              <block wx:for="{{wordPriceList}}" wx:key="{{item._id}}">
+              <block wx:for="{{wordPriceList}}" wx:key="_id">
                 <view class="order-price {{wordSelected === index ? 'selected' : ''}}" data-price="{{item}}" data-index="{{index}}">¥{{item.price / 100}}（{{item.time / 60}}小时）</view>
               </block>
             </view>

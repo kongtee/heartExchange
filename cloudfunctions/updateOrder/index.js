@@ -2,14 +2,12 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init({
-  env: process.env.env
+  env: cloud.DYNAMIC_CURRENT_ENV
 })
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const db = cloud.database({
-    env: process.env.env
-  })
+  const db = cloud.database()
 
   // 搜索条件：订单号
   const condition = {
@@ -37,10 +35,11 @@ exports.main = async (event, context) => {
     const res = servicer.result.data
     console.log('getServicers', res)
     const serviceNickName = res[0] && res[0].nickName || ''
-    // return condition
+ 
     data = {
       servicerNo,
       serviceNickName,
+      status: event.status,
       updateTime: db.serverDate()
     }
 
@@ -54,12 +53,13 @@ exports.main = async (event, context) => {
 
     event.mailType = 'pay'
   }
-  console.log('data:', data, " condition:", condition)
  
   try {
-    return await db.collection('orders').where(condition).update({
+    console.log('data:', data, " condition:", condition)
+    await db.collection('orders').where(condition).update({
       data
     })
+    // let hehe = await db.collection('orders').get()
   } catch (e) {
     console.error(e)
   }

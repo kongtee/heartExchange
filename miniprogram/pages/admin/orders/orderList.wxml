@@ -2,7 +2,7 @@
 <import src="../../components/input/input.wxml" />
 <view class="container">
   <view class="list">
-    <block wx:for="{{listData}}" wx:key="{{_id}}">
+    <block wx:for="{{listData}}" wx:key="_id">
       <view class="order-item-wrap" data-id="{{item._id}}">
         <view class="content">
           <view class="order-wrap">

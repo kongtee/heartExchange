@@ -1,9 +1,21 @@
 [
   {
-    "name": "test",
+    "name": "updateOrder",
     "value": {
-      "outTradeNo": "201903278Q4NPPCW",
-      "servicerNo": "0002"
+      "avatarId": "cloud://test-521157.7465-test-521157-1257827183/servicers/1552230752494.9326.png",
+      "custNickName": "天外有天",
+      "custOpenid": "oc7Er5Nv_i-J0deQoatSjpBe8y9o",
+      "exchangeType": "连麦",
+      "form_id": "prepay_id=wx2417032179809157ef15e4831056107900",
+      "orderTime": 1577178201,
+      "outTradeNo": "201912249L6ZM45G",
+      "price": 1,
+      "proType": "1",
+      "serviceNickName": "个人简介",
+      "servicerNo": "0013",
+      "status": "已支付",
+      "telphone": "15011558849",
+      "time": 60
     }
   }
 ]
