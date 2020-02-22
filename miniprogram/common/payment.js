@@ -54,9 +54,14 @@ module.exports = {
     }).then(res => {
       const data = res.result.data
       console.log('createOrder:', data.newOrderParam)
-      data.newOrderParam.status = '待支付' 
-      this.newOrder(data.newOrderParam)
-      this.requestPayment(data);
+      if (data.newOrderParam.price == 0) {
+        data.newOrderParam.status = '已支付'
+        this.newOrder(data.newOrderParam, 'free')
+      } else {
+        data.newOrderParam.status = '待支付'
+        this.newOrder(data.newOrderParam)
+        this.requestPayment(data);
+      }
     }).catch(console.error)
   },
 
@@ -98,12 +103,21 @@ module.exports = {
   /**
    * 新增订单列表
    */
-  newOrder(param) {
+  newOrder(param, type) {
     wx.cloud.callFunction({
       name: 'addOrder',
       data: param
     }).then(res => {
       console.log('newOrder:', res.result)
+      if (type === 'free') {
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          success: () => {
+
+          }
+        })
+      }
     }).catch(console.error)
   },
 

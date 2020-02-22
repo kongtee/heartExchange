@@ -55,7 +55,11 @@ Page({
     }).then(res => {
       const data = res.result.data
       const proType = data.proType
-      this.getPrice(proType)
+      if (query.yiqing == 1) {
+        this.getPrice(proType, 'yiqing')
+      } else {
+        this.getPrice(proType)
+      }
       this.setData({
         servicer: data || {}
       })
@@ -71,27 +75,43 @@ Page({
   /**
    * 获取价格表
    */
-  getPrice(proType) {
-    wx.cloud.callFunction({
-      name: 'getPrice',
-      data: { proType }
-    }).then(res => {
-      const data = res.result.data
-      let wordArry = []
-      let talkArry = []
-      for (let item of data) {
-        if (item.exchangeType === '文字') {
-          wordArry.push(item)
-        } else {
-          talkArry.push(item)
-        }
-      }
+  getPrice(proType, type) {
+    if (type === 'yiqing') {
+      let priceList = [{
+        price: 0,
+        time: 60,
+        proType,
+        exchangeType: '通话'
+      }]
       this.setData({
-        wordPriceList: wordArry,
-        talkPriceList: talkArry,
-        priceInfo: talkArry[0]
+        wordPriceList: Object.assign(priceList, { exchangeType: '文字'}),
+        talkPriceList: priceList,
+        priceInfo: priceList[0]
       })
-    }).catch(console.error)
+
+      console.log('priceInfo')
+    } else {
+      wx.cloud.callFunction({
+        name: 'getPrice',
+        data: { proType }
+      }).then(res => {
+        const data = res.result.data
+        let wordArry = []
+        let talkArry = []
+        for (let item of data) {
+          if (item.exchangeType === '文字') {
+            wordArry.push(item)
+          } else {
+            talkArry.push(item)
+          }
+        }
+        this.setData({
+          wordPriceList: wordArry,
+          talkPriceList: talkArry,
+          priceInfo: talkArry[0]
+        })
+      }).catch(console.error)
+    }
   },
 
   /**

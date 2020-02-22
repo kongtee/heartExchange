@@ -33,6 +33,10 @@
       </swiper>
     </view>
   </view>
+  <!-- 公益入口 -->
+  <view class="activity-banner" bindtap="onActivity">
+    公益专区
+  </view>
   <view class="main">
     <view class="catogary">
       <view class="catogary-wrap">
@@ -80,5 +84,16 @@
     <button class="contact-wrap" open-type="contact">
       <image src="/images/servicer.png"></image>
     </button>
+  </view>
+  <!-- 活动弹窗 -->
+  <view class="activity-mask" hidden="{{activityHidden}}">
+    <view class="activity-wrap">
+      <view class="activity-image-wrap" bindtap="onActivity">
+        <image class="activity-image" src="../../images/activity.jpg"></image>
+      </view>
+      <view class="activity-close-wrap" bindtap="onActivityClose">
+        <image class="activity-close" src="../../images/close.png"></image>
+      </view>
+    </view>
   </view>
 </view>

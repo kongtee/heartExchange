@@ -36,7 +36,8 @@ Page({
       '学业问题': 'rgba(255, 0, 0, .2)',
       '人际关系': 'rgba(205, 205, 0, .2)',
       '情绪疏导': 'rgba(64, 158, 255, .2)'
-    }
+    },
+    activityHidden: true
   },
 
   onLoad: function(query) {
@@ -64,9 +65,44 @@ Page({
     userInfo.getUserInfo((param => {
     }))
 
+    this.getActivityDlg()
+
     this.getServicers()
   },
-
+  /**
+   * 跳转到活动页
+   */
+  onActivity() {
+    const url = `/pages/activity/yiqing`
+    wx.navigateTo({ url })
+    this.setData({
+      activityHidden: true
+    })
+  },
+  /**
+   * 活动弹窗关闭
+   */
+  onActivityClose() {
+    this.setData({
+      activityHidden: true
+    })
+  },
+  /**
+   * 显示活动弹窗
+   */
+  showActivityDlg() {
+    this.setData({
+      activityHidden: false
+    })
+  },
+  /**
+   * 获取活动弹窗
+   */
+  getActivityDlg() {
+    if (this.data.activityHidden) {
+      this.showActivityDlg()
+    }
+  },
   /**
    * 处理身份证信息，计算年龄
    */

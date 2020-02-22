@@ -12,6 +12,7 @@
     "pages/personal/settings/setting",
     "pages/personal/settings/servicerAuth",
     "pages/personal/settings/about",
+    "pages/activity/yiqing",
     "pages/admin/users/admin",
     "pages/admin/servicers/servicerList",
     "pages/admin/servicers/newServicer",

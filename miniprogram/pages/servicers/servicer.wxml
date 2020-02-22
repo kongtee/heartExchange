@@ -99,7 +99,7 @@
             </view> -->
             <view class="order-tips-wrap">
               <image class="order-tips-image" mode="aspectFill" src="/images/tips.png"></image>
-              <view class="order-tips">该订单为通话订单，将以通话形式进行服务。</view>
+              <view class="order-tips">该订单为文字订单，将以文字形式进行服务。</view>
             </view>
           </view> 
         </view>

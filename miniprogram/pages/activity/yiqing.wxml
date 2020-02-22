@@ -1,0 +1,43 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="main">
+    <view class="catogary">
+      <view class="catogary-wrap">
+        <view class="split"></view>
+        <text class="title">公益客服</text>
+        <view class="split"></view>
+      </view>
+      <view class="catogary-icon"><text>◇◇◇</text></view>
+    </view>
+    <view class="list">
+      <block wx:for="{{nonProList}}" wx:key="_id">
+        <view class="servicer-wrap" data-id="{{item._id}}" bindtap="onDetail">
+          <view class="avatar">
+            <image src="{{item.avatarId || '/images/newlist.jpg'}}" />
+          </view>
+          <view class="content">
+            <view class="name-wrap">
+                <view class="nickname">{{item.nickName || '无名'}}</view>
+                <image class="sex" src="{{item.sex === '男' ? '/images/male.png' : '/images/female.png' }}" />
+            </view>
+            <view class="status">工号：{{item.servicerNo || ''}}</view>
+            <view class="status">{{maritalStatus[item.maritalIndex]}}</view>
+            <view class="status">年龄:{{item.age || '保密'}}</view>
+            <view class="status">
+              <block wx:for="{{item.goodFields}}" wx:for-item="subItem" wx:key="subItem">
+                <view class="goodLabel" style="color:{{goodColor[subItem]}}; border-color: {{goodColor[subItem]}}; background-color: {{goodBgColor[subItem]}}">{{subItem}}</view>
+              </block>
+            </view>
+            <!-- <view class="status">{{item.status || '空闲'}}</view> -->
+          </view>
+          <view class="right-wrap">
+            <!-- <view class="price">¥{{item.price || 0}}</view> -->
+            <view class="enter" data-id="{{item._id}}">
+              <image src="/images/enter.png"/>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

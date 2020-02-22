@@ -34,6 +34,32 @@ exports.main = async (event, context) => {
     trade_type: 'JSAPI'
   }
 
+  // 订单参数
+  const orderInfo = event.orderInfo
+  const newOrderParam = {
+    outTradeNo: signParam.out_trade_no,
+    avatarId: orderInfo.avatarId,
+    servicerNo: signParam.product_id,
+    serviceNickName: orderInfo.serviceNickName,
+    proType: orderInfo.proType,
+    exchangeType: orderInfo.exchangeType,
+    time: orderInfo.time,
+    price: signParam.total_fee,
+    // orderTime: paySignParam.timeStamp,
+    orderTime: Date.parse(new Date()) / 1000,
+    custOpenid: wxContext.OPENID,
+    custNickName: orderInfo.custNickName,
+    telphone: orderInfo.telphone,
+    memo: orderInfo.memo,
+  }
+
+  if (event.amount == 0) {
+    return {
+      errMsg: 'ok',
+      data: { newOrderParam }
+    }
+  }
+
   const xmlParam = Object.assign(signParam, {
     sign: sign(signParam)
   })
@@ -57,25 +83,7 @@ exports.main = async (event, context) => {
             nonceStr: signParam.nonce_str,
             package: `prepay_id=${xml.prepay_id}`,
             signType: 'MD5',
-            timeStamp: Date.parse(new Date()) / 1000
-          }
-
-          // 订单参数
-          const orderInfo = event.orderInfo
-          const newOrderParam = {
-            outTradeNo: signParam.out_trade_no,
-            avatarId: orderInfo.avatarId,
-            servicerNo: signParam.product_id,
-            serviceNickName: orderInfo.serviceNickName,
-            proType: orderInfo.proType,
-            exchangeType: orderInfo.exchangeType,
-            time: orderInfo.time,
-            price: signParam.total_fee,
-            orderTime: paySignParam.timeStamp,
-            custOpenid: wxContext.OPENID,
-            custNickName: orderInfo.custNickName,
-            telphone: orderInfo.telphone,
-            memo: orderInfo.memo,
+            // timeStamp: Date.parse(new Date()) / 1000
           }
 
           const resData = Object.assign(paySignParam, {

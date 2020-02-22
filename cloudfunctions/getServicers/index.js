@@ -22,7 +22,9 @@ exports.main = async (event, context) => {
   // 根据客服编号查询
   const servicerNo = event.servicerNo
   console.log('getServicers', servicerNo)
-  if (servicerNo) {
+  if (Array.isArray(servicerNo)) {
+    where.servicerNo = _.in(servicerNo)
+  } else if (servicerNo) {
     where.servicerNo = servicerNo
   }
 
