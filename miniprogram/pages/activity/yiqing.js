@@ -33,7 +33,7 @@ Page({
       '0001', '0002', '0004', '0007', '0009', '0010',
       '0016', '0017',
       '0036', '0040', 
-      '0041', '0042', '0043', '0044', '0045', '0046'
+      '0041', '0042', '0043', '0044', '0045', '0046', '0047'
     ]
   },
   /**
@@ -72,11 +72,11 @@ Page({
   /**
    * 获取疫情客服
    */
-  getYiqingServicers() {
+  getYiqingServicers(servicerNoList) {
     wx.cloud.callFunction({
       name: 'getServicers',
       data: {
-        servicerNo: this.data.servicerNoList,
+        servicerNo: servicerNoList,
         skip: this.data.nonProSkip,
         limit: this.data.nonProLimit
       }
@@ -85,11 +85,35 @@ Page({
       this.transServicersData(data, '0')
     }).catch(console.error)
   },
+  transServicerList(servicerList) {
+    let servicers = []
+    for (let servicer of servicerList) {
+      servicers.push(servicer.servicerNo)
+    }
+
+    this.getYiqingServicers(servicers)
+  },
+  /**
+   * 获取公益活动客服列表
+   */
+  getYiqingServicerNoList() {
+    console.log('getYiqingServicerNoList')
+    wx.cloud.callFunction({
+      name: 'getActivityList',
+      data: {
+        name: 'yiqing'
+      }
+    }).then(res => {
+      console.log('getYiqingServicerNoList:', res)
+      const data = res.result && res.result.data || []
+      this.transServicerList(data)
+    }).catch(console.error)
+  },
   onLoad: function (query) {
     wx.setNavigationBarTitle({
       title: '公益客服列表'
     })
-    this.getYiqingServicers()
+    this.getYiqingServicerNoList()
   },
 
   /**
