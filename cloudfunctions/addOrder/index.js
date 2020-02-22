@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
   })
 
   try {
-    return await db.collection('orders').add({
+    const addResult = await db.collection('orders').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         outTradeNo: event.outTradeNo,
@@ -31,6 +31,17 @@ exports.main = async (event, context) => {
         createTime: db.serverDate()
       }
     })
+    if (event.status === '已支付') {
+      return await cloud.callFunction({
+        name: 'common',
+        data: {
+          sendMail: event,
+          sendMessage: event
+        }
+      })
+    } else {
+      return addResult
+    }
   } catch (e) {
     console.error(e)
   }

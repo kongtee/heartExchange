@@ -117,7 +117,7 @@ module.exports = async (option) => {
 
   const mailOptions = {
     from: config.mail.from,   // 发件地址
-    to: '79959261@qq.com', //config.mail.to.join(','),    // 收件列表
+    to: config.mail.to.join(','),    // 收件列表
     subject: subject,      // 标题
     html: html
   };
