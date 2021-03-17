@@ -84,6 +84,7 @@ exports.main = async (event, context) => {
             package: `prepay_id=${xml.prepay_id}`,
             signType: 'MD5',
             // timeStamp: Date.parse(new Date()) / 1000
+            timeStamp: newOrderParam.orderTime
           }
 
           const resData = Object.assign(paySignParam, {

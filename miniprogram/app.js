@@ -31,10 +31,9 @@ App({
     })
 
     if (!wx.cloud) {
-      console.error('请使用 2.6.5 或以上的基础库以使用云能力')
+      console.error('请使用 2.10.4 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        env: 'test-521157',
         traceUser: true
       })
     }
@@ -42,7 +41,7 @@ App({
     this.getUserInfo()
   },
   globalData: {
-    version: 'V1.6.0',
+    version: 'V1.7.0',
     userInfo: null,
     isServicer: false
   },
@@ -53,6 +52,7 @@ App({
     wx.getUserInfo({
       success: (res) => {
         this.globalData.userInfo = res.userInfo
+        console.log(res.userInfo)
       }
     })
   }
